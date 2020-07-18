@@ -122,6 +122,8 @@
                     <div class="dropdown-menu dropdown-menu animated">
                         <a class="dropdown-item {{ Request::segment(2) === 'provider' ? 'active' : null }}"
                            href="{{ route('admin.provider.index') }}">@lang('admin.include.providers')</a>
+                        <a class="dropdown-item {{ Request::segment(2) === 'vehicles' ? 'active' : null }}"
+                           href="{{ route('admin.vehicles.index') }}">Vehicle</a>
                         <a class="dropdown-item {{ Request::segment(2) === 'service' ? 'active' : null }}"
                            href="{{ route('admin.service.index') }}">@lang('admin.include.service_types')</a>
 

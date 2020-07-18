@@ -43,6 +43,7 @@ Route::resource('company', 'Resource\CompanyResource');
 Route::resource('cartype', 'Resource\CartypeResource');
 Route::resource('cars', 'Resource\CarsResource');
 Route::resource('reservations', 'Resource\RreservationsResource');
+Route::resource('vehicles', 'Resource\VehicleReource');
 
 Route::resource('dispatch-manager', 'Resource\DispatcherResource');
 Route::resource('account-manager', 'Resource\AccountResource');

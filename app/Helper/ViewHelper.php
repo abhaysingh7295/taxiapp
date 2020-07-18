@@ -84,6 +84,11 @@ function get_cartype()
 	return $country = DB::table("carrentcartypes")->get();
        
 }
+function get_seattype()
+{
+	return $country = DB::table("vehicle_seattypes")->get();
+       
+}
 function get_company_name($id)
 {
 	 $country = DB::table("carrentcompanies")->where('id',$id)->first();
