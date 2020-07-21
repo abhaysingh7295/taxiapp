@@ -1,4 +1,3 @@
-
 @extends('admin.layout.base')
 @section('title', 'Vehicle')
 @section('content')
@@ -38,7 +37,10 @@
                             <th>Registration Number</th>
                             <th>Registration Expire</th>
                             <th>PHC Licence Number</th>
-                            <th>Checklist</th>
+                             @can('vehiclechecklist')
+                            <th>@lang('admin.provides.vehiclechecklist')</th>
+                            @endcan
+                            
                              <th>Attention</th>
                             <th>@lang('admin.action')</th>
                         </tr>
@@ -55,15 +57,16 @@
                             <td>{{ $values->registrationNumber }}</td>
                             <td>{{ $values->registration_expire }}</td>
                             <td>{{ $values->PHCLicenceNumber }}</td>
+                            @can('vehiclechecklist')
                              <td>
-
-                                <a class="btn btn-success btn-block"
+                                 <a class="btn btn-success"
                                    href="{{route('admin.vehicles.vehiclechecklist', $values->id )}}">Checklist</a>
                             </td>
+                            @endcan
                             <td>
 
                                 <a class="btn btn-success btn-block"
-                                   href="">Attention</a>
+                                   href="{{route('admin.vehicles.vehicledocuments', $values->id )}}">Attention</a>
                             </td>
 
                             <td>
@@ -89,8 +92,11 @@
                             <th>Model</th>
                             <th>Color</th>
                             <th>Registration Number</th>
+                             <th>Registration Expire</th>
                             <th>PHC Licence Number</th>
-                              <th>Checklist</th>\
+                                @can('vehiclechecklist')
+                            <th>@lang('admin.provides.vehiclechecklist')</th>
+                            @endcan
                                <th>Attention</th>
                             <th>@lang('admin.action')</th>
                         </tr>

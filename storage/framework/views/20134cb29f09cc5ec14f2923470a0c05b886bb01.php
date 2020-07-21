@@ -55,9 +55,9 @@
                             <th><?php echo app('translator')->getFromJson('admin.provides.total_requests'); ?></th>
                             <th><?php echo app('translator')->getFromJson('admin.provides.accepted_requests'); ?></th>
                             <th><?php echo app('translator')->getFromJson('admin.provides.created_at'); ?></th>
-                            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('driverchecklist')): ?>
+<!--                            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('driverchecklist')): ?>
                             <th><?php echo app('translator')->getFromJson('admin.provides.driverchecklist'); ?></th>
-                            <?php endif; ?>
+                            <?php endif; ?>-->
                             <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('provider-documents')): ?>
                             <th><?php echo app('translator')->getFromJson('admin.provides.service_type'); ?></th>
                             <?php endif; ?>
@@ -99,13 +99,13 @@
                             <td><?php echo e($provider->total_requests()); ?></td>
                             <td><?php echo e($provider->accepted_requests()); ?></td>
                             <td><?php echo e($provider->created_at->format('d/m/Y H:i:s')); ?></td>
-                            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('driverchecklist')): ?>
+<!--                            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('driverchecklist')): ?>
                             <td>
 
                                 <a class="btn btn-success btn-block"
                                    href="<?php echo e(route('admin.provider.driverchecklist', $provider->id )); ?>">Checklist</a>
                             </td>
-                            <?php endif; ?>
+                            <?php endif; ?>-->
                             <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('provider-documents')): ?>
                             <td>
                                 <?php if($provider->active_documents() == $total_documents && $provider->service != null): ?>
@@ -233,9 +233,9 @@
                             <th><?php echo app('translator')->getFromJson('admin.provides.total_requests'); ?></th>
                             <th><?php echo app('translator')->getFromJson('admin.provides.accepted_requests'); ?></th>
                             <th><?php echo app('translator')->getFromJson('admin.provides.created_at'); ?></th>
-                            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('driverchecklist')): ?>
+<!--                            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('driverchecklist')): ?>
                             <th><?php echo app('translator')->getFromJson('admin.provides.driverchecklist'); ?></th>
-                            <?php endif; ?>
+                            <?php endif; ?>-->
                             <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('provider-documents')): ?>
                             <th><?php echo app('translator')->getFromJson('admin.provides.service_type'); ?></th>
                             <?php endif; ?>

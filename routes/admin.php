@@ -46,6 +46,8 @@ Route::resource('reservations', 'Resource\RreservationsResource');
 Route::resource('vehicles', 'Resource\VehicleReource');
 Route::get('vehicles/{id}/vehiclechecklist','Resource\VehicleReource@vehiclechecklist')->name('vehicles.vehiclechecklist');
 Route::patch('vehicles/{id}/vehiclechecklist','Resource\VehicleReource@updatevehiclechecklist')->name('vehicles.vehiclechecklist');
+Route::get('vehicles/{id}/vehicledocuments','Resource\VehicleReource@vehicledocuments')->name('vehicles.vehicledocuments');
+Route::patch('vehicles/{id}/uploadsvehicledocuments/{vehicleid}/','Resource\VehicleReource@updatevehicledocuments')->name('vehicles.uploadsvehicledocuments');
 
 Route::resource('dispatch-manager', 'Resource\DispatcherResource');
 Route::resource('account-manager', 'Resource\AccountResource');

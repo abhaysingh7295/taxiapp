@@ -6,7 +6,7 @@
             <h4 class="card-title ">Vehicle</h4>
         </div>
         <div class="card-body">
-            <form action="<?php echo e(route('admin.cars.index')); ?>" method="get">
+            <form action="<?php echo e(route('admin.vehicles.index')); ?>" method="get">
                 <div class="form-group col-md-12" style="padding-left:0 !important; padding-right:0 !important; margin-bottom: 20px;">
 
                     <div class="col-xs-6">
@@ -34,7 +34,13 @@
                             <th>Model</th>
                             <th>Color</th>
                             <th>Registration Number</th>
+                            <th>Registration Expire</th>
                             <th>PHC Licence Number</th>
+                             <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('vehiclechecklist')): ?>
+                            <th><?php echo app('translator')->getFromJson('admin.provides.vehiclechecklist'); ?></th>
+                            <?php endif; ?>
+                            
+                             <th>Attention</th>
                             <th><?php echo app('translator')->getFromJson('admin.action'); ?></th>
                         </tr>
                     </thead>
@@ -48,7 +54,19 @@
                             <td><?php echo e($values->model); ?></td>
                             <td><?php echo e($values->color); ?></td>
                             <td><?php echo e($values->registrationNumber); ?></td>
+                            <td><?php echo e($values->registration_expire); ?></td>
                             <td><?php echo e($values->PHCLicenceNumber); ?></td>
+                            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('vehiclechecklist')): ?>
+                             <td>
+                                 <a class="btn btn-success"
+                                   href="<?php echo e(route('admin.vehicles.vehiclechecklist', $values->id )); ?>">Checklist</a>
+                            </td>
+                            <?php endif; ?>
+                            <td>
+
+                                <a class="btn btn-success btn-block"
+                                   href="<?php echo e(route('admin.vehicles.vehicledocuments', $values->id )); ?>">Attention</a>
+                            </td>
 
                             <td>
                                 <form action="<?php echo e(route('admin.vehicles.destroy', $values->id)); ?>" method="POST">
@@ -74,7 +92,12 @@
                             <th>Model</th>
                             <th>Color</th>
                             <th>Registration Number</th>
+                             <th>Registration Expire</th>
                             <th>PHC Licence Number</th>
+                                <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('vehiclechecklist')): ?>
+                            <th><?php echo app('translator')->getFromJson('admin.provides.vehiclechecklist'); ?></th>
+                            <?php endif; ?>
+                               <th>Attention</th>
                             <th><?php echo app('translator')->getFromJson('admin.action'); ?></th>
                         </tr>
                     </tfoot>

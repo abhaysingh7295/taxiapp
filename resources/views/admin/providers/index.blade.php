@@ -57,9 +57,9 @@
                             <th>@lang('admin.provides.total_requests')</th>
                             <th>@lang('admin.provides.accepted_requests')</th>
                             <th>@lang('admin.provides.created_at')</th>
-                            @can('driverchecklist')
+<!--                            @can('driverchecklist')
                             <th>@lang('admin.provides.driverchecklist')</th>
-                            @endcan
+                            @endcan-->
                             @can('provider-documents')
                             <th>@lang('admin.provides.service_type')</th>
                             @endcan
@@ -100,13 +100,13 @@
                             <td>{{ $provider->total_requests() }}</td>
                             <td>{{ $provider->accepted_requests() }}</td>
                             <td>{{ $provider->created_at->format('d/m/Y H:i:s') }}</td>
-                            @can('driverchecklist')
+<!--                            @can('driverchecklist')
                             <td>
 
                                 <a class="btn btn-success btn-block"
                                    href="{{route('admin.provider.driverchecklist', $provider->id )}}">Checklist</a>
                             </td>
-                            @endcan
+                            @endcan-->
                             @can('provider-documents')
                             <td>
                                 @if($provider->active_documents() == $total_documents && $provider->service != null)
@@ -233,9 +233,9 @@
                             <th>@lang('admin.provides.total_requests')</th>
                             <th>@lang('admin.provides.accepted_requests')</th>
                             <th>@lang('admin.provides.created_at')</th>
-                            @can('driverchecklist')
+<!--                            @can('driverchecklist')
                             <th>@lang('admin.provides.driverchecklist')</th>
-                            @endcan
+                            @endcan-->
                             @can('provider-documents')
                             <th>@lang('admin.provides.service_type')</th>
                             @endcan

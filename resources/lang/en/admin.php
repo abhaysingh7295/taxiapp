@@ -242,7 +242,7 @@ return array (
     'accepted_requests' => 'Accepted Requests',
     'cancelled_requests' => 'Cancelled Requests',
     'service_type' => 'Documents / Service Type',
-    'driverchecklist' => 'Checklist',
+    'vehiclechecklist' => 'Checklist',
     'redflag' => 'Red Flag On',
     'orangeflag' => 'Orange On',
     'redflagoff' => 'Red Flag Off',
