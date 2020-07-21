@@ -9,7 +9,7 @@
                 <?php echo app('translator')->getFromJson('admin.provides.providers'); ?>
             </h5>
             <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('provider-create')): ?>
-                    <a href="<?php echo e(route('admin.provider.create')); ?>" class="btn pull-right"><i class="fa fa-plus"></i><?php echo app('translator')->getFromJson('admin.provides.add_new_provider'); ?></a>
+            <a href="<?php echo e(route('admin.provider.create')); ?>" class="btn pull-right"><i class="fa fa-plus"></i><?php echo app('translator')->getFromJson('admin.provides.add_new_provider'); ?></a>
             <?php endif; ?>
         </div>
         <div class="card-body">
@@ -22,17 +22,17 @@
                     <div class="col-xs-5">
                         <label class="radio-inline">
                             <input type="radio" name="status" value="A" class="radio"
-                                <?php echo e(request()->has('status')&&request()->get('status')=="A"?" checked":""); ?>> Regularized
+                                   <?php echo e(request()->has('status')&&request()->get('status')=="A"?" checked":""); ?>> Regularized
                         </label>
                         <label class="radio-inline">
                             <input type="radio" name="status" value="P" class="radio"
-                                <?php echo e(request()->has('status')&&request()->get('status')=="P"?" checked":""); ?>> Pending
-                            Docs
+                                   <?php echo e(request()->has('status')&&request()->get('status')=="P"?" checked":""); ?>> Pending
+                                   Docs
                         </label>
                         <label class="radio-inline">
                             <input type="radio" name="status" value="F" class="radio"
-                                <?php echo e(request()->has('status')&&request()->get('status')=="F"?" checked":""); ?>> Missing
-                            Docs
+                                   <?php echo e(request()->has('status')&&request()->get('status')=="F"?" checked":""); ?>> Missing
+                                   Docs
                         </label>
                     </div>
 
@@ -51,10 +51,13 @@
                             <th><?php echo app('translator')->getFromJson('admin.provides.full_name'); ?></th>
                             <th><?php echo app('translator')->getFromJson('admin.email'); ?></th>
                             <th><?php echo app('translator')->getFromJson('admin.mobile'); ?></th>
-                            <th><?php echo app('translator')->getFromJson('admin.users.Wallet_Amount'); ?></th>
+<!--                            <th><?php echo app('translator')->getFromJson('admin.users.Wallet_Amount'); ?></th>-->
                             <th><?php echo app('translator')->getFromJson('admin.provides.total_requests'); ?></th>
                             <th><?php echo app('translator')->getFromJson('admin.provides.accepted_requests'); ?></th>
                             <th><?php echo app('translator')->getFromJson('admin.provides.created_at'); ?></th>
+                            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('driverchecklist')): ?>
+                            <th><?php echo app('translator')->getFromJson('admin.provides.driverchecklist'); ?></th>
+                            <?php endif; ?>
                             <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('provider-documents')): ?>
                             <th><?php echo app('translator')->getFromJson('admin.provides.service_type'); ?></th>
                             <?php endif; ?>
@@ -81,7 +84,7 @@
                             <?php else: ?>
                             <td><?php echo e($provider->mobile); ?></td>
                             <?php endif; ?>
-                            <td>
+<!--                            <td>
                                 <?php if($provider->wallet_balance < 0): ?> <label style="cursor: default;"
                                     class="btn small btn-block btn-danger">
                                     <?php echo e(currency($provider->wallet_balance)); ?></label>
@@ -92,22 +95,30 @@
                                     <label style="cursor: default;"
                                         class="btn small btn-block btn-success"><?php echo e(currency($provider->wallet_balance)); ?></label>
                                     <?php endif; ?>
-                            </td>
+                            </td>-->
                             <td><?php echo e($provider->total_requests()); ?></td>
                             <td><?php echo e($provider->accepted_requests()); ?></td>
                             <td><?php echo e($provider->created_at->format('d/m/Y H:i:s')); ?></td>
+                            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('driverchecklist')): ?>
+                            <td>
+
+                                <a class="btn btn-success btn-block"
+                                   href="<?php echo e(route('admin.provider.driverchecklist', $provider->id )); ?>">Checklist</a>
+                            </td>
+                            <?php endif; ?>
                             <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('provider-documents')): ?>
                             <td>
                                 <?php if($provider->active_documents() == $total_documents && $provider->service != null): ?>
                                 <a class="btn btn-success btn-block"
-                                    href="<?php echo e(route('admin.provider.document.index', $provider->id )); ?>">Verified</a>
+                                   href="<?php echo e(route('admin.provider.document.index', $provider->id )); ?>">Verified</a>
                                 <?php else: ?>
                                 <a class="btn btn-danger btn-block label-right"
-                                    href="<?php echo e(route('admin.provider.document.index', $provider->id )); ?>">Attention! <span
+                                   href="<?php echo e(route('admin.provider.document.index', $provider->id )); ?>">Attention! <span
                                         class="btn-label"><?php echo e($provider->pending_documents()); ?></span></a>
                                 <?php endif; ?>
                             </td>
                             <?php endif; ?>
+
                             <td>
                                 <?php if($provider->service): ?>
                                 <?php if($provider->service->status == 'active'): ?>
@@ -124,35 +135,60 @@
                                     <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('provider-status')): ?>
                                     <?php if($provider->status == 'approved'): ?>
                                     <a class="btn btn-danger btn-block"
-                                        href="<?php echo e(route('admin.provider.disapprove', $provider->id )); ?>"><?php echo app('translator')->getFromJson('Disable'); ?></a>
+                                       href="<?php echo e(route('admin.provider.disapprove', $provider->id )); ?>"><?php echo app('translator')->getFromJson('Disable'); ?></a>
                                     <?php else: ?>
                                     <a class="btn btn-success btn-block"
-                                        href="<?php echo e(route('admin.provider.approve', $provider->id )); ?>"><?php echo app('translator')->getFromJson('Enable'); ?></a>
+                                       href="<?php echo e(route('admin.provider.approve', $provider->id )); ?>"><?php echo app('translator')->getFromJson('Enable'); ?></a>
                                     <?php endif; ?>
                                     <?php endif; ?>
                                     <?php if($user->hasAnyPermission(['provider-history', 'provider-statements',
                                     'provider-edit','provider-delete'])): ?>
                                     <button type="button" class="btn btn-info btn-block dropdown-toggle"
-                                        data-toggle="dropdown"><?php echo app('translator')->getFromJson('admin.action'); ?>
+                                            data-toggle="dropdown"><?php echo app('translator')->getFromJson('admin.action'); ?>
                                         <span class="caret"></span>
                                     </button>
                                     <ul class="dropdown-menu">
+                                        <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('driver-redflag')): ?>
+                                        <li>
+                                            <?php if($provider->is_red_flag == 0): ?>
+                                            <a href="<?php echo e(route('admin.provider.redflagon', $provider->id)); ?>"
+                                               class="btn btn-default"> <i style="color:red;" class="fa fa-flag"></i> 
+                                                <?php echo app('translator')->getFromJson('admin.provides.redflag'); ?></a>
+                                            <?php else: ?>
+                                            <a href="<?php echo e(route('admin.provider.redflagoff', $provider->id)); ?>"
+                                               class="btn btn-default"> <i style="color:red;" class="fa fa-flag"></i> 
+                                                <?php echo app('translator')->getFromJson('admin.provides.redflagoff'); ?></a>
+                                            <?php endif; ?>
+                                        </li>
+                                        <?php endif; ?>
+                                        <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('driver-orangeflag')): ?>
+                                        <li>
+                                            <?php if($provider->is_orenge_flag == 0): ?>
+                                            <a href="<?php echo e(route('admin.provider.orangeflagon', $provider->id)); ?>"
+                                               class="btn btn-default"><i style="color:orange;"
+                                                                       class="fa fa-flag"></i> <?php echo app('translator')->getFromJson('admin.provides.orangeflag'); ?></a>
+                                            <?php else: ?>
+                                            <a href="<?php echo e(route('admin.provider.orangeflagoff', $provider->id)); ?>"
+                                               class="btn btn-default"><i style="color:orange;"
+                                                                       class="fa fa-flag"></i> <?php echo app('translator')->getFromJson('admin.provides.orangeflagoff'); ?></a>  <?php endif; ?>
+                                        </li>
+                                        <?php endif; ?>
                                         <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('provider-history')): ?>
                                         <li>
                                             <a href="<?php echo e(route('admin.provider.request', $provider->id)); ?>"
-                                                class="btn btn-default"><i class="fa fa-search"></i>
+                                               class="btn btn-default"><i class="fa fa-search"></i>
                                                 <?php echo app('translator')->getFromJson('admin.History'); ?></a>
                                         </li>
                                         <?php endif; ?>
                                         <li>
                                             <a href="<?php echo e(route('admin.provider.password', $provider->id)); ?>"
-                                                class="btn btn-default"><i class="fa fa-user-secret"></i>
+                                               class="btn btn-default"><i class="fa fa-user-secret"></i>
                                                 <?php echo app('translator')->getFromJson('admin.provides.password'); ?></a>
                                         </li>
                                         <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('provider-statements')): ?>
                                         <li>
                                             <a href="<?php echo e(route('admin.provider.statement', $provider->id)); ?>"
-                                                class="btn btn-default"><i class="fa fa-account"></i>
+                                               class="btn btn-default"><i class="fa fa-account"></i>
                                                 <?php echo app('translator')->getFromJson('admin.Statements'); ?></a>
                                         </li>
                                         <?php endif; ?>
@@ -160,7 +196,7 @@
                                         <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('provider-edit')): ?>
                                         <li>
                                             <a href="<?php echo e(route('admin.provider.edit', $provider->id)); ?>"
-                                                class="btn btn-default"><i class="fa fa-pencil"></i>
+                                               class="btn btn-default"><i class="fa fa-pencil"></i>
                                                 <?php echo app('translator')->getFromJson('admin.edit'); ?></a>
                                         </li>
                                         <?php endif; ?>
@@ -168,13 +204,13 @@
                                         <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('provider-delete')): ?>
                                         <li>
                                             <form action="<?php echo e(route('admin.provider.destroy', $provider->id)); ?>"
-                                                method="POST">
+                                                  method="POST">
                                                 <?php echo e(csrf_field()); ?>
 
                                                 <input type="hidden" name="_method" value="DELETE">
                                                 <?php if( Setting::get('demo_mode', 0) == 0): ?>
                                                 <button class="btn btn-default look-a-like"
-                                                    onclick="return confirm('Are you sure?')"><i
+                                                        onclick="return confirm('Are you sure?')"><i
                                                         class="fa fa-trash"></i><?php echo app('translator')->getFromJson('admin.delete'); ?></button>
                                                 <?php endif; ?>
                                             </form>
@@ -193,10 +229,13 @@
                             <th><?php echo app('translator')->getFromJson('admin.provides.full_name'); ?></th>
                             <th><?php echo app('translator')->getFromJson('admin.email'); ?></th>
                             <th><?php echo app('translator')->getFromJson('admin.mobile'); ?></th>
-                            <th><?php echo app('translator')->getFromJson('admin.users.Wallet_Amount'); ?></th>
+<!--                            <th><?php echo app('translator')->getFromJson('admin.users.Wallet_Amount'); ?></th>-->
                             <th><?php echo app('translator')->getFromJson('admin.provides.total_requests'); ?></th>
                             <th><?php echo app('translator')->getFromJson('admin.provides.accepted_requests'); ?></th>
                             <th><?php echo app('translator')->getFromJson('admin.provides.created_at'); ?></th>
+                            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('driverchecklist')): ?>
+                            <th><?php echo app('translator')->getFromJson('admin.provides.driverchecklist'); ?></th>
+                            <?php endif; ?>
                             <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('provider-documents')): ?>
                             <th><?php echo app('translator')->getFromJson('admin.provides.service_type'); ?></th>
                             <?php endif; ?>
@@ -223,7 +262,7 @@
                     p = new Array();
                     $.each(result.data, function (i, d) {
                         var item = [d.id, d.first_name + ' ' + d.last_name, d.email, d
-                            .mobile, d.rating, d.wallet_balance
+                                    .mobile, d.rating, d.wallet_balance
                         ];
                         p.push(item);
                     });

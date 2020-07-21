@@ -113,7 +113,7 @@
             </ul>
              @can('provider-list')
                <ul class="nav navbar-nav">
-                <li class="nav-item dropdown {{ Request::segment(2) === 'provider' ? 'active' : null }} {{ Request::segment(2) === 'service' ? 'active' : null }}">
+                <li class="nav-item dropdown {{ Request::segment(2) === 'provider' ? 'active' : null }} {{ Request::segment(2) === 'service' ? 'active' : null }} { Request::segment(2) === 'vehicles' ? 'active' : null }}">
 
                     <a class="nav-link" href="#" data-toggle="dropdown">
                         <i class="fa fa-book"></i>

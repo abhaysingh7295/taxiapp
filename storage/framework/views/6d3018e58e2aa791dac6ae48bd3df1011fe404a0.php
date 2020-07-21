@@ -39,12 +39,12 @@
                                 <div class="manage-doc-box-center text-center">
                                     <p class="manage-badge <?php echo e($Provider->document($Document->id) ? ($Provider->document($Document->id)->status == 'ASSESSING' ? 'yellow-badge' : 'green-badge') : 'red-badge'); ?>">
                                         <?php if($Provider->document($Document->id)): ?>
-                                            <?php if($Provider->document($Document->id)->status == "ASSESSING"): ?><?php echo e("AVALIANDO"); ?>
+                                            <?php if($Provider->document($Document->id)->status == "ASSESSING"): ?><?php echo e("ASSESSING"); ?>
 
-                                            <?php elseif($Provider->document($Document->id)->status == "ACTIVE"): ?> <?php echo e("APROVADO"); ?>
+                                            <?php elseif($Provider->document($Document->id)->status == "ACTIVE"): ?> <?php echo e("APPROVED"); ?>
 
-                                            <?php elseif($Provider->document($Document->id)->status == "MISSING"): ?> <?php echo e("NÃO ENVIADO"); ?> <?php endif; ?>
-                                        <?php else: ?> <?php echo e("NÃO ENVIADO"); ?> <?php endif; ?>
+                                            <?php elseif($Provider->document($Document->id)->status == "MISSING"): ?> <?php echo e("NOT SENT"); ?> <?php endif; ?>
+                                        <?php else: ?> <?php echo e("NOT SENT"); ?> <?php endif; ?>
                                     </p>
                                 </div>
                             </div>
@@ -105,12 +105,12 @@
                                 <div class="manage-doc-box-center text-center">
                                     <p class="manage-badge <?php echo e($Provider->document($Document->id) ? ($Provider->document($Document->id)->status == 'ASSESSING' ? 'yellow-badge' : 'green-badge') : 'red-badge'); ?>">
                                         <?php if($Provider->document($Document->id)): ?>
-                                            <?php if($Provider->document($Document->id)->status == "ASSESSING"): ?><?php echo e("AVALIANDO"); ?>
+                                            <?php if($Provider->document($Document->id)->status == "ASSESSING"): ?><?php echo e("ASSESSING"); ?>
 
                                             <?php elseif($Provider->document($Document->id)->status == "ACTIVE"): ?> <?php echo e("APROVADO"); ?>
 
-                                            <?php elseif($Provider->document($Document->id)->status == "MISSING"): ?> <?php echo e("NÃO ENVIADO"); ?> <?php endif; ?>
-                                        <?php else: ?> <?php echo e("NÃO ENVIADO"); ?> <?php endif; ?>
+                                            <?php elseif($Provider->document($Document->id)->status == "MISSING"): ?> <?php echo e("NOT SENT"); ?> <?php endif; ?>
+                                        <?php else: ?> <?php echo e("NOT SENT"); ?> <?php endif; ?>
                                     </p>
                                 </div>
                             </div>

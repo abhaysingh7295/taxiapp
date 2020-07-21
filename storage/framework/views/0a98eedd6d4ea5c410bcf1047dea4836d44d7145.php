@@ -1,14 +1,12 @@
-
-@extends('admin.layout.base')
-@section('title', 'Vehicle')
-@section('content')
+<?php $__env->startSection('title', 'Vehicle'); ?>
+<?php $__env->startSection('content'); ?>
 <div class="container-fluid">
     <div class="card">
         <div class="card-header card-header-primary">
             <h4 class="card-title ">Vehicle</h4>
         </div>
         <div class="card-body">
-            <form action="{{ route('admin.vehicles.index') }}" method="get">
+            <form action="<?php echo e(route('admin.vehicles.index')); ?>" method="get">
                 <div class="form-group col-md-12" style="padding-left:0 !important; padding-right:0 !important; margin-bottom: 20px;">
 
                     <div class="col-xs-6">
@@ -19,12 +17,12 @@
                         <button class="btn btn-primary" type="submit">Search</button>
                     </div>
 
-                    @can('user-create')
+                    <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('user-create')): ?>
                     <div class="col-xs-3">
-                        <a href="{{ route('admin.vehicles.create') }}" style="margin-left: 1em;" class="btn btn-primary pull-right"><i class="fa fa-plus"></i>Add New</a>
+                        <a href="<?php echo e(route('admin.vehicles.create')); ?>" style="margin-left: 1em;" class="btn btn-primary pull-right"><i class="fa fa-plus"></i>Add New</a>
 
                     </div>
-                    @endcan
+                    <?php endif; ?>
                 </div>
             </form>
             <div class="table-responsive">
@@ -39,43 +37,44 @@
                             <th>Registration Expire</th>
                             <th>PHC Licence Number</th>
                             <th>Checklist</th>
-                            <th>@lang('admin.action')</th>
+                            <th><?php echo app('translator')->getFromJson('admin.action'); ?></th>
                         </tr>
                     </thead>
                     <tbody>
-                        @php($page = ($pagination->currentPage-1)*$pagination->perPage)
-                        @foreach($vehicle as $key=> $values)
-                        @php($page++)
+                        <?php ($page = ($pagination->currentPage-1)*$pagination->perPage); ?>
+                        <?php $__currentLoopData = $vehicle; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key=> $values): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                        <?php ($page++); ?>
                         <tr>
-                            <td>{{ $page }}</td>
-                            <td>{{ $values->make }}</td>
-                            <td>{{ $values->model }}</td>
-                            <td>{{ $values->color }}</td>
-                            <td>{{ $values->registrationNumber }}</td>
-                            <td>{{ $values->registration_expire }}</td>
-                            <td>{{ $values->PHCLicenceNumber }}</td>
+                            <td><?php echo e($page); ?></td>
+                            <td><?php echo e($values->make); ?></td>
+                            <td><?php echo e($values->model); ?></td>
+                            <td><?php echo e($values->color); ?></td>
+                            <td><?php echo e($values->registrationNumber); ?></td>
+                            <td><?php echo e($values->registration_expire); ?></td>
+                            <td><?php echo e($values->PHCLicenceNumber); ?></td>
                              <td>
 
                                 <a class="btn btn-success btn-block"
-                                   href="{{route('admin.vehicles.vehiclechecklist', $values->id )}}">Checklist</a>
+                                   href="<?php echo e(route('admin.vehicles.vehiclechecklist', $values->id )); ?>">Checklist</a>
                             </td>
 
 
                             <td>
-                                <form action="{{ route('admin.vehicles.destroy', $values->id) }}" method="POST">
-                                    {{ csrf_field() }}
+                                <form action="<?php echo e(route('admin.vehicles.destroy', $values->id)); ?>" method="POST">
+                                    <?php echo e(csrf_field()); ?>
+
                                     <input type="hidden" name="_method" value="DELETE">
 
-                                    <a href="{{ route('admin.vehicles.edit', $values->id) }}" class="btn btn-info"><i class="fa fa-pencil"></i> @lang('admin.edit')</a>
+                                    <a href="<?php echo e(route('admin.vehicles.edit', $values->id)); ?>" class="btn btn-info"><i class="fa fa-pencil"></i> <?php echo app('translator')->getFromJson('admin.edit'); ?></a>
 
-                                    <button class="btn btn-danger" onclick="return confirm('Are you sure?')"><i class="fa fa-trash"></i> @lang('admin.delete')</button>
+                                    <button class="btn btn-danger" onclick="return confirm('Are you sure?')"><i class="fa fa-trash"></i> <?php echo app('translator')->getFromJson('admin.delete'); ?></button>
 
 
 
                                 </form>
                             </td>
                         </tr>
-                        @endforeach
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                     </tbody>
                     <tfoot>
                         <tr>
@@ -86,23 +85,23 @@
                             <th>Registration Number</th>
                             <th>PHC Licence Number</th>
                               <th>Checklist</th>
-                            <th>@lang('admin.action')</th>
+                            <th><?php echo app('translator')->getFromJson('admin.action'); ?></th>
                         </tr>
                     </tfoot>
                 </table>
-                @include('common.pagination')
+                <?php echo $__env->make('common.pagination', \Illuminate\Support\Arr::except(get_defined_vars(), array('__data', '__path')))->render(); ?>
             </div>
         </div>
     </div>
 </div>
-@endsection
+<?php $__env->stopSection(); ?>
 
-@section('scripts')
+<?php $__env->startSection('scripts'); ?>
 <script type="text/javascript">
     jQuery.fn.DataTable.Api.register('buttons.exportData()', function (options) {
         if (this.context.length) {
             var jsonResult = $.ajax({
-                url: "{{url('admin/vehicles')}}?page=all",
+                url: "<?php echo e(url('admin/vehicles')); ?>?page=all",
                 data: {},
                 success: function (result) {
                     p = new Array();
@@ -133,5 +132,7 @@
         ]
     });
 </script>
-@endsection
+<?php $__env->stopSection(); ?>
 
+
+<?php echo $__env->make('admin.layout.base', \Illuminate\Support\Arr::except(get_defined_vars(), array('__data', '__path')))->render(); ?>

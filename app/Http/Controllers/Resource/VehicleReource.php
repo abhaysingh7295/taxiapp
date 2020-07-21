@@ -62,6 +62,7 @@ class VehicleReource extends Controller {
             'model' => 'required|max:255',
             'color' => 'required|max:255',
             'registrationNumber' => 'required',
+            'registration_expire' => 'required',
             'PHCLicenceNumber' => 'required',
             'seatType' => 'required',
            
@@ -105,6 +106,7 @@ class VehicleReource extends Controller {
             'model' => 'required',
             'color' => 'required',
             'registrationNumber' => 'required',
+            'registration_expire' => 'required',
             'PHCLicenceNumber' => 'required',
             'seatType' => 'required|max:255'
            
@@ -117,6 +119,7 @@ class VehicleReource extends Controller {
             $vehicle->model = $request->model;
             $vehicle->color = $request->color;
             $vehicle->registrationNumber= $request->registrationNumber;
+            $vehicle->registration_expire= $request->registration_expire;
             $vehicle->PHCLicenceNumber = $request->PHCLicenceNumber;
             $vehicle->seatType = $request->seatType;
             $vehicle->save();
@@ -135,6 +138,18 @@ class VehicleReource extends Controller {
         } catch (Exception $e) {
             return back()->with('flash_error', 'Erorr');
         }
+    }
+    
+     public function vehiclechecklist($id) {
+
+        $vehicle = Vehicle::findOrFail($id);
+        return view('admin.vehicle.vehicle_checklist', compact('vehicle'));
+    }
+
+    public function updatevehiclechecklist(Request $request, $id) {      
+        $vehicle = Vehicle::findOrFail($id);
+        $vehicle->update(['is_logo'=>$request['is_logo'],'is_ft'=>$request['is_ft'],'is_pt'=>$request['is_pt'],'is_schedule'=>$request['is_schedule'],'is_notes'=>$request['is_notes'],'is_induction'=>$request['is_induction'],'is_companyscar'=>$request['is_companyscar']]);
+        return redirect()->route('admin.vehicle.index')->with('flash_success', 'Checklist updated successfully');
     }
 
 
