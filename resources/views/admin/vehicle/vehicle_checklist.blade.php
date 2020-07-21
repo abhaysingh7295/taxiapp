@@ -10,7 +10,7 @@
 <!--                    <p class="card-category">Driver Checklist</p>-->
                 </div>
                 <div class="card-body">
-                    <form class="form-horizontal"  action="{{ route('admin.vehicles.Vehiclechecklist',['id'=>$vehicle->id]) }}" method="POST" role="form">
+                    <form class="form-horizontal"  action="{{route('admin.vehicles.vehiclechecklist', $vehicle->id )}}" method="POST" role="form">
                         @csrf
                         @method('PATCH')
                         <div class="row">
@@ -52,7 +52,7 @@
                                     <label for="zipcode" class="bmd-label-floating"></label>
                                     <div class="col-xs-10">
                                         <button type="submit" class="btn btn-primary">Update</button>
-                                        <a href="{{route('admin.vehicle.index')}}" class="btn btn-default">@lang('admin.cancel')</a>
+                                        <a href="{{route('admin.vehicles.index')}}" class="btn btn-default">@lang('admin.cancel')</a>
                                     </div>
                                 </div>
                                 </form>

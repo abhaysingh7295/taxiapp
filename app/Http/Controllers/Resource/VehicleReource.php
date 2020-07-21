@@ -149,7 +149,7 @@ class VehicleReource extends Controller {
     public function updatevehiclechecklist(Request $request, $id) {      
         $vehicle = Vehicle::findOrFail($id);
         $vehicle->update(['is_logo'=>$request['is_logo'],'is_ft'=>$request['is_ft'],'is_pt'=>$request['is_pt'],'is_schedule'=>$request['is_schedule'],'is_notes'=>$request['is_notes'],'is_induction'=>$request['is_induction'],'is_companyscar'=>$request['is_companyscar']]);
-        return redirect()->route('admin.vehicle.index')->with('flash_success', 'Checklist updated successfully');
+        return redirect()->route('admin.vehicles.index')->with('flash_success', 'Checklist updated successfully');
     }
 
 

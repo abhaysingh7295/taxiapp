@@ -20,6 +20,6 @@ class Vehicle extends Model
      * @var array
      */
     protected $fillable = [
-        'id', 'make','model','color','registrationNumber','PHCLicenceNumber','seatType','registration_expire','is_logo'
+        'id', 'make','model','color','registrationNumber','PHCLicenceNumber','seatType','registration_expire','is_logo','is_ft','is_pt','is_schedule','is_notes','is_induction','is_companyscar'
     ];
 }

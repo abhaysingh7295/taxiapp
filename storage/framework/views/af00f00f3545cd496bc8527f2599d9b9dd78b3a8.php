@@ -9,7 +9,7 @@
 <!--                    <p class="card-category">Driver Checklist</p>-->
                 </div>
                 <div class="card-body">
-                    <form class="form-horizontal"  action="<?php echo e(route('admin.vehicles.Vehiclechecklist',['id'=>$vehicle->id])); ?>" method="POST" role="form">
+                    <form class="form-horizontal"  action="<?php echo e(route('admin.vehicles.vehiclechecklist', $vehicle->id )); ?>" method="POST" role="form">
                         <?php echo csrf_field(); ?>
                         <?php echo method_field('PATCH'); ?>
                         <div class="row">
@@ -51,7 +51,7 @@
                                     <label for="zipcode" class="bmd-label-floating"></label>
                                     <div class="col-xs-10">
                                         <button type="submit" class="btn btn-primary">Update</button>
-                                        <a href="<?php echo e(route('admin.vehicle.index')); ?>" class="btn btn-default"><?php echo app('translator')->getFromJson('admin.cancel'); ?></a>
+                                        <a href="<?php echo e(route('admin.vehicles.index')); ?>" class="btn btn-default"><?php echo app('translator')->getFromJson('admin.cancel'); ?></a>
                                     </div>
                                 </div>
                                 </form>

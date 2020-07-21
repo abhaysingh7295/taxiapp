@@ -39,6 +39,7 @@
                             <th>Registration Expire</th>
                             <th>PHC Licence Number</th>
                             <th>Checklist</th>
+                             <th>Attention</th>
                             <th>@lang('admin.action')</th>
                         </tr>
                     </thead>
@@ -59,7 +60,11 @@
                                 <a class="btn btn-success btn-block"
                                    href="{{route('admin.vehicles.vehiclechecklist', $values->id )}}">Checklist</a>
                             </td>
+                            <td>
 
+                                <a class="btn btn-success btn-block"
+                                   href="">Attention</a>
+                            </td>
 
                             <td>
                                 <form action="{{ route('admin.vehicles.destroy', $values->id) }}" method="POST">
@@ -85,7 +90,8 @@
                             <th>Color</th>
                             <th>Registration Number</th>
                             <th>PHC Licence Number</th>
-                              <th>Checklist</th>
+                              <th>Checklist</th>\
+                               <th>Attention</th>
                             <th>@lang('admin.action')</th>
                         </tr>
                     </tfoot>
