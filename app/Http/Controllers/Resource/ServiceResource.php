@@ -268,6 +268,26 @@ class ServiceResource extends Controller
                 $service['waiting_min_charge'] = $request->waiting_min_charge;
             else
                 $service['waiting_min_charge'] = 0;
+            
+            if(!empty($request->intercitytripsamountdiscount))
+                $service['intercitytripsamountdiscount'] = $request->intercitytripsamountdiscount;
+            else
+                $service['intercitytripsamountdiscount'] = 0;
+            
+            if(!empty($request->intercitytripextracharges))
+                $service['intercitytripextracharges'] = $request->intercitytripextracharges;
+            else
+                $service['intercitytripextracharges'] = 0;
+            
+            if(!empty($request->seheduletripamountdiscountwaitingtime))
+                $service['seheduletripamountdiscountwaitingtime'] = $request->seheduletripamountdiscountwaitingtime;
+            else
+                $service['seheduletripamountdiscountwaitingtime'] = 0;
+            
+            if(!empty($request->seheduletripextracharges))
+                $service['seheduletripextracharges'] = $request->seheduletripextracharges;
+            else
+                $service['seheduletripextracharges'] = 0;
 
             ServiceType::where('id', $id)->update($service);
 

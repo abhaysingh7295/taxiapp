@@ -93,8 +93,8 @@
                     @if($vehicle->status != 'approved')
                     @if($vehicle->documents()->count())
                     @if($vehicle->documents->last()->status == "ACTIVE")
-                    <a class="btn btn-success btn-block"
-                        href="{{ route('admin.provider.approve', $Provider->id ) }}">Approve</a>
+<!--                    <a class="btn btn-success btn-block"
+                        href="">Approve</a>-->
                     @endif
                     @endif
                     @endcan
@@ -129,18 +129,20 @@
                                     <div class="input-group-btn">
                                         @if( Setting::get('demo_mode', 0) == 0)
                                         @can('provider-document-edit')
-<!--                                        <a
-                                            href="{{ route('admin.provider.document.edit', [$Provider->id, $Document->id]) }}"><span
-                                                class="btn btn-success btn-large">@lang('admin.view')</span></a>-->
+                                        <a
+                                            href="{{ route('admin.vehicles.viewvehicledocument', [$vehicle->id, $Document->id]) }}"><span
+                                                class="btn btn-success btn-large">@lang('admin.view')</span></a>
                                         @endcan
                                         @can('provider-document-delete')
-<!--                                        <button class="btn btn-danger btn-large doc-delete"
-                                            id="{{$Document->id}}">@lang('admin.delete')</button>-->
+                                        
                                         <form
-                                            action="{{ route('admin.provider.document.destroy', [$Provider->id, $Document->id]) }}"
+                                            
+                                            action="{{ route('admin.vehicles.destroyvehicledocument', [$vehicle->id, $Document->id]) }}"
                                             method="POST" id="form_delete_{{$Document->id}}">
                                             {{ csrf_field() }}
                                             {{ method_field('DELETE') }}
+                                            <button class="btn btn-danger btn-large doc-delete"
+                                            id="{{$Document->id}}">@lang('admin.delete')</button>
                                         </form>
                                         @endcan
                                         @endif

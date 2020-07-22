@@ -48,6 +48,10 @@ Route::get('vehicles/{id}/vehiclechecklist','Resource\VehicleReource@vehiclechec
 Route::patch('vehicles/{id}/vehiclechecklist','Resource\VehicleReource@updatevehiclechecklist')->name('vehicles.vehiclechecklist');
 Route::get('vehicles/{id}/vehicledocuments','Resource\VehicleReource@vehicledocuments')->name('vehicles.vehicledocuments');
 Route::patch('vehicles/{id}/uploadsvehicledocuments/{vehicleid}/','Resource\VehicleReource@updatevehicledocuments')->name('vehicles.uploadsvehicledocuments');
+Route::get('vehicles/{id}/viewvehicledocument/{vehicleid}/','Resource\VehicleReource@viewvehicledocument')->name('vehicles.viewvehicledocument');
+Route::patch('vehicles/{id}/approvevehicledocument/{vehicleid}/','Resource\VehicleReource@approvevehicledocument')->name('vehicles.approvevehicledocument');
+Route::delete('vehicles/{id}/destroyvehicledocument/{vehicleid}/','Resource\VehicleReource@destroyvehicledocument')->name('vehicles.destroyvehicledocument');
+
 
 Route::resource('dispatch-manager', 'Resource\DispatcherResource');
 Route::resource('account-manager', 'Resource\AccountResource');
@@ -67,6 +71,7 @@ Route::group(['as' => 'provider.'], function () {
     Route::get('provider/{id}/redflagon', 'Resource\ProviderResource@redflagon')->name('redflagon');
     Route::get('provider/{id}/orangeflagoff', 'Resource\ProviderResource@orangeflagoff')->name('orangeflagoff');
     Route::get('provider/{id}/redflagoff', 'Resource\ProviderResource@redflagoff')->name('redflagoff');
+    Route::get('provider/{id}/uploaddocuments', 'Resource\ProviderResource@uploaddocuments')->name('uploaddocuments');
     Route::get('provider/{id}/approve', 'Resource\ProviderResource@approve')->name('approve');
     Route::get('provider/{id}/disapprove', 'Resource\ProviderResource@disapprove')->name('disapprove');
     Route::get('provider/{id}/request', 'Resource\ProviderResource@request')->name('request');
@@ -79,7 +84,7 @@ Route::group(['as' => 'provider.'], function () {
     Route::delete('provider/{provider}/service/{document}', 'Resource\ProviderDocumentResource@service_destroy')->name('document.service');
 
 });
-
+Route::patch('provider/{id}/updatedocuments/{providerid}/','Resource\ProviderResource@updatedocuments')->name('provider.updatedocuments');
 Route::get('review/user', 'AdminController@user_review')->name('user.review');
 Route::get('user/{id}/request', 'Resource\UserResource@request')->name('user.request');
 Route::get('user/{id}/approve', 'Resource\UserResource@approve')->name('user.approve');

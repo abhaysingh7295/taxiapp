@@ -25,7 +25,7 @@ use App\WalletRequests;
 use Yajra\DataTables\DataTables;
 use Illuminate\Support\Facades\Validator;
 use App\ProviderService;
-
+use App\ProviderDocument;
 class ProviderResource extends Controller {
 
     /**
@@ -643,5 +643,51 @@ class ProviderResource extends Controller {
 
         return redirect()->route('admin.provider.index')->with('flash_success', 'Password updated successfully');
     }
+    public function uploaddocuments($id) {
+        $provider = Provider::findOrFail($id);
+        $DriverDocuments = Document::driver()->get();
+        //echo "<pre>"; print_r($DriverDocuments); die;
+        return view('admin.providers.document.upload', compact('provider','DriverDocuments'));
+    }
+     public function updatedocuments(Request $request, $id, $providerid) {
+        $provider = Provider::findOrFail($providerid);
+        $this->validate($request, [
+            'document' => 'mimes:jpg,jpeg,png',
+        ]);
+        try {
+            $Document = ProviderDocument::where('provider_id', $provider->id)
+                    ->where('document_id', $id)->with('provider')->with
+                            ('document')
+                    ->firstOrFail();
+            Storage::delete($Document->url);
 
+            $filename = str_replace(" ", "", $Document->document->name);
+
+            $ext = $request->file('document')->guessExtension();
+
+            $path = $request->file('document')->storeAs(
+                    "provider/documents/" . $Document->provider_id, $filename . '.' . $ext
+            );
+
+            $Document->update([
+                'url' => $path,
+                'status' => 'ASSESSING',
+            ]);
+        } catch (ModelNotFoundException $e) {
+            $document = Document::find($id);
+
+            $filename = str_replace(" ", "", $document->name);
+            $ext = $request->file('document')->guessExtension();
+            $path = $request->file('document')->storeAs(
+                    "provider/documents/" . $provider->id, $filename . '.' . $ext
+            );
+            ProviderDocument::create([
+                'url' => $path,
+                'provider_id' => $provider->id,
+                'document_id' => $id,
+                'status' => 'ASSESSING',
+            ]);
+        }
+        return redirect()->route('admin.provider.uploaddocuments', $provider->id)->with('flash_success', 'Document uploaded successfully');
+    }
 }

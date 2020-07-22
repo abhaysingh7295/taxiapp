@@ -27,7 +27,11 @@ class ServiceType extends Model
         'calculator',
         'capacity',
         'waiting_free_mins',
-        'waiting_min_charge'
+        'intercitytripsamountdiscount',
+        'intercitytripextracharges',
+        'seheduletripamountdiscountwaitingtime	',
+        'seheduletripextracharges',
+        'waiting_min_charge',
     ];
 
     /**

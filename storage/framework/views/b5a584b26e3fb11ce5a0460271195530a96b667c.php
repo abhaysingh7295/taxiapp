@@ -96,8 +96,8 @@
                     <?php if($vehicle->status != 'approved'): ?>
                     <?php if($vehicle->documents()->count()): ?>
                     <?php if($vehicle->documents->last()->status == "ACTIVE"): ?>
-                    <a class="btn btn-success btn-block"
-                        href="<?php echo e(route('admin.provider.approve', $Provider->id )); ?>">Approve</a>
+<!--                    <a class="btn btn-success btn-block"
+                        href="">Approve</a>-->
                     <?php endif; ?>
                     <?php endif; ?>
                     <?php endif; ?>
@@ -133,20 +133,22 @@
                                     <div class="input-group-btn">
                                         <?php if( Setting::get('demo_mode', 0) == 0): ?>
                                         <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('provider-document-edit')): ?>
-<!--                                        <a
-                                            href="<?php echo e(route('admin.provider.document.edit', [$Provider->id, $Document->id])); ?>"><span
-                                                class="btn btn-success btn-large"><?php echo app('translator')->getFromJson('admin.view'); ?></span></a>-->
+                                        <a
+                                            href="<?php echo e(route('admin.vehicles.viewvehicledocument', [$vehicle->id, $Document->id])); ?>"><span
+                                                class="btn btn-success btn-large"><?php echo app('translator')->getFromJson('admin.view'); ?></span></a>
                                         <?php endif; ?>
                                         <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('provider-document-delete')): ?>
-<!--                                        <button class="btn btn-danger btn-large doc-delete"
-                                            id="<?php echo e($Document->id); ?>"><?php echo app('translator')->getFromJson('admin.delete'); ?></button>-->
+                                        
                                         <form
-                                            action="<?php echo e(route('admin.provider.document.destroy', [$Provider->id, $Document->id])); ?>"
+                                            
+                                            action="<?php echo e(route('admin.vehicles.destroyvehicledocument', [$vehicle->id, $Document->id])); ?>"
                                             method="POST" id="form_delete_<?php echo e($Document->id); ?>">
                                             <?php echo e(csrf_field()); ?>
 
                                             <?php echo e(method_field('DELETE')); ?>
 
+                                            <button class="btn btn-danger btn-large doc-delete"
+                                            id="<?php echo e($Document->id); ?>"><?php echo app('translator')->getFromJson('admin.delete'); ?></button>
                                         </form>
                                         <?php endif; ?>
                                         <?php endif; ?>

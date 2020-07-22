@@ -156,7 +156,6 @@ class VehicleReource extends Controller {
     public function vehicledocuments($id) {
         $vehicle = Vehicle::findOrFail($id);
         $VehicleDocuments = Document::vehicle()->get();
-        //print_r($VehicleDocuments); die;
         return view('admin.vehicle.document.index', compact('vehicle', 'VehicleDocuments'));
     }
 
@@ -186,7 +185,7 @@ class VehicleReource extends Controller {
             ]);
         } catch (ModelNotFoundException $e) {
             $document = Document::find($id);
-           
+
             $filename = str_replace(" ", "", $document->name);
             $ext = $request->file('document')->guessExtension();
             $path = $request->file('document')->storeAs(
@@ -199,7 +198,49 @@ class VehicleReource extends Controller {
                 'status' => 'ASSESSING',
             ]);
         }
-        return redirect()->route('admin.vehicles.vehicledocuments',$vehicle->id)->with('flash_success', 'Document updated successfully');
+        return redirect()->route('admin.vehicles.vehicledocuments', $vehicle->id)->with('flash_success', 'Document updated successfully');
+    }
+
+    public function viewvehicledocument($vehicleid, $id) {
+        try {
+            $Document = VehicleDocument::where('vehicle_id', $vehicleid)
+                    ->findOrFail($id);
+            return view('admin.vehicle.viewvehicledocument', compact('Document'));
+        } catch (ModelNotFoundException $e) {
+            return redirect()->route('admin.vehicles.vehicledocuments', $id);
+        }
+    }
+
+    public function approvevehicledocument(Request $request,$vehicleid, $id) {
+        try {
+            $Document = VehicleDocument::where('vehicle_id', $vehicleid)
+                    ->findOrFail($id);
+            $Document->update(['status' => 'ACTIVE']);
+
+            return redirect()
+                            ->route('admin.vehicles.vehicledocuments',$vehicleid)
+                            ->with('flash_success', 'Document has been approved');
+        } catch (ModelNotFoundException $e) {
+            return redirect()
+                            ->route('admin.vehicles.vehicledocuments',$vehicleid)
+                            ->with('flash_error', trans('admin.provider_msgs.document_not_found'));
+        }
+    }
+    
+    public function destroyvehicledocument($vehicle, $id)
+    { 
+        try {
+            $Document = VehicleDocument::findOrFail($id);
+            $Document->delete();
+            //Vehicle::where('id', $vehicle)->update(['status' => 'document']);
+            return redirect()
+                            ->route('admin.vehicles.vehicledocuments',$vehicle)
+                            ->with('flash_success', 'Document has been deleted');
+        } catch (ModelNotFoundException $e) {
+            return redirect()
+                 ->route('admin.vehicles.vehicledocuments',$vehicle)
+                ->with('flash_error', trans('admin.provider_msgs.document_not_found'));
+        }
     }
 
 }

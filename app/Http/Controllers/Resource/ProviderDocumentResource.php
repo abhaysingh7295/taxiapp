@@ -10,7 +10,7 @@ use App\Http\Controllers\SendPushNotification;
 use DB;
 use Exception;
 use Setting;
-
+use App\Vehicle;
 use App\Provider;
 use App\ServiceType;
 use App\ProviderService;
@@ -34,11 +34,12 @@ class ProviderDocumentResource extends Controller
     public function index(Request $request, $provider)
     {
         try {
+            $vehicle = Vehicle::orderBy('id', 'asc')->get();
             $backurl=$request->session()->get('providerpage');
             $Provider = Provider::findOrFail($provider);
             $ProviderService = ProviderService::where('provider_id',$provider)->with('service_type')->get();
 
-            return view('admin.providers.document.index', compact('Provider', 'ServiceTypes','ProviderService', 'backurl'));
+            return view('admin.providers.document.index', compact('Provider', 'ServiceTypes','ProviderService', 'backurl','vehicle'));
         } catch (ModelNotFoundException $e) {
             return redirect()->route('admin.index');
         }
@@ -65,7 +66,7 @@ class ProviderDocumentResource extends Controller
         $this->validate($request, [
                 'service_type' => 'required|exists:service_types,id',
                 'service_number' => 'required',
-                'service_model' => 'required',
+                //'service_model' => 'required',
             ]);
         
 

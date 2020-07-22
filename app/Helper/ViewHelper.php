@@ -94,6 +94,16 @@ function get_company_name($id)
 	 $country = DB::table("carrentcompanies")->where('id',$id)->first();
         return $country->name;
 }
+function get_vehicle_makename($id)
+{
+	 $country = DB::table("vehicles")->where('id',$id)->first();
+        return $country->make;
+}
+function get_vehicle_modelname($id)
+{
+	 $country = DB::table("vehicles")->where('id',$id)->first();
+        return $country->model;
+}
 function get_rider_name($id)
 {
 	 $rider = DB::table("users")->where('id',$id)->first();

@@ -202,6 +202,11 @@
                                         </li>
                                         @endcan
                                         @endif
+                                        <li>
+                                            <a href="{{ route('admin.provider.uploaddocuments', $provider->id) }}"
+                                               class="btn btn-default"><i class="fa fa-upload"></i>
+                                                Upload Document</a>
+                                        </li>
                                         @can('provider-delete')
                                         <li>
                                             <form action="{{ route('admin.provider.destroy', $provider->id) }}"

@@ -164,6 +164,32 @@
                         <input class="form-control" type="number" value="{{ old('waiting_min_charge') }}" name="waiting_min_charge" id="waiting_min_charge" placehold="@lang('admin.service.waiting_charge')" min="0">
                     </div>
                 </div>
+                <h3 style="color: White;font-size: 25px;">Intercity Trips</h3>
+                    <div class=" row">
+                    
+                    <div class="form-group col">
+                        <label for="intercitytripsamountdiscount" class="col col-form-label">Amount of Discount(%)</label>
+                        <input class="form-control" type="number" value="{{ old('intercitytripsamountdiscount') }}" name="intercitytripsamountdiscount" id="intercitytripsamountdiscount"  min="0">
+                    </div>
+                    
+                    <div class=" form-group col">
+                        <label for="intercitytripextracharges" class="col col-form-label">Extra Charges {{ currency() }}</label>
+                        <input class="form-control" type="number" value="{{ old('intercitytripextracharges') }}" name="intercitytripextracharges" id="intercitytripextracharges"  min="0">
+                    </div>
+                </div>
+                 <h3 style="color: White;font-size: 25px;">Scheduled Trips</h3>
+                    <div class=" row">
+                    
+                    <div class="form-group col">
+                        <label for="seheduletripamountdiscountwaitingtime" class="col col-form-label">Amount of Discount on Waiting time(%)</label>
+                        <input class="form-control" type="number" value="{{ old('seheduletripamountdiscountwaitingtime') }}" name="seheduletripamountdiscountwaitingtime" id="seheduletripamountdiscountwaitingtime"  min="0">
+                    </div>
+                    
+                    <div class=" form-group col">
+                        <label for="seheduletripextracharges" class="col col-form-label">Extra Charges {{ currency() }}</label>
+                        <input class="form-control" type="number" value="{{ old('seheduletripextracharges') }}" name="seheduletripextracharges" id="seheduletripextracharges"  min="0">
+                    </div>
+                </div>
                 
                 <br>
                 <div class="form-group row">

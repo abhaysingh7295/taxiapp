@@ -201,6 +201,11 @@
                                         </li>
                                         <?php endif; ?>
                                         <?php endif; ?>
+                                        <li>
+                                            <a href="<?php echo e(route('admin.provider.uploaddocuments', $provider->id)); ?>"
+                                               class="btn btn-default"><i class="fa fa-upload"></i>
+                                                Upload Document</a>
+                                        </li>
                                         <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('provider-delete')): ?>
                                         <li>
                                             <form action="<?php echo e(route('admin.provider.destroy', $provider->id)); ?>"
