@@ -1,6 +1,6 @@
 @extends('admin.layout.base')
 
-@section('title', 'Itens Perdidos ')
+@section('title', 'Lost Items ')
 
 @section('content')
 

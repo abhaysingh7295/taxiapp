@@ -1,6 +1,6 @@
 @extends('admin.layout.base')
 
-@section('title', 'Dispute Users')
+@section('title', 'Fare Issues')
 
 @section('content')
 
@@ -46,15 +46,15 @@
                             <td>{{ currency($dispute->refund_amount) }}</td>
                             <td>
                                 @if($dispute->status=='open')
-                                    <span class="tag tag-success">Aberta</span>
+                                    <span class="tag tag-success">Open</span>
                                 @else
-                                    <span class="tag tag-danger">Finalizada</span>
+                                    <span class="tag tag-danger">Finished</span>
                                 @endif
                             </td>
                             <td>
                                 @can('dispute-edit')
                                     @if($dispute->status=='open')
-                                        <a href="{{ route('admin.userdisputeedit', $dispute->id) }}" href="#" class="btn btn-info"><i class="fa fa-pencil"></i> Analizar</a>
+                                        <a href="{{ route('admin.userdisputeedit', $dispute->id) }}" href="#" class="btn btn-info"><i class="fa fa-pencil"></i> To analyze</a>
                                     @endif   
                                 @endcan 
                             </td>

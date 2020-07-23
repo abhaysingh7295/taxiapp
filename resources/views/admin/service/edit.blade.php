@@ -204,6 +204,19 @@
                         <input class="form-control" type="number" value="{{ $service->seheduletripextracharges }}" name="seheduletripextracharges" id="seheduletripextracharges"  min="0">
                     </div>
                 </div>
+                 <h3 style="color: White;font-size: 25px;">Airport Pick-up/Drop off Charges</h3>
+                    <div class=" row">
+                    
+                    <div class="form-group col">
+                        <label for="airportpickup" class="col col-form-label">Pick-Up {{ currency() }}</label>
+                        <input class="form-control" type="number" value="{{ {{ $service->airportpickup }}" name="airportpickup" id="airportpickup"  min="0">
+                    </div>
+                    
+                    <div class=" form-group col">
+                        <label for="airportpickdropoff" class="col col-form-label">Drop-Off {{ currency() }}</label>
+                        <input class="form-control" type="number" value="{{ {{ $service->airportpickdropoff }}" name="airportpickdropoff" id="airportpickdropoff"  min="0">
+                    </div>
+                </div>
                 <br>
                 <div class="form-group">
                     <div class="col-xs-12 col-sm-6 col-md-3">

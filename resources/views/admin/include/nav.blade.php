@@ -1,7 +1,7 @@
 <div class="sidebar" data-color="{{config('constants.nav_skin', 'azure')}}" data-background-color="black"
      data-image="">
-<!--    <div class="sidebar" data-color="{{config('constants.nav_skin', 'azure')}}" data-background-color="black"
-     data-image="{{asset('/asets/img/sidebar-2.jpg')}}">-->
+    <!--    <div class="sidebar" data-color="{{config('constants.nav_skin', 'azure')}}" data-background-color="black"
+         data-image="{{asset('/asets/img/sidebar-2.jpg')}}">-->
     <!--
           Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
   
@@ -41,14 +41,14 @@
 
                 </li>
             </ul>
-<!--            @can('service-types-list')
-            <li class="nav-item {{ Request::segment(2) === 'service' ? 'active' : null }}">
-                <a href="{{ route('admin.service.index') }}" class="nav-link">
-                    <i class="fa fa-taxi"></i>
-                    <p>@lang('admin.include.service_types')</p>
-                </a>
-            </li>
-            @endcan-->
+            <!--            @can('service-types-list')
+                        <li class="nav-item {{ Request::segment(2) === 'service' ? 'active' : null }}">
+                            <a href="{{ route('admin.service.index') }}" class="nav-link">
+                                <i class="fa fa-taxi"></i>
+                                <p>@lang('admin.include.service_types')</p>
+                            </a>
+                        </li>
+                        @endcan-->
             @can('statements')
             <ul class="nav navbar-nav">
                 <li class="nav-item dropdown {{ Request::segment(2) === 'statement' ? 'active' : null }} {{ Request::segment(2) === 'transactions' ? 'active' : null }}">
@@ -111,9 +111,9 @@
 
                 </li>
             </ul>
-             @can('provider-list')
-               <ul class="nav navbar-nav">
-                <li class="nav-item dropdown {{ Request::segment(2) === 'provider' ? 'active' : null }} {{ Request::segment(2) === 'service' ? 'active' : null }} { Request::segment(2) === 'vehicles' ? 'active' : null }}">
+            @can('provider-list')
+            <ul class="nav navbar-nav">
+                <li class="nav-item dropdown {{ Request::segment(2) === 'provider' ? 'active' : null }} {{ Request::segment(2) === 'service' ? 'active' : null }} {{ Request::segment(2) === 'vehicles' ? 'active' : null }} {{ Request::segment(2) === 'luggage' ? 'active' : null }} {{ Request::segment(2) === 'document' ? 'active' : null }}">
 
                     <a class="nav-link" href="#" data-toggle="dropdown">
                         <i class="fa fa-book"></i>
@@ -128,6 +128,9 @@
                            href="{{ route('admin.service.index') }}">@lang('admin.include.service_types')</a>
                         <a class="dropdown-item {{ Request::segment(2) === 'luggage' ? 'active' : null }}"
                            href="{{ route('admin.luggage.index') }}">Luggage Combinantion </a>
+                        @can('documents-list')
+                         <a class="dropdown-item" {{ Request::segment(2) === 'luggage' ? 'active' : null }} href="{{ route('admin.document.index') }}"> @lang('admin.include.documents')</a>
+                        @endcan
 
                     </div>
 
@@ -142,14 +145,14 @@
                 </a>
             </li>
             @endcan
-<!--            @can('provider-list')
-            <li class="nav-item {{ Request::segment(2) === 'provider' ? 'active' : null }}">
-                <a href="{{ route('admin.provider.index') }}" class="nav-link">
-                    <i class="fa fa-server"></i>
-                    <p>@lang('admin.include.providers')</p>
-                </a>
-            </li> 
-            @endcan-->
+            <!--            @can('provider-list')
+                        <li class="nav-item {{ Request::segment(2) === 'provider' ? 'active' : null }}">
+                            <a href="{{ route('admin.provider.index') }}" class="nav-link">
+                                <i class="fa fa-server"></i>
+                                <p>@lang('admin.include.providers')</p>
+                            </a>
+                        </li> 
+                        @endcan-->
             @can('payment-history')
             <li class="nav-item {{ Request::segment(2) === 'payment' ? 'active' : null }}">
                 <a href="{{ route('admin.payment') }}" class="nav-link">
@@ -289,7 +292,7 @@
             @endrole
             @role('ADMIN|SUBADMIN')
             @can('role-list')
-         
+
             @can('sub-admin-list')
             <li class="nav-item {{ Request::segment(2) === 'sub-admins' ? 'active' : null }}">
                 <a href="{{ route('admin.sub-admins.index') }}" class="nav-link">
@@ -298,7 +301,7 @@
                 </a>
             </li>
             @endcan
-               @can('role-list')
+            @can('role-list')
             <li class="nav-item {{ Request::segment(2) === 'role' ? 'active' : null }}">
                 <a href="{{ route('admin.role.index') }}" class="nav-link">
                     <i class="fa fa-users"></i>
@@ -317,16 +320,7 @@
                 </a>
             </li>
             @endcan
-            @can('documents-list')
-            @can('documents-list')
-            <li class="nav-item {{ Request::segment(2) === 'document' ? 'active' : null }}">
-                <a href="{{ route('admin.document.index') }}" class="nav-link">
-                    <i class="fa fa-file-text"></i>
-                    <p>@lang('admin.include.documents')</p>
-                </a>
-            </li>
-            @endcan
-            @endcan
+
 
             @can('notification-list')
 
@@ -373,12 +367,12 @@
             @endrole
             @role('ADMIN|SUBADMIN')
             @can('cms-pages')
-<!--            <li class="nav-item {{ Request::segment(2) === 'pages' ? 'active' : null }}">
-                <a href="{{ route('admin.cmspages') }}" class="nav-link">
-                    <i class="ti-file"></i>
-                    <p>@lang('admin.include.cms_pages')</p>
-                </a>
-            </li>-->
+            <!--            <li class="nav-item {{ Request::segment(2) === 'pages' ? 'active' : null }}">
+                            <a href="{{ route('admin.cmspages') }}" class="nav-link">
+                                <i class="ti-file"></i>
+                                <p>@lang('admin.include.cms_pages')</p>
+                            </a>
+                        </li>-->
             @endcan
             @can('custom-push')
             <li class="nav-item {{ Request::segment(2) === 'send' ? 'active' : null }}">

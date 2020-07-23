@@ -1,6 +1,6 @@
 @extends('admin.layout.base')
 
-@section('title', 'Update Dispute')
+@section('title', 'Update Fare Issues Type')
 
 @section('content')
 

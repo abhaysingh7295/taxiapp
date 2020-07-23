@@ -104,6 +104,11 @@ function get_vehicle_modelname($id)
 	 $country = DB::table("vehicles")->where('id',$id)->first();
         return $country->model;
 }
+function get_seater_name($id)
+{
+	 $country = DB::table("vehicle_seattypes")->where('id',$id)->first();
+        return $country->name;
+}
 function get_rider_name($id)
 {
 	 $rider = DB::table("users")->where('id',$id)->first();

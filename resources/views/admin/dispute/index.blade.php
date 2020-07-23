@@ -1,6 +1,6 @@
 @extends('admin.layout.base')
 
-@section('title', 'Dispute ')
+@section('title', 'Fare Issues Type ')
 
 @section('content')
 
@@ -34,7 +34,7 @@
                     @foreach($dispute as $index => $dist)
                         <tr>
                             <td>{{ $index + 1 }}</td>
-                            <td>{{ $dist->dispute_type == "provider" ? __('admin.user') : __('admin.provider') }}</td>
+                            <td>@if($dist->dispute_type=='user'){{__('admin.user')}} @endif @if($dist->dispute_type=='provider'){{__('admin.provider')}} @endif</td>
                             <td>{{ ucfirst($dist->dispute_name) }} </td>
                             <td>
                                 @if($dist->status=='active')

@@ -44,6 +44,12 @@
                         </div>
                     </div>
                     <div class="form-group">
+                        <label for="registration_expire" class="bmd-label-floating">Registration Expire</label>
+                        <div class="col-xs-10">
+                            <input class="form-control" type="date" value="<?php echo e(old('registration_expire')); ?>" name="registration_expire" required id="registration_expire">
+                        </div>
+                    </div>
+                    <div class="form-group">
                         <label for="PHCLicenceNumber" class="bmd-label-floating">PHC Licence Number</label>
                         <div class="col-xs-10">
                             <input class="form-control" type="text" value="<?php echo e(old('PHCLicenceNumber')); ?>" name="PHCLicenceNumber" required id="PHCLicenceNumber">

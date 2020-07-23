@@ -1,7 +1,7 @@
 <div class="sidebar" data-color="<?php echo e(config('constants.nav_skin', 'azure')); ?>" data-background-color="black"
      data-image="">
-<!--    <div class="sidebar" data-color="<?php echo e(config('constants.nav_skin', 'azure')); ?>" data-background-color="black"
-     data-image="<?php echo e(asset('/asets/img/sidebar-2.jpg')); ?>">-->
+    <!--    <div class="sidebar" data-color="<?php echo e(config('constants.nav_skin', 'azure')); ?>" data-background-color="black"
+         data-image="<?php echo e(asset('/asets/img/sidebar-2.jpg')); ?>">-->
     <!--
           Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
   
@@ -41,14 +41,14 @@
 
                 </li>
             </ul>
-<!--            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('service-types-list')): ?>
-            <li class="nav-item <?php echo e(Request::segment(2) === 'service' ? 'active' : null); ?>">
-                <a href="<?php echo e(route('admin.service.index')); ?>" class="nav-link">
-                    <i class="fa fa-taxi"></i>
-                    <p><?php echo app('translator')->getFromJson('admin.include.service_types'); ?></p>
-                </a>
-            </li>
-            <?php endif; ?>-->
+            <!--            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('service-types-list')): ?>
+                        <li class="nav-item <?php echo e(Request::segment(2) === 'service' ? 'active' : null); ?>">
+                            <a href="<?php echo e(route('admin.service.index')); ?>" class="nav-link">
+                                <i class="fa fa-taxi"></i>
+                                <p><?php echo app('translator')->getFromJson('admin.include.service_types'); ?></p>
+                            </a>
+                        </li>
+                        <?php endif; ?>-->
             <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('statements')): ?>
             <ul class="nav navbar-nav">
                 <li class="nav-item dropdown <?php echo e(Request::segment(2) === 'statement' ? 'active' : null); ?> <?php echo e(Request::segment(2) === 'transactions' ? 'active' : null); ?>">
@@ -111,9 +111,9 @@
 
                 </li>
             </ul>
-             <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('provider-list')): ?>
-               <ul class="nav navbar-nav">
-                <li class="nav-item dropdown <?php echo e(Request::segment(2) === 'provider' ? 'active' : null); ?> <?php echo e(Request::segment(2) === 'service' ? 'active' : null); ?> { Request::segment(2) === 'vehicles' ? 'active' : null }}">
+            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('provider-list')): ?>
+            <ul class="nav navbar-nav">
+                <li class="nav-item dropdown <?php echo e(Request::segment(2) === 'provider' ? 'active' : null); ?> <?php echo e(Request::segment(2) === 'service' ? 'active' : null); ?> <?php echo e(Request::segment(2) === 'vehicles' ? 'active' : null); ?> <?php echo e(Request::segment(2) === 'luggage' ? 'active' : null); ?> <?php echo e(Request::segment(2) === 'document' ? 'active' : null); ?>">
 
                     <a class="nav-link" href="#" data-toggle="dropdown">
                         <i class="fa fa-book"></i>
@@ -126,6 +126,11 @@
                            href="<?php echo e(route('admin.vehicles.index')); ?>">Vehicle</a>
                         <a class="dropdown-item <?php echo e(Request::segment(2) === 'service' ? 'active' : null); ?>"
                            href="<?php echo e(route('admin.service.index')); ?>"><?php echo app('translator')->getFromJson('admin.include.service_types'); ?></a>
+                        <a class="dropdown-item <?php echo e(Request::segment(2) === 'luggage' ? 'active' : null); ?>"
+                           href="<?php echo e(route('admin.luggage.index')); ?>">Luggage Combinantion </a>
+                        <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('documents-list')): ?>
+                         <a class="dropdown-item" <?php echo e(Request::segment(2) === 'luggage' ? 'active' : null); ?> href="<?php echo e(route('admin.document.index')); ?>"> <?php echo app('translator')->getFromJson('admin.include.documents'); ?></a>
+                        <?php endif; ?>
 
                     </div>
 
@@ -140,14 +145,14 @@
                 </a>
             </li>
             <?php endif; ?>
-<!--            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('provider-list')): ?>
-            <li class="nav-item <?php echo e(Request::segment(2) === 'provider' ? 'active' : null); ?>">
-                <a href="<?php echo e(route('admin.provider.index')); ?>" class="nav-link">
-                    <i class="fa fa-server"></i>
-                    <p><?php echo app('translator')->getFromJson('admin.include.providers'); ?></p>
-                </a>
-            </li> 
-            <?php endif; ?>-->
+            <!--            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('provider-list')): ?>
+                        <li class="nav-item <?php echo e(Request::segment(2) === 'provider' ? 'active' : null); ?>">
+                            <a href="<?php echo e(route('admin.provider.index')); ?>" class="nav-link">
+                                <i class="fa fa-server"></i>
+                                <p><?php echo app('translator')->getFromJson('admin.include.providers'); ?></p>
+                            </a>
+                        </li> 
+                        <?php endif; ?>-->
             <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('payment-history')): ?>
             <li class="nav-item <?php echo e(Request::segment(2) === 'payment' ? 'active' : null); ?>">
                 <a href="<?php echo e(route('admin.payment')); ?>" class="nav-link">
@@ -287,7 +292,7 @@
             <?php endif; ?>
             <?php if(auth()->check() && auth()->user()->hasRole('ADMIN|SUBADMIN')): ?>
             <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('role-list')): ?>
-         
+
             <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('sub-admin-list')): ?>
             <li class="nav-item <?php echo e(Request::segment(2) === 'sub-admins' ? 'active' : null); ?>">
                 <a href="<?php echo e(route('admin.sub-admins.index')); ?>" class="nav-link">
@@ -296,7 +301,7 @@
                 </a>
             </li>
             <?php endif; ?>
-               <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('role-list')): ?>
+            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('role-list')): ?>
             <li class="nav-item <?php echo e(Request::segment(2) === 'role' ? 'active' : null); ?>">
                 <a href="<?php echo e(route('admin.role.index')); ?>" class="nav-link">
                     <i class="fa fa-users"></i>
@@ -315,16 +320,7 @@
                 </a>
             </li>
             <?php endif; ?>
-            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('documents-list')): ?>
-            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('documents-list')): ?>
-            <li class="nav-item <?php echo e(Request::segment(2) === 'document' ? 'active' : null); ?>">
-                <a href="<?php echo e(route('admin.document.index')); ?>" class="nav-link">
-                    <i class="fa fa-file-text"></i>
-                    <p><?php echo app('translator')->getFromJson('admin.include.documents'); ?></p>
-                </a>
-            </li>
-            <?php endif; ?>
-            <?php endif; ?>
+
 
             <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('notification-list')): ?>
 
@@ -371,12 +367,12 @@
             <?php endif; ?>
             <?php if(auth()->check() && auth()->user()->hasRole('ADMIN|SUBADMIN')): ?>
             <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('cms-pages')): ?>
-<!--            <li class="nav-item <?php echo e(Request::segment(2) === 'pages' ? 'active' : null); ?>">
-                <a href="<?php echo e(route('admin.cmspages')); ?>" class="nav-link">
-                    <i class="ti-file"></i>
-                    <p><?php echo app('translator')->getFromJson('admin.include.cms_pages'); ?></p>
-                </a>
-            </li>-->
+            <!--            <li class="nav-item <?php echo e(Request::segment(2) === 'pages' ? 'active' : null); ?>">
+                            <a href="<?php echo e(route('admin.cmspages')); ?>" class="nav-link">
+                                <i class="ti-file"></i>
+                                <p><?php echo app('translator')->getFromJson('admin.include.cms_pages'); ?></p>
+                            </a>
+                        </li>-->
             <?php endif; ?>
             <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('custom-push')): ?>
             <li class="nav-item <?php echo e(Request::segment(2) === 'send' ? 'active' : null); ?>">

@@ -1,8 +1,6 @@
-@extends('admin.layout.base')
+<?php $__env->startSection('title', 'Add Fare Issues'); ?>
 
-@section('title', 'Add Fare Issues')
-
-@section('content')
+<?php $__env->startSection('content'); ?>
 <style>
 .input-group{
 	width: none;
@@ -14,31 +12,32 @@
     <div class="container-fluid">
 		<div class="card">
             <div class="card-header card-header-primary">
-              <h4 class="card-title pull-left">@lang('admin.dispute.add_dispute')</h4>
-                <a href="{{ URL::previous() }}" class="btn pull-right"><i
-                    class="fa fa-angle-left"></i> @lang('admin.back')</a>
+              <h4 class="card-title pull-left"><?php echo app('translator')->getFromJson('admin.dispute.add_dispute'); ?></h4>
+                <a href="<?php echo e(URL::previous()); ?>" class="btn pull-right"><i
+                    class="fa fa-angle-left"></i> <?php echo app('translator')->getFromJson('admin.back'); ?></a>
             </div>
             <div class="card-body">
 
-            <form class="form-horizontal" action="{{route('admin.userdisputestore')}}" method="POST" enctype="multipart/form-data" role="form">
-            	{{csrf_field()}}
+            <form class="form-horizontal" action="<?php echo e(route('admin.userdisputestore')); ?>" method="POST" enctype="multipart/form-data" role="form">
+            	<?php echo e(csrf_field()); ?>
+
 
 				<div class="form-group">
-					<label for="user" class="bmd-label-floating">@lang('admin.dispute.dispute_type')</label>
+					<label for="user" class="bmd-label-floating"><?php echo app('translator')->getFromJson('admin.dispute.dispute_type'); ?></label>
 					<div class="col-xs-5">
 						<select class="form-control" name="dispute_type" id="dispute_type">
-							<option value="user">{{__('admin.user')}}</option>
-							<option value="provider">{{__('admin.provider')}}</option>
+							<option value="user"><?php echo e(__('admin.user')); ?></option>
+							<option value="provider"><?php echo e(__('admin.provider')); ?></option>
 						</select>
 					</div>
 				</div>
 
 				<div class="form-group">
-					<label for="user" class="bmd-label-floating">@lang('admin.dispute.dispute_user') / @lang('admin.dispute.dispute_provider')</label>
+					<label for="user" class="bmd-label-floating"><?php echo app('translator')->getFromJson('admin.dispute.dispute_user'); ?> / <?php echo app('translator')->getFromJson('admin.dispute.dispute_provider'); ?></label>
 
 					<div class="col-xs-5">
 						<div class="input-group">
-							<input class="form-control" type="text" value="{{ old('name') }}" name="name" id="namesearch" placehold="Nome do Usuário" required="" aria-describedby="basic-addon2" autocomplete="off">
+							<input class="form-control" type="text" value="<?php echo e(old('name')); ?>" name="name" id="namesearch" placehold="Nome do Usuário" required="" aria-describedby="basic-addon2" autocomplete="off">
 						 	<span class="input-group-addon fa fa-search"  id="basic-addon2"></span>
 						</div>
 						<input type="hidden" name="user_id1" id="user_id1" value="">
@@ -46,7 +45,7 @@
 				</div>
 
 				<div class="form-group">
-					<label for="lost_item_name" class="bmd-label-floating">@lang('admin.lostitem.request')</label>
+					<label for="lost_item_name" class="bmd-label-floating"><?php echo app('translator')->getFromJson('admin.lostitem.request'); ?></label>
 					<div class="col-xs-5">
 						<div class="table-responsive">
 		                <table class="table">
@@ -67,12 +66,12 @@
 				</div>
 
 				<div class="form-group">
-					<label for="lost_item_name" class="bmd-label-floating">@lang('admin.dispute.dispute_name')</label>
+					<label for="lost_item_name" class="bmd-label-floating"><?php echo app('translator')->getFromJson('admin.dispute.dispute_name'); ?></label>
 					<div class="col-xs-5">
 						<select class="form-control" name="dispute_name" id="dispute_name" required="">
 							<option value="">Select</option>
 						</select>
-						<textarea style="display: none;margin-top:5px;" class="form-control" name="dispute_other" required id="dispute_other" placehold="@lang('admin.dispute.dispute_name')">{{ old('dispute_other') }}</textarea>
+						<textarea style="display: none;margin-top:5px;" class="form-control" name="dispute_other" required id="dispute_other" placehold="<?php echo app('translator')->getFromJson('admin.dispute.dispute_name'); ?>"><?php echo e(old('dispute_other')); ?></textarea>
 					</div>
 				</div>
 
@@ -80,19 +79,19 @@
 					<label for="" class="bmd-label-floating"></label>
 					<div class="col-xs-5">
 						<input type="hidden" name="is_admin" value="1" />
-						<button type="submit" class="btn btn-primary">@lang('admin.dispute.add_dispute')</button>
-						<a href="{{route('admin.userdisputes')}}" class="btn btn-default">@lang('admin.cancel')</a>
+						<button type="submit" class="btn btn-primary"><?php echo app('translator')->getFromJson('admin.dispute.add_dispute'); ?></button>
+						<a href="<?php echo e(route('admin.userdisputes')); ?>" class="btn btn-default"><?php echo app('translator')->getFromJson('admin.cancel'); ?></a>
 					</div>
 				</div>
 			</form>
 		</div>
     </div>
 </div>
-<link href="{{ asset('asset/css/jquery-ui.css') }}" rel="stylesheet">
-@endsection
+<link href="<?php echo e(asset('asset/css/jquery-ui.css')); ?>" rel="stylesheet">
+<?php $__env->stopSection(); ?>
 
-@section('scripts')
-<script type="text/javascript" src="{{ asset('asset/js/jquery-ui.js') }}"></script>
+<?php $__env->startSection('scripts'); ?>
+<script type="text/javascript" src="<?php echo e(asset('asset/js/jquery-ui.js')); ?>"></script>
 
 <script type="text/javascript">
 var sflag='';
@@ -118,11 +117,11 @@ $("#dispute_name").on('change', function(){
 
 $('#namesearch').autocomplete({
     source: function(request, response) {
-    	var url='{{ route("admin.usersearch") }}';
+    	var url='<?php echo e(route("admin.usersearch")); ?>';
     	sflag=0;
     	if($("#dispute_type").val()=='provider'){
     		sflag=1;
-    		url='{{ route("admin.userprovider") }}';
+    		url='<?php echo e(route("admin.userprovider")); ?>';
     	}
 	    $.ajax
 	    ({
@@ -136,7 +135,7 @@ $('#namesearch').autocomplete({
 	                var data=[];
 	                data.push({
 	                        id: 0,
-	                        label:"@lang('No Records')"
+	                        label:"<?php echo app('translator')->getFromJson('No Records'); ?>"
 	                });
 	                response(data);
 	            }
@@ -170,16 +169,16 @@ $('#namesearch').autocomplete({
 	select: function (event, ui) {
 
 		$.ajax({
-			url: "{{ route('admin.ridesearch') }}",
+			url: "<?php echo e(route('admin.ridesearch')); ?>",
 			type: 'post',
 			data: {
-				_token : '{{ csrf_token() }}',
+				_token : '<?php echo e(csrf_token()); ?>',
 				id: ui.item.id,
 				sflag:sflag
 			},
 			success:function(data, textStatus, jqXHR) {
 				var requestList = $('.requestList tbody');
-				requestList.html(`<tr><td colspan="4">@lang('No Records')</td></tr>`);
+				requestList.html(`<tr><td colspan="4"><?php echo app('translator')->getFromJson('No Records'); ?></td></tr>`);
 				if(data.data.length > 0) {
 					var result = data.data;
 					for(var i in result) {
@@ -197,7 +196,7 @@ $('#namesearch').autocomplete({
 
 function get_disputes(dispute_type){
 	$.ajax({
-		url: "{{ url('admin/disputelist') }}",
+		url: "<?php echo e(url('admin/disputelist')); ?>",
 		type: 'get',
 		data: {
 			dispute_type: dispute_type
@@ -227,4 +226,6 @@ function get_disputes(dispute_type){
 }
 
 </script>
-@endsection
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('admin.layout.base', \Illuminate\Support\Arr::except(get_defined_vars(), array('__data', '__path')))->render(); ?>
