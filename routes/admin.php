@@ -43,6 +43,7 @@ Route::resource('company', 'Resource\CompanyResource');
 Route::resource('cartype', 'Resource\CartypeResource');
 Route::resource('cars', 'Resource\CarsResource');
 Route::resource('reservations', 'Resource\RreservationsResource');
+Route::resource('luggage', 'Resource\CombinantionLuggageResource');
 Route::resource('vehicles', 'Resource\VehicleReource');
 Route::get('vehicles/{id}/vehiclechecklist','Resource\VehicleReource@vehiclechecklist')->name('vehicles.vehiclechecklist');
 Route::patch('vehicles/{id}/vehiclechecklist','Resource\VehicleReource@updatevehiclechecklist')->name('vehicles.vehiclechecklist');

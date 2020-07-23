@@ -126,6 +126,8 @@
                            href="{{ route('admin.vehicles.index') }}">Vehicle</a>
                         <a class="dropdown-item {{ Request::segment(2) === 'service' ? 'active' : null }}"
                            href="{{ route('admin.service.index') }}">@lang('admin.include.service_types')</a>
+                        <a class="dropdown-item {{ Request::segment(2) === 'luggage' ? 'active' : null }}"
+                           href="{{ route('admin.luggage.index') }}">Luggage Combinantion </a>
 
                     </div>
 
