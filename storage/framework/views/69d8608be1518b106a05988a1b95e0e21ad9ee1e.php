@@ -167,12 +167,12 @@
                     <div class=" row">
                     
                     <div class="form-group col">
-                        <label for="waiting_free_mins" class="col col-form-label">Amount of Discount</label>
+                        <label for="intercitytripsamountdiscount" class="col col-form-label">Amount of Discount(%)</label>
                         <input class="form-control" type="number" value="<?php echo e(old('intercitytripsamountdiscount')); ?>" name="intercitytripsamountdiscount" id="intercitytripsamountdiscount"  min="0">
                     </div>
                     
                     <div class=" form-group col">
-                        <label for="intercitytripextracharges" class="col col-form-label">Extra Charges</label>
+                        <label for="intercitytripextracharges" class="col col-form-label">Extra Charges <?php echo e(currency()); ?></label>
                         <input class="form-control" type="number" value="<?php echo e(old('intercitytripextracharges')); ?>" name="intercitytripextracharges" id="intercitytripextracharges"  min="0">
                     </div>
                 </div>
@@ -180,13 +180,27 @@
                     <div class=" row">
                     
                     <div class="form-group col">
-                        <label for="waiting_free_mins" class="col col-form-label">Amount of Discount on Waiting time</label>
+                        <label for="seheduletripamountdiscountwaitingtime" class="col col-form-label">Amount of Discount on Waiting time(%)</label>
                         <input class="form-control" type="number" value="<?php echo e(old('seheduletripamountdiscountwaitingtime')); ?>" name="seheduletripamountdiscountwaitingtime" id="seheduletripamountdiscountwaitingtime"  min="0">
                     </div>
                     
                     <div class=" form-group col">
-                        <label for="seheduletripextracharges" class="col col-form-label">Extra Charges</label>
+                        <label for="seheduletripextracharges" class="col col-form-label">Extra Charges <?php echo e(currency()); ?></label>
                         <input class="form-control" type="number" value="<?php echo e(old('seheduletripextracharges')); ?>" name="seheduletripextracharges" id="seheduletripextracharges"  min="0">
+                    </div>
+                </div>
+                 
+                  <h3 style="color: White;font-size: 25px;">Airport Pick-up/Drop off Charges</h3>
+                    <div class=" row">
+                    
+                    <div class="form-group col">
+                        <label for="airportpickup" class="col col-form-label">Pick-Up <?php echo e(currency()); ?></label>
+                        <input class="form-control" type="number" value="<?php echo e(old('airportpickup')); ?>" name="airportpickup" id="airportpickup"  min="0">
+                    </div>
+                    
+                    <div class=" form-group col">
+                        <label for="airportpickdropoff" class="col col-form-label">Drop-Off <?php echo e(currency()); ?></label>
+                        <input class="form-control" type="number" value="<?php echo e(old('airportpickdropoff')); ?>" name="airportpickdropoff" id="airportpickdropoff"  min="0">
                     </div>
                 </div>
                 

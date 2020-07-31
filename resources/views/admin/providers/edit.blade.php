@@ -33,24 +33,6 @@
                         <input class="form-control" type="text" value="{{ $provider->last_name }}" name="last_name" required id="last_name" placehold="Last Name">
                     </div>
                 </div>
-
-                <div class="input-group row">
-                    
-                    <label for="picture" class="bmd-label-floating">@lang('admin.picture')</label>
-                    <div class="col-xs-10">
-                    @if(isset($provider->avatar))
-                        <img style="height: 90px; margin-bottom: 15px; border-radius:2em;" src="{{img($provider->avatar)}}">
-                    @endif
-                        <input type="file" accept="image/*" name="avatar" class="dropify form-control-file" id="picture" aria-describedby="fileHelp">
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label for="country_code" class="bmd-label-floating">Código do País</label>
-                    <div class="col-xs-10">
-                    <input type="text" name="country_code" style ="padding-bottom:5px;" id="country_code" class="country-name"  value="{{ $provider->country_code}}" >
-                    </div>
-                </div>
                 <div class="form-group">
                     <label for="mobile" class="bmd-label-floating">@lang('admin.mobile')</label>
                     <div class="col-xs-10">
@@ -63,6 +45,28 @@
                         <input class="form-control" type="text" value="{{ $provider->address }}" name="address" required id="address" placehold="@lang('admin.driver_address')">
                     </div>
                 </div>
+                <div class="input-group row">
+                    
+                    <label for="picture" class="bmd-label-floating">@lang('admin.picture')</label>
+                    <div class="col-xs-10">
+                    @if(isset($provider->avatar))
+                        <img style="height: 90px; margin-bottom: 15px; border-radius:2em;" src="{{img($provider->avatar)}}">
+                    @endif
+                        <input type="file" accept="image/*" name="avatar" class="dropify form-control-file" id="picture" aria-describedby="fileHelp">
+                    </div>
+                </div>
+                <br><br>
+                <div class="card-header card-header-primary">
+            <h4 class="card-title ">Drivers Document</h4>
+        </div>
+                <div class="card-body">
+                <div class="form-group">
+                    <label for="country_code" class="bmd-label-floating">Country code</label>
+                    <div class="col-xs-10">
+                    <input type="text" name="country_code" style ="padding-bottom:5px;" id="country_code" class="country-name"  value="{{ $provider->country_code}}" >
+                    </div>
+                </div>
+                
                  <div class="form-group">
                     <label for="mobile" class="bmd-label-floating">@lang('admin.driver_LICENSENO')</label>
                     <div class="col-xs-10">
@@ -133,6 +137,7 @@
                     </div>
                 </div>
             </form>
+                  </div>
         </div>
     </div>
 </div>

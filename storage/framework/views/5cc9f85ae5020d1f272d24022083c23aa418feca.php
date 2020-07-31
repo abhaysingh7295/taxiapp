@@ -176,7 +176,19 @@
                         <input class="form-control" type="number" value="<?php echo e($service->waiting_min_charge); ?>" name="waiting_min_charge" id="waiting_min_charge" placehold="<?php echo app('translator')->getFromJson('admin.service.waiting_charge'); ?>" min="0">
                     </div>
                 </div>
-                
+                <h3 style="color: White;font-size: 25px;">Normal Trips</h3>
+                    <div class=" row">
+                    
+                    <div class="form-group col">
+                        <label for="normaltripsamountdiscount" class="col col-form-label">Amount of Discount(%)</label>
+                        <input class="form-control" type="number" value="<?php echo e($service->normaltripsamountdiscount); ?>" name="normaltripsamountdiscount" id="normaltripsamountdiscount"  min="0">
+                    </div>
+                    
+                    <div class=" form-group col">
+                        <label for="normaltripsextracharges" class="col col-form-label">Extra Charges <?php echo e(currency()); ?></label>
+                        <input class="form-control" type="number" value="<?php echo e($service->normaltripsextracharges); ?>" name="normaltripsextracharges" id="normaltripsextracharges"  min="0">
+                    </div>
+                </div>
                 <h3 style="color: White;font-size: 25px;">Intercity Trips</h3>
                     <div class=" row">
                     
@@ -201,6 +213,19 @@
                     <div class=" form-group col">
                         <label for="seheduletripextracharges" class="col col-form-label">Extra Charges <?php echo e(currency()); ?></label>
                         <input class="form-control" type="number" value="<?php echo e($service->seheduletripextracharges); ?>" name="seheduletripextracharges" id="seheduletripextracharges"  min="0">
+                    </div>
+                </div>
+                 <h3 style="color: White;font-size: 25px;">Airport Pick-up/Drop off Charges</h3>
+                    <div class=" row">
+                    
+                    <div class="form-group col">
+                        <label for="airportpickup" class="col col-form-label">Pick-Up <?php echo e(currency()); ?></label>
+                        <input class="form-control" type="number" value="<?php echo e($service->airportpickup); ?>" name="airportpickup" id="airportpickup"  min="0">
+                    </div>
+                    
+                    <div class=" form-group col">
+                        <label for="airportpickdropoff" class="col col-form-label">Drop-Off <?php echo e(currency()); ?></label>
+                        <input class="form-control" type="number" value="<?php echo e($service->airportpickdropoff); ?>" name="airportpickdropoff" id="airportpickdropoff"  min="0">
                     </div>
                 </div>
                 <br>

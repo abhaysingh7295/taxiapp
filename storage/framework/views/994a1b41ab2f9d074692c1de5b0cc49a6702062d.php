@@ -23,7 +23,7 @@
             <?php endif; ?>
 
             <?php if(auth()->check() && auth()->user()->hasRole('ADMIN|SUBADMIN')): ?>
-
+              <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('country')): ?>
             <ul class="nav navbar-nav">
                 <li class="nav-item dropdown <?php echo e(Request::segment(2) === 'country' ? 'active' : null); ?> <?php echo e(Request::segment(2) === 'city' ? 'active' : null); ?>">
 
@@ -32,15 +32,19 @@
                         <p>City Management</p>
                     </a>
                     <div class="dropdown-menu dropdown-menu animated">
+                        <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('country')): ?>
                         <a class="dropdown-item <?php echo e(Request::segment(2) === 'country' ? 'active' : null); ?>"
                            href="<?php echo e(route('admin.country.index')); ?>">Country</a>
+                          <?php endif; ?>
+                           <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('city')): ?>
                         <a class="dropdown-item <?php echo e(Request::segment(2) === 'city' ? 'active' : null); ?>"
                            href="<?php echo e(route('admin.city.index')); ?>">City</a>
-
+                            <?php endif; ?>
                     </div>
 
                 </li>
             </ul>
+              <?php endif; ?>
             <!--            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('service-types-list')): ?>
                         <li class="nav-item <?php echo e(Request::segment(2) === 'service' ? 'active' : null); ?>">
                             <a href="<?php echo e(route('admin.service.index')); ?>" class="nav-link">
@@ -90,7 +94,7 @@
                 </a>
             </li> 
             <?php endif; ?>
-
+            
             <ul class="nav navbar-nav">
                 <li class="nav-item dropdown <?php echo e(Request::segment(2) === 'company' ? 'active' : null); ?> <?php echo e(Request::segment(2) === 'cartype' ? 'active' : null); ?><?php echo e(Request::segment(2) === 'cars' ? 'active' : null); ?> <?php echo e(Request::segment(2) === 'reservations' ? 'active' : null); ?>">
 
@@ -99,35 +103,43 @@
                         <p><?php echo app('translator')->getFromJson('admin.carrental.carrental'); ?></p>
                     </a>
                     <div class="dropdown-menu dropdown-menu animated">
+                         <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('company')): ?>
                         <a class="dropdown-item <?php echo e(Request::segment(2) === 'company' ? 'active' : null); ?>"
                            href="<?php echo e(route('admin.company.index')); ?>"><?php echo app('translator')->getFromJson('admin.carrental.company'); ?></a>
+                         <?php endif; ?>
+                          <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('cartype')): ?>
                         <a class="dropdown-item <?php echo e(Request::segment(2) === 'cartype' ? 'active' : null); ?>"
                            href="<?php echo e(route('admin.cartype.index')); ?>"><?php echo app('translator')->getFromJson('admin.carrental.cartype'); ?></a>
+                           <?php endif; ?>
+                          <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('cars')): ?>
                         <a class="dropdown-item <?php echo e(Request::segment(2) === 'cars' ? 'active' : null); ?>"
                            href="<?php echo e(route('admin.cars.index')); ?>"><?php echo app('translator')->getFromJson('admin.carrental.cars'); ?></a>
+                           <?php endif; ?>
+                          <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('reservations')): ?>
                         <a class="dropdown-item <?php echo e(Request::segment(2) === 'reservations' ? 'active' : null); ?>"
                            href="<?php echo e(route('admin.reservations.index')); ?>">Car Reservation</a>
+                          <?php endif; ?>
                     </div>
 
                 </li>
             </ul>
-            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('provider-list')): ?>
+            
             <ul class="nav navbar-nav">
-                <li class="nav-item dropdown <?php echo e(Request::segment(2) === 'provider' ? 'active' : null); ?> <?php echo e(Request::segment(2) === 'service' ? 'active' : null); ?> <?php echo e(Request::segment(2) === 'vehicles' ? 'active' : null); ?> <?php echo e(Request::segment(2) === 'luggage' ? 'active' : null); ?> <?php echo e(Request::segment(2) === 'document' ? 'active' : null); ?>">
+                <li class="nav-item dropdown <?php echo e(Request::segment(2) === 'provider' ? 'active' : null); ?>  <?php echo e(Request::segment(2) === 'vehicles' ? 'active' : null); ?>  <?php echo e(Request::segment(2) === 'document' ? 'active' : null); ?>">
 
                     <a class="nav-link" href="#" data-toggle="dropdown">
                         <i class="fa fa-book"></i>
                         <p><?php echo app('translator')->getFromJson('admin.include.providers'); ?></p>
                     </a>
                     <div class="dropdown-menu dropdown-menu animated">
+                        <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('provider-list')): ?>
                         <a class="dropdown-item <?php echo e(Request::segment(2) === 'provider' ? 'active' : null); ?>"
                            href="<?php echo e(route('admin.provider.index')); ?>"><?php echo app('translator')->getFromJson('admin.include.providers'); ?></a>
+                        <?php endif; ?>
+                         <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('vehicles')): ?>
                         <a class="dropdown-item <?php echo e(Request::segment(2) === 'vehicles' ? 'active' : null); ?>"
                            href="<?php echo e(route('admin.vehicles.index')); ?>">Vehicle</a>
-                        <a class="dropdown-item <?php echo e(Request::segment(2) === 'service' ? 'active' : null); ?>"
-                           href="<?php echo e(route('admin.service.index')); ?>"><?php echo app('translator')->getFromJson('admin.include.service_types'); ?></a>
-                        <a class="dropdown-item <?php echo e(Request::segment(2) === 'luggage' ? 'active' : null); ?>"
-                           href="<?php echo e(route('admin.luggage.index')); ?>">Luggage Combinantion </a>
+                         <?php endif; ?>
                         <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('documents-list')): ?>
                          <a class="dropdown-item" <?php echo e(Request::segment(2) === 'luggage' ? 'active' : null); ?> href="<?php echo e(route('admin.document.index')); ?>"> <?php echo app('translator')->getFromJson('admin.include.documents'); ?></a>
                         <?php endif; ?>
@@ -136,6 +148,34 @@
 
                 </li>
             </ul>
+            <?php endif; ?>
+            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('payment-settings')): ?>
+            <ul class="nav navbar-nav">
+                <li class="nav-item dropdown <?php echo e(Request::segment(2) === 'settings' ? 'active' : null); ?> <?php echo e(Request::segment(2) === 'service' ? 'active' : null); ?>  <?php echo e(Request::segment(2) === 'luggage' ? 'active' : null); ?>">
+
+                    <a class="nav-link" href="#" data-toggle="dropdown">
+                        <i class="fa fa-book"></i>
+                        <p><?php echo app('translator')->getFromJson('admin.include.FareManagement'); ?></p>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu animated">
+                        <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('payment-settings')): ?>
+                         <a class="dropdown-item  <?php echo e(Request::segment(2) === 'settings' ? 'active' : null); ?>" href="<?php echo e(route('admin.settings.payment')); ?>"> <?php echo app('translator')->getFromJson('admin.include.FareManagement'); ?></a>
+                        <?php endif; ?>
+
+                         <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('provider-services')): ?>
+                        <a class="dropdown-item <?php echo e(Request::segment(2) === 'service' ? 'active' : null); ?>"
+                           href="<?php echo e(route('admin.service.index')); ?>"><?php echo app('translator')->getFromJson('admin.include.service_types'); ?></a>
+                          <?php endif; ?>
+                        <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('luggage')): ?>
+                        <a class="dropdown-item <?php echo e(Request::segment(2) === 'luggage' ? 'active' : null); ?>"
+                           href="<?php echo e(route('admin.luggage.index')); ?>">Luggage Combination </a>
+                         <?php endif; ?>
+                       
+                    </div>
+
+                </li>
+            </ul>
+        
             <?php endif; ?>
             <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('user-list')): ?>
             <li class="nav-item <?php echo e(Request::segment(2) === 'user' ? 'active' : null); ?>">
@@ -161,6 +201,7 @@
                 </a>
             </li>
             <?php endif; ?>
+             <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('dispute-list')): ?>
             <ul class="nav navbar-nav">
                 <li class="nav-item dropdown <?php echo e(Request::segment(2) === 'disputeusers' ? 'active' : null); ?> <?php echo e(Request::segment(2) === 'dispute' ? 'active' : null); ?>">
 
@@ -169,16 +210,18 @@
                         <p>Complains</p>
                     </a>
                     <div class="dropdown-menu dropdown-menu animated">
+                      
                         <a class="dropdown-item <?php echo e(Request::segment(2) === 'dispute' ? 'active' : null); ?>"
                            href="<?php echo e(route('admin.dispute.index')); ?>"><?php echo app('translator')->getFromJson('admin.include.dispute_type'); ?></a>
                         <a class="dropdown-item <?php echo e(Request::segment(2) === 'disputeusers' ? 'active' : null); ?>"
                            href="<?php echo e(route('admin.userdisputes')); ?>"> <?php echo app('translator')->getFromJson('admin.include.dispute_request'); ?></a>
+                           
 
                     </div>
 
                 </li>
             </ul>
-            <?php endif; ?>
+           <?php endif; ?>
 
 
             <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('dispatcher-panel')): ?>
@@ -346,25 +389,7 @@
             <?php endif; ?>
             <?php endif; ?>
             <?php endif; ?>
-            <?php if(auth()->check() && auth()->user()->hasRole('ADMIN|SUBADMIN')): ?>
-
-            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('payment-settings')): ?>
-            <li class="nav-item <?php echo e(Request::segment(2) === 'settings' ? 'active' : null); ?>">
-                <a href="<?php echo e(route('admin.settings.payment')); ?>" class="nav-link">
-                    <i class="fa fa-credit-card"></i>
-                    <p><?php echo app('translator')->getFromJson('admin.include.payment_settings'); ?></p>
-                </a>
-            </li>
-            <?php endif; ?>
-            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('site-settings')): ?>
-            <li class="nav-item <?php echo e(Request::segment(2) === 'site' ? 'active' : null); ?>">
-                <a href="<?php echo e(route('admin.settings')); ?>" class="nav-link">
-                    <i class="fa fa-tools"></i>
-                    <p><?php echo app('translator')->getFromJson('admin.include.site_settings'); ?></p>
-                </a>
-            </li>
-            <?php endif; ?>
-            <?php endif; ?>
+           
             <?php if(auth()->check() && auth()->user()->hasRole('ADMIN|SUBADMIN')): ?>
             <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('cms-pages')): ?>
             <!--            <li class="nav-item <?php echo e(Request::segment(2) === 'pages' ? 'active' : null); ?>">

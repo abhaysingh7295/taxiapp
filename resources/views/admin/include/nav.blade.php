@@ -125,7 +125,7 @@
             </ul>
             
             <ul class="nav navbar-nav">
-                <li class="nav-item dropdown {{ Request::segment(2) === 'provider' ? 'active' : null }} {{ Request::segment(2) === 'service' ? 'active' : null }} {{ Request::segment(2) === 'vehicles' ? 'active' : null }} {{ Request::segment(2) === 'luggage' ? 'active' : null }} {{ Request::segment(2) === 'document' ? 'active' : null }}">
+                <li class="nav-item dropdown {{ Request::segment(2) === 'provider' ? 'active' : null }}  {{ Request::segment(2) === 'vehicles' ? 'active' : null }}  {{ Request::segment(2) === 'document' ? 'active' : null }}">
 
                     <a class="nav-link" href="#" data-toggle="dropdown">
                         <i class="fa fa-book"></i>
@@ -140,14 +140,6 @@
                         <a class="dropdown-item {{ Request::segment(2) === 'vehicles' ? 'active' : null }}"
                            href="{{ route('admin.vehicles.index') }}">Vehicle</a>
                          @endcan
-                         @can('provider-services')
-                        <a class="dropdown-item {{ Request::segment(2) === 'service' ? 'active' : null }}"
-                           href="{{ route('admin.service.index') }}">@lang('admin.include.service_types')</a>
-                          @endcan
-                        @can('luggage')
-                        <a class="dropdown-item {{ Request::segment(2) === 'luggage' ? 'active' : null }}"
-                           href="{{ route('admin.luggage.index') }}">Luggage Combinantion </a>
-                         @endcan
                         @can('documents-list')
                          <a class="dropdown-item" {{ Request::segment(2) === 'luggage' ? 'active' : null }} href="{{ route('admin.document.index') }}"> @lang('admin.include.documents')</a>
                         @endcan
@@ -156,6 +148,34 @@
 
                 </li>
             </ul>
+            @endcan
+            @can('payment-settings')
+            <ul class="nav navbar-nav">
+                <li class="nav-item dropdown {{ Request::segment(2) === 'settings' ? 'active' : null }} {{ Request::segment(2) === 'service' ? 'active' : null }}  {{ Request::segment(2) === 'luggage' ? 'active' : null }}">
+
+                    <a class="nav-link" href="#" data-toggle="dropdown">
+                        <i class="fa fa-book"></i>
+                        <p>@lang('admin.include.FareManagement')</p>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu animated">
+                        @can('payment-settings')
+                         <a class="dropdown-item  {{ Request::segment(2) === 'settings' ? 'active' : null }}" href="{{ route('admin.settings.payment') }}"> @lang('admin.include.FareManagement')</a>
+                        @endcan
+
+                         @can('provider-services')
+                        <a class="dropdown-item {{ Request::segment(2) === 'service' ? 'active' : null }}"
+                           href="{{ route('admin.service.index') }}">@lang('admin.include.service_types')</a>
+                          @endcan
+                        @can('luggage')
+                        <a class="dropdown-item {{ Request::segment(2) === 'luggage' ? 'active' : null }}"
+                           href="{{ route('admin.luggage.index') }}">Luggage Combination </a>
+                         @endcan
+                       
+                    </div>
+
+                </li>
+            </ul>
+        
             @endcan
             @can('user-list')
             <li class="nav-item {{ Request::segment(2) === 'user' ? 'active' : null }}">
@@ -369,25 +389,7 @@
             @endcan
             @endcan
             @endrole
-            @role('ADMIN|SUBADMIN')
-
-            @can('payment-settings')
-            <li class="nav-item {{ Request::segment(2) === 'settings' ? 'active' : null }}">
-                <a href="{{ route('admin.settings.payment') }}" class="nav-link">
-                    <i class="fa fa-credit-card"></i>
-                    <p>@lang('admin.include.payment_settings')</p>
-                </a>
-            </li>
-            @endcan
-            @can('site-settings')
-            <li class="nav-item {{ Request::segment(2) === 'site' ? 'active' : null }}">
-                <a href="{{ route('admin.settings') }}" class="nav-link">
-                    <i class="fa fa-tools"></i>
-                    <p>@lang('admin.include.site_settings')</p>
-                </a>
-            </li>
-            @endcan
-            @endrole
+           
             @role('ADMIN|SUBADMIN')
             @can('cms-pages')
             <!--            <li class="nav-item {{ Request::segment(2) === 'pages' ? 'active' : null }}">

@@ -177,7 +177,19 @@
                         <input class="form-control" type="number" value="{{ $service->waiting_min_charge }}" name="waiting_min_charge" id="waiting_min_charge" placehold="@lang('admin.service.waiting_charge')" min="0">
                     </div>
                 </div>
-                
+                <h3 style="color: White;font-size: 25px;">Normal Trips</h3>
+                    <div class=" row">
+                    
+                    <div class="form-group col">
+                        <label for="normaltripsamountdiscount" class="col col-form-label">Amount of Discount(%)</label>
+                        <input class="form-control" type="number" value="{{ $service->normaltripsamountdiscount }}" name="normaltripsamountdiscount" id="normaltripsamountdiscount"  min="0">
+                    </div>
+                    
+                    <div class=" form-group col">
+                        <label for="normaltripsextracharges" class="col col-form-label">Extra Charges {{ currency() }}</label>
+                        <input class="form-control" type="number" value="{{ $service->normaltripsextracharges }}" name="normaltripsextracharges" id="normaltripsextracharges"  min="0">
+                    </div>
+                </div>
                 <h3 style="color: White;font-size: 25px;">Intercity Trips</h3>
                     <div class=" row">
                     
@@ -209,12 +221,12 @@
                     
                     <div class="form-group col">
                         <label for="airportpickup" class="col col-form-label">Pick-Up {{ currency() }}</label>
-                        <input class="form-control" type="number" value="{{ {{ $service->airportpickup }}" name="airportpickup" id="airportpickup"  min="0">
+                        <input class="form-control" type="number" value="{{  $service->airportpickup }}" name="airportpickup" id="airportpickup"  min="0">
                     </div>
                     
                     <div class=" form-group col">
                         <label for="airportpickdropoff" class="col col-form-label">Drop-Off {{ currency() }}</label>
-                        <input class="form-control" type="number" value="{{ {{ $service->airportpickdropoff }}" name="airportpickdropoff" id="airportpickdropoff"  min="0">
+                        <input class="form-control" type="number" value="{{  $service->airportpickdropoff }}" name="airportpickdropoff" id="airportpickdropoff"  min="0">
                     </div>
                 </div>
                 <br>

@@ -50,21 +50,7 @@
                         <input class="form-control" type="password" name="password_confirmation" id="password_confirmation" placehold="@lang('admin.provides.password_confirmation')">
                     </div>
                 </div>
-
-                <div class="input-group row">
-                    <label for="picture" class="bmd-label-floating">@lang('admin.picture')</label>
-                    <div class="col-xs-10">
-                        <input type="file" accept="image/*" name="avatar" class="dropify form-control-file" id="picture" aria-describedby="fileHelp">
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label for="country_code" class="bmd-label-floating">Country code</label>
-                    <div class="col-xs-10">
-                        <input type="text" name="country_code" value="+55" style ="padding-bottom:5px;" class="country-name" id="country_code" >
-                    </div>
-                </div>
-                <div class="form-group">
+                 <div class="form-group">
                     <label for="mobile" class="bmd-label-floating">@lang('admin.mobile')</label>
                     <div class="col-xs-10">
                         <input class="form-control" type="number" value="{{ old('mobile') }}" name="mobile" required id="mobile" placehold="@lang('admin.mobile')">
@@ -76,6 +62,23 @@
                         <input class="form-control" type="text" value="{{ old('address') }}" name="address" required id="address" placehold="@lang('admin.driver_address')">
                     </div>
                 </div>
+                <div class="input-group row">
+                    <label for="picture" class="bmd-label-floating">@lang('admin.picture')</label>
+                    <div class="col-xs-10">
+                        <input type="file" accept="image/*" name="avatar" class="dropify form-control-file" id="picture" aria-describedby="fileHelp">
+                    </div>
+                </div><br><br>
+                <div class="card-header card-header-primary">
+            <h4 class="card-title ">Drivers Document</h4>
+        </div>
+                <div class="card-body">
+                <div class="form-group">
+                    <label for="country_code" class="bmd-label-floating">Country code</label>
+                    <div class="col-xs-10">
+                        <input type="text" name="country_code" value="+55" style ="padding-bottom:5px;" class="country-name" id="country_code" >
+                    </div>
+                </div>
+               
                  <div class="form-group">
                     <label for="mobile" class="bmd-label-floating">@lang('admin.driver_LICENSENO')</label>
                     <div class="col-xs-10">
@@ -130,6 +133,7 @@
                     </div>
                 </div>
             </form>
+</div>
         </div>
     </div>
 </div>

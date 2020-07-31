@@ -85,6 +85,33 @@
                 </div>
                 <div class="col">
                     <div class="card card-stats">
+                    <div class="card-header card-header-primary card-header-icon">
+                        <div class="card-icon">
+                            <i class="fa fa-user"></i>
+                        </div>
+                        <p class="card-category">@lang('admin.dashboard.drivers_online_but_onboarding')</p>
+                        <h3 class="card-title">{{$provider_onboarding}}</h3>
+                    </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card card-stats">
+                    <div class="card-header card-header-primary card-header-icon">
+                        <div class="card-icon">
+                            <i class="fa fa-user"></i>
+                        </div>
+                        <p class="card-category">@lang('admin.dashboard.drivers_online_No_onboarding')</p>
+                        <h3 class="card-title">{{$provider_onboarding}}</h3>
+                    </div>
+                    </div>
+                </div>
+               
+                @endcan
+            </div>
+               <div class="row">
+                @can('dashboard-menus')
+                 <div class="col">
+                    <div class="card card-stats">
                     <div class="card-header card-header-default card-header-icon">
                         <div class="card-icon">
                            <i class="fa fa-user"></i>
@@ -106,11 +133,23 @@
                     </div>
                     </div>
                 </div>
+               
+                 <div class="col">
+                    <div class="card card-stats">
+                    <div class="card-header card-header-primary card-header-icon">
+                        <div class="card-icon">
+                            <i class="fa fa-user"></i>
+                        </div>
+                        <p class="card-category">@lang('admin.dashboard.providers')</p>
+                        <h3 class="card-title">{{$provider}}</h3>
+                    </div>
+                    </div>
+                </div>
                 @endcan
             </div>
-               <div class="row">
-                @can('dashboard-menus')
-                <div class="col">
+            <div class="row">
+                    @can('dashboard-menus')
+                     <div class="col">
                     <div class="card card-stats">
                     <div class="card-header card-header-info card-header-icon">
                         <div class="card-icon">
@@ -138,21 +177,6 @@
                 </div>
                 <div class="col">
                     <div class="card card-stats">
-                    <div class="card-header card-header-primary card-header-icon">
-                        <div class="card-icon">
-                            <i class="fa fa-user"></i>
-                        </div>
-                        <p class="card-category">@lang('admin.dashboard.drivers_online_but_onboarding')</p>
-                        <h3 class="card-title">{{$provider_onboarding}}</h3>
-                    </div>
-                    </div>
-                </div>
-                @endcan
-            </div>
-            <div class="row">
-                    @can('dashboard-menus')
-                <div class="col">
-                    <div class="card card-stats">
                     <div class="card-header card-header-warning card-header-icon">
                         <div class="card-icon">
                         <i class="material-icons">local_taxi</i>
@@ -167,18 +191,14 @@
                     </div>
                     </div>
                 </div>
-                     <div class="col">
-                    <div class="card card-stats">
-                    <div class="card-header card-header-primary card-header-icon">
-                        <div class="card-icon">
-                            <i class="fa fa-user"></i>
-                        </div>
-                        <p class="card-category">@lang('admin.dashboard.providers')</p>
-                        <h3 class="card-title">{{$provider}}</h3>
-                    </div>
-                    </div>
-                </div>
+                    
                
+                @endcan
+            </div>
+            
+            <div class="row">
+                @can('dashboard-menus')
+                
                 <div class="col">
                     <div class="card card-stats">
                     <div class="card-header card-header-danger card-header-icon">
@@ -190,11 +210,6 @@
                     </div>
                     </div>
                 </div>
-                @endcan
-            </div>
-            
-            <div class="row">
-                @can('dashboard-menus')
                 <div class="col">
                     <div class="card card-stats">
                     <div class="card-header card-header-info card-header-icon">

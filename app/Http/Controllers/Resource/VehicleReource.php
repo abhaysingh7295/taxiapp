@@ -69,6 +69,7 @@ class VehicleReource extends Controller {
             'registrationNumber' => 'required',
             'registration_expire' => 'required',
             'PHCLicenceNumber' => 'required',
+            'PHCLicenceNumberExpire' => 'required',
             'seatType' => 'required',
         ]);
         try {
@@ -111,6 +112,7 @@ class VehicleReource extends Controller {
             'registrationNumber' => 'required',
             'registration_expire' => 'required',
             'PHCLicenceNumber' => 'required',
+            'PHCLicenceNumberExpire' => 'required',
             'seatType' => 'required|max:255'
         ]);
         try {
@@ -123,6 +125,7 @@ class VehicleReource extends Controller {
             $vehicle->registrationNumber = $request->registrationNumber;
             $vehicle->registration_expire = $request->registration_expire;
             $vehicle->PHCLicenceNumber = $request->PHCLicenceNumber;
+            $vehicle->PHCLicenceNumberExpire = $request->PHCLicenceNumberExpire;
             $vehicle->seatType = $request->seatType;
             $vehicle->save();
             return back()->with('flash_success', 'Information Updated Successfully');

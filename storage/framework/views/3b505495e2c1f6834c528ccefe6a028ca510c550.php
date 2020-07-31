@@ -1,72 +1,59 @@
-<?php $__env->startSection('title', 'New Driver '); ?>
+<?php $__env->startSection('title', __('admin.provides.update_provider')); ?>
 <?php $__env->startSection('styles'); ?>
 <link rel="stylesheet" href="<?php echo e(asset('asset/css/intlTelInput.css')); ?>">
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection('content'); ?>
 
+<div>
     <div class="container-fluid">
         <div class="card">
             <div class="card-header card-header-primary">
-                <h5 class="card-title"><?php echo app('translator')->getFromJson('admin.provides.add_provider'); ?></h5>
+                <h5 class="card-title"><?php echo app('translator')->getFromJson('admin.provides.update_provider'); ?></h5>
                 <a href="<?php echo e(URL::previous()); ?>" class="btn btn-default pull-right"><i class="fa fa-angle-left"></i> <?php echo app('translator')->getFromJson('admin.back'); ?></a>
             </div>
             <div class="card-body">
-            <form class="form-horizontal" action="<?php echo e(route('admin.provider.store')); ?>" method="POST" enctype="multipart/form-data" role="form">
+
+            <form class="form-horizontal" action="<?php echo e(route('admin.provider.update', $provider->id )); ?>" method="POST" enctype="multipart/form-data" role="form">
                 <?php echo e(csrf_field()); ?>
 
-                
+                <input type="hidden" name="_method" value="PATCH">
+
                 <div class="form-group">
                     <label for="first_name" class="bmd-label-floating"><?php echo app('translator')->getFromJson('admin.first_name'); ?></label>
                     <div class="col-xs-10">
-                        <input class="form-control" type="text" value="<?php echo e(old('first_name')); ?>" name="first_name" required id="first_name" placehold="<?php echo app('translator')->getFromJson('admin.first_name'); ?>">
+                        <input class="form-control" type="text" value="<?php echo e($provider->first_name); ?>" name="first_name" required id="first_name" placehold="First Name">
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label for="last_name" class="bmd-label-floating"><?php echo app('translator')->getFromJson('admin.last_name'); ?></label>
                     <div class="col-xs-10">
-                        <input class="form-control" type="text" value="<?php echo e(old('last_name')); ?>" name="last_name" required id="last_name" placehold="<?php echo app('translator')->getFromJson('admin.last_name'); ?>">
+                        <input class="form-control" type="text" value="<?php echo e($provider->last_name); ?>" name="last_name" required id="last_name" placehold="Last Name">
                     </div>
                 </div>
-
                 <div class="form-group">
-                    <label for="email" class="bmd-label-floating"><?php echo app('translator')->getFromJson('admin.email'); ?></label>
+                    <label for="mobile" class="bmd-label-floating"><?php echo app('translator')->getFromJson('admin.mobile'); ?></label>
                     <div class="col-xs-10">
-                        <input class="form-control" type="email" required name="email" value="<?php echo e(old('email')); ?>" id="email" placehold="<?php echo app('translator')->getFromJson('admin.email'); ?>">
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label for="password" class="bmd-label-floating"><?php echo app('translator')->getFromJson('admin.password'); ?></label>
-                    <div class="col-xs-10">
-                        <input class="form-control" type="password" name="password" id="password" placehold="<?php echo app('translator')->getFromJson('admin.password'); ?>">
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label for="password_confirmation" class="bmd-label-floating"><?php echo app('translator')->getFromJson('admin.provides.password_confirmation'); ?></label>
-                    <div class="col-xs-10">
-                        <input class="form-control" type="password" name="password_confirmation" id="password_confirmation" placehold="<?php echo app('translator')->getFromJson('admin.provides.password_confirmation'); ?>">
+                        <input class="form-control" type="number" value="<?php echo e($provider->mobile); ?>" name="mobile" required id="mobile" placehold="Mobile">
                     </div>
                 </div>
                  <div class="form-group">
-                    <label for="mobile" class="bmd-label-floating"><?php echo app('translator')->getFromJson('admin.mobile'); ?></label>
-                    <div class="col-xs-10">
-                        <input class="form-control" type="number" value="<?php echo e(old('mobile')); ?>" name="mobile" required id="mobile" placehold="<?php echo app('translator')->getFromJson('admin.mobile'); ?>">
-                    </div>
-                </div>
-                <div class="form-group">
                     <label for="mobile" class="bmd-label-floating"><?php echo app('translator')->getFromJson('admin.driver_address'); ?></label>
                     <div class="col-xs-10">
-                        <input class="form-control" type="text" value="<?php echo e(old('address')); ?>" name="address" required id="address" placehold="<?php echo app('translator')->getFromJson('admin.driver_address'); ?>">
+                        <input class="form-control" type="text" value="<?php echo e($provider->address); ?>" name="address" required id="address" placehold="<?php echo app('translator')->getFromJson('admin.driver_address'); ?>">
                     </div>
                 </div>
                 <div class="input-group row">
+                    
                     <label for="picture" class="bmd-label-floating"><?php echo app('translator')->getFromJson('admin.picture'); ?></label>
                     <div class="col-xs-10">
+                    <?php if(isset($provider->avatar)): ?>
+                        <img style="height: 90px; margin-bottom: 15px; border-radius:2em;" src="<?php echo e(img($provider->avatar)); ?>">
+                    <?php endif; ?>
                         <input type="file" accept="image/*" name="avatar" class="dropify form-control-file" id="picture" aria-describedby="fileHelp">
                     </div>
-                </div><br><br>
+                </div>
+                <br><br>
                 <div class="card-header card-header-primary">
             <h4 class="card-title ">Drivers Document</h4>
         </div>
@@ -74,26 +61,26 @@
                 <div class="form-group">
                     <label for="country_code" class="bmd-label-floating">Country code</label>
                     <div class="col-xs-10">
-                        <input type="text" name="country_code" value="+55" style ="padding-bottom:5px;" class="country-name" id="country_code" >
+                    <input type="text" name="country_code" style ="padding-bottom:5px;" id="country_code" class="country-name"  value="<?php echo e($provider->country_code); ?>" >
                     </div>
                 </div>
-               
+                
                  <div class="form-group">
                     <label for="mobile" class="bmd-label-floating"><?php echo app('translator')->getFromJson('admin.driver_LICENSENO'); ?></label>
                     <div class="col-xs-10">
-                        <input class="form-control" type="text" value="<?php echo e(old('LICENSENO')); ?>" name="licenseNo" required id="licenseNo" placehold="<?php echo app('translator')->getFromJson('admin.driver_LICENSENO'); ?>">
+                        <input class="form-control" type="text" value="<?php echo e($provider->licenseno); ?>" name="licenseNo" required id="licenseNo" placehold="<?php echo app('translator')->getFromJson('admin.driver_LICENSENO'); ?>">
                     </div>
                 </div>
                  <div class="form-group">
                     <label for="mobile" class="bmd-label-floating"><?php echo app('translator')->getFromJson('admin.driver_carno'); ?></label>
                     <div class="col-xs-10">
-                        <input class="form-control" type="text" value="<?php echo e(old('carno')); ?>" name="service_number" required id="service_number" placehold="<?php echo app('translator')->getFromJson('admin.driver_carno'); ?>">
+                        <input class="form-control" type="text" value="<?php echo e($provider_service->service_number); ?>" name="service_number" required id="service_number" placehold="<?php echo app('translator')->getFromJson('admin.driver_carno'); ?>">
                     </div>
                 </div>
                  <div class="form-group">
                     <label for="mobile" class="bmd-label-floating"><?php echo app('translator')->getFromJson('admin.driver_carmodel'); ?></label>
                     <div class="col-xs-10">
-                        <input class="form-control" type="text" value="<?php echo e(old('carno')); ?>" name="service_model" required id="service_model" placehold="<?php echo app('translator')->getFromJson('admin.driver_carmodel'); ?>">
+                        <input class="form-control" type="text" value="<?php echo e($provider_service->service_model); ?>" name="service_model" required id="service_model" placehold="<?php echo app('translator')->getFromJson('admin.driver_carmodel'); ?>">
                     </div>
                 </div>
                  <div class="form-group">
@@ -101,7 +88,7 @@
                     <select class="form-control" name="service_type" id="service_type" data-validation="required">
                     <option value="">Select <?php echo app('translator')->getFromJson('admin.driver_cartype'); ?></option>
                     <?php $__currentLoopData = get_all_service_types(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $type): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                        <option value="<?php echo e($type->id); ?>"><?php echo e($type->name); ?></option>
+                        <option value="<?php echo e($type->id); ?>" <?php echo e(( $type->id == $provider_service->service_type_id) ? 'selected' : ''); ?>><?php echo e($type->name); ?></option>
                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                 </select>
                 </div>
@@ -111,7 +98,7 @@
                             <select id="country" name="country" class="form-control" required>
                                 <option value="" selected disabled>Select</option>
                                 <?php $__currentLoopData = $countries; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $country): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                <option value="<?php echo e($key); ?>"> <?php echo e($country); ?></option>
+                                <option value="<?php echo e($key); ?>" <?php echo e(($key == $provider->country) ? 'selected' : ''); ?>> <?php echo e($country); ?></option>
                                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                             </select>
                         </div>
@@ -120,19 +107,35 @@
                         <label for="mobile" class="bmd-label-floating">City</label>
                         <div class="col-xs-10">
                             <select name="city" id="city" class="form-control" required>
+                                <?php $__currentLoopData = get_all_city($provider->country); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $type): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                        <option value="<?php echo e($type->id); ?>" <?php echo e(( $type->id == $user->city) ? 'selected' : ''); ?>><?php echo e($type->name); ?></option>
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                             </select>
                         </div>
                     </div>
+                <div class="form-group">
+                    <label class="bmd-label-floating"><?php echo app('translator')->getFromJson('admin.password'); ?></label>
+                    <div class="col-xs-10">
+                        <input type="password" class="form-control" name="password" placehold="<?php echo app('translator')->getFromJson('admin.password'); ?>">
+                    </div>
+                </div>
 
+                <div class="form-group">
+                    <label class="bmd-label-floating"><?php echo app('translator')->getFromJson('admin.account-manager.password_confirmation'); ?></label>
+                    <div class="col-xs-10">
+                        <input type="password" class="form-control" name="password_confirm" placehold="<?php echo app('translator')->getFromJson('admin.account-manager.password_confirmation'); ?>">
+                    </div>
+                </div>
+                
                 <div class="form-group">
                     <label for="zipcode" class="bmd-label-floating"></label>
                     <div class="col-xs-10">
-                        <button type="submit" class="btn btn-primary"><?php echo app('translator')->getFromJson('admin.provides.add_provider'); ?></button>
+                        <button type="submit" class="btn btn-primary"><?php echo app('translator')->getFromJson('admin.provides.update_provider'); ?></button>
                         <a href="<?php echo e(route('admin.provider.index')); ?>" class="btn btn-default"><?php echo app('translator')->getFromJson('admin.cancel'); ?></a>
                     </div>
                 </div>
             </form>
-</div>
+                  </div>
         </div>
     </div>
 </div>
@@ -142,9 +145,10 @@
 <script type="text/javascript" src="<?php echo e(asset('asset/js/intlTelInput.min.js')); ?>"></script>
 <script type="text/javascript" src="<?php echo e(asset('asset/js/intlTelInput-jquery.min.js')); ?>"></script>
 <script type="text/javascript">
-       var input = document.querySelector("#country_code");
+        var input = document.querySelector("#country_code");
 
     //    var states = $('#states');
+    //    var providerCity = "<?php echo e($provider->city_id); ?>";
 
     //    states.change(function () {
     //        var idEstado = $(this).val();
@@ -160,7 +164,11 @@
     //        $.get('/admin/cities/' + states.val(), function (cidades) {
     //            $('#cities').empty();
     //            $.each(cidades, function (key, value) {
-    //                $('#cities').append('<option value=' + value.id + '>' + value.title + '</option>');
+    //                if(value.id == providerCity){
+    //                    $('#cities').append('<option value=' + value.id + ' selected>' + value.title + '</option>');
+    //                }else{
+    //                    $('#cities').append('<option value=' + value.id + '>' + value.title + '</option>');
+    //                }
     //            });
     //        });
     //    }

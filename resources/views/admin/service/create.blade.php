@@ -164,6 +164,19 @@
                         <input class="form-control" type="number" value="{{ old('waiting_min_charge') }}" name="waiting_min_charge" id="waiting_min_charge" placehold="@lang('admin.service.waiting_charge')" min="0">
                     </div>
                 </div>
+                <h3 style="color: White;font-size: 25px;">Normal Trips</h3>
+                    <div class=" row">
+                    
+                    <div class="form-group col">
+                        <label for="normaltripsamountdiscount" class="col col-form-label">Amount of Discount(%)</label>
+                        <input class="form-control" type="number" value="{{ old('normaltripsamountdiscount') }}" name="normaltripsamountdiscount" id="normaltripsamountdiscount"  min="0">
+                    </div>
+                    
+                    <div class=" form-group col">
+                        <label for="normaltripsextracharges" class="col col-form-label">Extra Charges {{ currency() }}</label>
+                        <input class="form-control" type="number" value="{{ old('normaltripsextracharges') }}" name="normaltripsextracharges" id="normaltripsextracharges"  min="0">
+                    </div>
+                </div>
                 <h3 style="color: White;font-size: 25px;">Intercity Trips</h3>
                     <div class=" row">
                     

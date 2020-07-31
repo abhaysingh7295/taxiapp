@@ -1,4 +1,4 @@
-<?php $__env->startSection('title', 'Service Types'); ?>
+<?php $__env->startSection('title', 'Fare Calculation'); ?>
 
 <?php $__env->startSection('content'); ?>
         <div class="container-fluid">
@@ -9,10 +9,10 @@
                         ** Demo Mode : <?php echo app('translator')->getFromJson('admin.demomode'); ?>
                     </div>
                 <?php endif; ?>
-                <h5 class="card-title">Service Types</h5>
+                <h5 class="card-title">Fare Calculation</h5>
                 <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('service-types-create')): ?>
                     <a href="<?php echo e(route('admin.service.create')); ?>" style="margin-left: 1em;"
-                       class="btn btn-primary pull-right"><i class="fa fa-plus"></i> Add Service</a>
+                       class="btn btn-primary pull-right"><i class="fa fa-plus"></i> Add Fare Calculation</a>
                 <?php endif; ?>
             </div>
             <div class="card-body">
@@ -21,7 +21,7 @@
                     <thead>
                     <tr>
                         <th> ID </th>
-                        <th> Service Name </th>
+                        <th>  Name </th>
                         <!-- <th> Provider Name </th> -->
                         <th> Capacity </th>
                         <th> Minimum Rate </th>
@@ -95,7 +95,7 @@
                     <tfoot>
                     <tr>
                         <th> ID </th>
-                        <th> Service Name </th>
+                        <th> Name </th>
                         <!-- <th> Provider Name </th> -->
                         <th> Capacity </th>
                         <th> Minimum Rate </th>

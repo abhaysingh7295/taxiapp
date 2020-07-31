@@ -1117,31 +1117,31 @@
                                         <div class="col-xs-8">
                                             <select name="currency" class="form-control" required>
                                                 <option @if(config('constants.currency')=="R$" ) selected @endif
-                                                    value="R$">Real (BRL)</option>
+                                                    value="R$">Real (BRL R$)</option>
                                                 <option @if(config('constants.currency')=="$" ) selected @endif
-                                                    value="$">US Dollar (USD)</option>
+                                                    value="$">US Dollar (USD $)</option>
                                                 <option @if(config('constants.currency')=="₹" ) selected @endif
-                                                    value="₹"> Indian Rupee (INR)</option>
+                                                    value="₹"> Indian Rupee (INR ₹)</option>
                                                 <option @if(config('constants.currency')=="د.ك" ) selected @endif
-                                                    value="د.ك">Kuwaiti Dinar (KWD)</option>
+                                                    value="د.ك">Kuwaiti Dinar (KWD د.ك)</option>
                                                 <option @if(config('constants.currency')=="د.ب" ) selected @endif
-                                                    value="د.ب">Bahraini Dinar (BHD)</option>
+                                                    value="د.ب">Bahraini Dinar (BHD د.ب)</option>
                                                 <option @if(config('constants.currency')=="﷼" ) selected @endif
-                                                    value="﷼">Omani Rial (OMR)</option>
+                                                    value="﷼">Omani Rial (OMR ﷼)</option>
                                                 <option @if(config('constants.currency')=="£" ) selected @endif
-                                                    value="£">British Pound (GBP)</option>
+                                                    value="£">British Pound (GBP £)</option>
                                                 <option @if(config('constants.currency')=="€" ) selected @endif
-                                                    value="€">Euro (EUR)</option>
+                                                    value="€">Euro (EUR €)</option>
                                                 <option @if(config('constants.currency')=="CHF" ) selected @endif
                                                     value="CHF">Swiss Franc (CHF)</option>
                                                 <option @if(config('constants.currency')=="ل.د" ) selected @endif
-                                                    value="ل.د">Libyan Dinar (LYD)</option>
+                                                    value="ل.د">Libyan Dinar (LYD ل.)</option>
                                                 <option @if(config('constants.currency')=="B$" ) selected @endif
-                                                    value="B$">Bruneian Dollar (BND)</option>
+                                                    value="B$">Bruneian Dollar (BND B$)</option>
                                                 <option @if(config('constants.currency')=="S$" ) selected @endif
-                                                    value="S$">Singapore Dollar (SGD)</option>
+                                                    value="S$">Singapore Dollar (SGD S$)</option>
                                                 <option @if(config('constants.currency')=="AU$" ) selected @endif
-                                                    value="AU$"> Australian Dollar (AUD)</option>
+                                                    value="AU$"> Australian Dollar (AUD AU$)</option>
                                             </select>
                                         </div>
                                     </div>

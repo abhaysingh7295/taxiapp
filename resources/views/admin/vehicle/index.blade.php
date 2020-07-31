@@ -37,6 +37,7 @@
                             <th>Registration Number</th>
                             <th>Registration Expire</th>
                             <th>PHC Licence Number</th>
+                            <th>PHC Licence Number Expire</th>
                              @can('vehiclechecklist')
                             <th>@lang('admin.provides.vehiclechecklist')</th>
                             @endcan
@@ -57,6 +58,7 @@
                             <td>{{ $values->registrationNumber }}</td>
                             <td>{{ $values->registration_expire }}</td>
                             <td>{{ $values->PHCLicenceNumber }}</td>
+                            <td>{{ $values->PHCLicenceNumberExpire }}</td>
                             @can('vehiclechecklist')
                              <td>
                                  <a class="btn btn-success"
@@ -94,6 +96,7 @@
                             <th>Registration Number</th>
                              <th>Registration Expire</th>
                             <th>PHC Licence Number</th>
+                            <th>PHC Licence Number Expire</th>
                                 @can('vehiclechecklist')
                             <th>@lang('admin.provides.vehiclechecklist')</th>
                             @endcan

@@ -55,7 +55,12 @@
                             <input class="form-control" type="text" value="<?php echo e(old('PHCLicenceNumber')); ?>" name="PHCLicenceNumber" required id="PHCLicenceNumber">
                         </div>
                     </div>
-                    
+                    <div class="form-group">
+                        <label for="PHCLicenceNumberExpire" class="bmd-label-floating">PHC Licence Number Expire</label>
+                        <div class="col-xs-10">
+                            <input class="form-control" type="date" value="<?php echo e(old('PHCLicenceNumberExpire')); ?>" name="PHCLicenceNumberExpire" required id="PHCLicenceNumberExpire">
+                        </div>
+                    </div>
                     <div class="form-group">
                         <label for="seatType" class="bmd-label-floating">Type</label>
                         <div class="col-xs-10">
