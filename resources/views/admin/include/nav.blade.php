@@ -23,7 +23,7 @@
             @endrole
 
             @role('ADMIN|SUBADMIN')
-
+              @can('country')
             <ul class="nav navbar-nav">
                 <li class="nav-item dropdown {{ Request::segment(2) === 'country' ? 'active' : null }} {{ Request::segment(2) === 'city' ? 'active' : null }}">
 
@@ -32,15 +32,19 @@
                         <p>City Management</p>
                     </a>
                     <div class="dropdown-menu dropdown-menu animated">
+                        @can('country')
                         <a class="dropdown-item {{ Request::segment(2) === 'country' ? 'active' : null }}"
                            href="{{ route('admin.country.index') }}">Country</a>
+                          @endcan
+                           @can('city')
                         <a class="dropdown-item {{ Request::segment(2) === 'city' ? 'active' : null }}"
                            href="{{ route('admin.city.index') }}">City</a>
-
+                            @endcan
                     </div>
 
                 </li>
             </ul>
+              @endcan
             <!--            @can('service-types-list')
                         <li class="nav-item {{ Request::segment(2) === 'service' ? 'active' : null }}">
                             <a href="{{ route('admin.service.index') }}" class="nav-link">
@@ -90,7 +94,7 @@
                 </a>
             </li> 
             @endcan
-
+            
             <ul class="nav navbar-nav">
                 <li class="nav-item dropdown {{ Request::segment(2) === 'company' ? 'active' : null }} {{ Request::segment(2) === 'cartype' ? 'active' : null }}{{ Request::segment(2) === 'cars' ? 'active' : null }} {{ Request::segment(2) === 'reservations' ? 'active' : null }}">
 
@@ -99,19 +103,27 @@
                         <p>@lang('admin.carrental.carrental')</p>
                     </a>
                     <div class="dropdown-menu dropdown-menu animated">
+                         @can('company')
                         <a class="dropdown-item {{ Request::segment(2) === 'company' ? 'active' : null }}"
                            href="{{ route('admin.company.index') }}">@lang('admin.carrental.company')</a>
+                         @endcan
+                          @can('cartype')
                         <a class="dropdown-item {{ Request::segment(2) === 'cartype' ? 'active' : null }}"
                            href="{{ route('admin.cartype.index') }}">@lang('admin.carrental.cartype')</a>
+                           @endcan
+                          @can('cars')
                         <a class="dropdown-item {{ Request::segment(2) === 'cars' ? 'active' : null }}"
                            href="{{ route('admin.cars.index') }}">@lang('admin.carrental.cars')</a>
+                           @endcan
+                          @can('reservations')
                         <a class="dropdown-item {{ Request::segment(2) === 'reservations' ? 'active' : null }}"
                            href="{{ route('admin.reservations.index') }}">Car Reservation</a>
+                          @endcan
                     </div>
 
                 </li>
             </ul>
-            @can('provider-list')
+            
             <ul class="nav navbar-nav">
                 <li class="nav-item dropdown {{ Request::segment(2) === 'provider' ? 'active' : null }} {{ Request::segment(2) === 'service' ? 'active' : null }} {{ Request::segment(2) === 'vehicles' ? 'active' : null }} {{ Request::segment(2) === 'luggage' ? 'active' : null }} {{ Request::segment(2) === 'document' ? 'active' : null }}">
 
@@ -120,14 +132,22 @@
                         <p>@lang('admin.include.providers')</p>
                     </a>
                     <div class="dropdown-menu dropdown-menu animated">
+                        @can('provider-list')
                         <a class="dropdown-item {{ Request::segment(2) === 'provider' ? 'active' : null }}"
                            href="{{ route('admin.provider.index') }}">@lang('admin.include.providers')</a>
+                        @endcan
+                         @can('vehicles')
                         <a class="dropdown-item {{ Request::segment(2) === 'vehicles' ? 'active' : null }}"
                            href="{{ route('admin.vehicles.index') }}">Vehicle</a>
+                         @endcan
+                         @can('provider-services')
                         <a class="dropdown-item {{ Request::segment(2) === 'service' ? 'active' : null }}"
                            href="{{ route('admin.service.index') }}">@lang('admin.include.service_types')</a>
+                          @endcan
+                        @can('luggage')
                         <a class="dropdown-item {{ Request::segment(2) === 'luggage' ? 'active' : null }}"
                            href="{{ route('admin.luggage.index') }}">Luggage Combinantion </a>
+                         @endcan
                         @can('documents-list')
                          <a class="dropdown-item" {{ Request::segment(2) === 'luggage' ? 'active' : null }} href="{{ route('admin.document.index') }}"> @lang('admin.include.documents')</a>
                         @endcan
@@ -161,6 +181,7 @@
                 </a>
             </li>
             @endcan
+             @can('dispute-list')
             <ul class="nav navbar-nav">
                 <li class="nav-item dropdown {{ Request::segment(2) === 'disputeusers' ? 'active' : null }} {{ Request::segment(2) === 'dispute' ? 'active' : null }}">
 
@@ -169,16 +190,18 @@
                         <p>Complains</p>
                     </a>
                     <div class="dropdown-menu dropdown-menu animated">
+                      
                         <a class="dropdown-item {{ Request::segment(2) === 'dispute' ? 'active' : null }}"
                            href="{{ route('admin.dispute.index') }}">@lang('admin.include.dispute_type')</a>
                         <a class="dropdown-item {{ Request::segment(2) === 'disputeusers' ? 'active' : null }}"
                            href="{{ route('admin.userdisputes') }}"> @lang('admin.include.dispute_request')</a>
+                           
 
                     </div>
 
                 </li>
             </ul>
-            @endrole
+           @endcan
 
 
             @can('dispatcher-panel')
