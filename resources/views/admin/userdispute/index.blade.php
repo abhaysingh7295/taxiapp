@@ -1,6 +1,6 @@
 @extends('admin.layout.base')
 
-@section('title', 'Fare Issues')
+@section('title', 'Complain Issues')
 
 @section('content')
 

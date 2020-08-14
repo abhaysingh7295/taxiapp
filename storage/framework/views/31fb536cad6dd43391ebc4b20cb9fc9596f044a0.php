@@ -1,4 +1,4 @@
-<?php $__env->startSection('title', 'Add Fare Issues Type'); ?>
+<?php $__env->startSection('title', 'Add Complain Issues Type'); ?>
 
 <?php $__env->startSection('content'); ?>
 

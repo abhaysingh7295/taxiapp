@@ -1,6 +1,6 @@
 @extends('admin.layout.base')
 
-@section('title', 'Edit User Dispute')
+@section('title', 'Edit Complain Issue')
 
 @section('content')
 <style>

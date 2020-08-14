@@ -26,13 +26,13 @@
                             <div class="manage-doc-section-content">
                                 <?php $__currentLoopData = $VehicleDocuments; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $Document): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                 <div class="manage-doc-box row no-margin border-top">
-                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                    <div class="col-lg-3 col-md-3col-sm-3col-xs-12">
                                         <div class="manage-doc-box-left">
                                             <p class="manage-txt"><?php echo e($Document->name); ?></p>
 <!--                                            <p class="license"><?php echo app('translator')->getFromJson('provider.expires'); ?>: <?php echo e($vehicle->document($Document->id) ? ($vehicle->document($Document->id)->expires_at ? $vehicle->document($Document->id)->expires_at: 'N/A'): 'N/A'); ?></p>-->
                                         </div>
                                     </div>
-                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
                                         <div class="manage-doc-box-center text-center">
                                             <p class="manage-badge <?php echo e($vehicle->document($Document->id) ? ($vehicle->document($Document->id)->status == 'ASSESSING' ? 'yellow-badge' : 'green-badge') : 'red-badge'); ?>">
                                                 <?php if($vehicle->document($Document->id)): ?>
@@ -45,7 +45,7 @@
                                             </p>
                                         </div>
                                     </div>
-                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                         <div class="manage-doc-box-right text-right">
                                             <div class="fileinput fileinput-new input-group" data-provides="fileinput">
                                                 <form action="<?php echo e(route('admin.vehicles.uploadsvehicledocuments', [$Document->id,$vehicle->id])); ?>" method="POST" enctype="multipart/form-data">
@@ -53,6 +53,17 @@
 
                                                     <?php echo e(method_field('PATCH')); ?>
 
+                                                     <?php if($Document->is_expiredate == "1"): ?>
+                                            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+                                                <div class="manage-doc-box-left">
+                                                    <p class="manage-txt">Expire Date</p>
+
+                                                    <input class="form-control" type="date" value="<?php echo e(old('expires_at')); ?>" name="expires_at" required id="expires_at">
+                                                </div>
+                                            
+                                               
+                                            </div>
+                                             <?php endif; ?>
                                                     <div class="form-control" data-trigger="fileinput">
                                                         <span class="fileinput-filename"></span>
                                                     </div>
@@ -117,6 +128,7 @@
                             <tr>
                                 <th>#</th>
                                 <th><?php echo app('translator')->getFromJson('admin.provides.document_type'); ?></th>
+                                <th>Expire Date</th>
                                 <th><?php echo app('translator')->getFromJson('admin.status'); ?></th>
                                 <th><?php echo app('translator')->getFromJson('admin.action'); ?></th>
                             </tr>
@@ -126,6 +138,7 @@
                             <tr>
                                 <td><?php echo e($Index + 1); ?></td>
                                 <td><?php if($Document->document): ?><?php echo e($Document->document->name); ?><?php endif; ?></td>
+                                <td><?php if($Document->expires_at): ?><?php echo e($Document->expires_at); ?><?php endif; ?></td>
                                 <td><?php if($Document->status == "ACTIVE"): ?><?php echo e("APPROVED"); ?><?php else: ?> <?php echo e(" PENDING ASSESSMENT"); ?>
 
                                     <?php endif; ?></td>
@@ -161,6 +174,7 @@
                             <tr>
                                 <th>#</th>
                                 <th><?php echo app('translator')->getFromJson('admin.provides.document_type'); ?></th>
+                                <th>Expire Date</th>
                                 <th><?php echo app('translator')->getFromJson('admin.status'); ?></th>
                                 <th><?php echo app('translator')->getFromJson('admin.action'); ?></th>
                             </tr>

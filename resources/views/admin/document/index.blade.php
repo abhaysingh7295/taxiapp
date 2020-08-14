@@ -27,6 +27,7 @@
                             <th>@lang('admin.id')</th>
                             <th>@lang('admin.document.document_name')</th>
                             <th>@lang('admin.type')</th>
+                            <th>@lang('admin.document.document_isexpiredate')</th>
                             <th>@lang('admin.action')</th>
                         </tr>
                     </thead>
@@ -36,6 +37,7 @@
                             <td>{{$index + 1}}</td>
                             <td>{{$document->name}}</td>
                             <td>{{$document->type == "VEHICLE" ? "VEHICLE" : "DRIVER"}}</td>
+                            <td>{{$document->is_expiredate == "1" ? "Yes" : "No"}}</td>
                             <td>
                                 <form action="{{ route('admin.document.destroy', $document->id) }}" method="POST">
                                     {{ csrf_field() }}
@@ -58,6 +60,7 @@
                             <th>@lang('admin.id')</th>
                             <th>@lang('admin.document.document_name')</th>
                             <th>@lang('admin.type')</th>
+                              <th>@lang('admin.document.document_isexpiredate')</th>
                             <th>@lang('admin.action')</th>
                         </tr>
                     </tfoot>

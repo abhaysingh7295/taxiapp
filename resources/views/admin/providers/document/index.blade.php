@@ -225,6 +225,7 @@
                         <tr>
                             <th>#</th>
                             <th>@lang('admin.provides.document_type')</th>
+                            <th>Expire Date</th>
                             <th>@lang('admin.status')</th>
                             <th>@lang('admin.action')</th>
                         </tr>
@@ -234,6 +235,7 @@
                         <tr>
                             <td>{{ $Index + 1 }}</td>
                             <td>@if($Document->document){{ $Document->document->name }}@endif</td>
+                            <td>@if($Document->expires_at){{ $Document->expires_at }}@endif</td>
                             <td>@if($Document->status == "ACTIVE"){{ "APPROVED" }}@else {{ " PENDING ASSESSMENT" }}
                                 @endif</td>
                             <td>
@@ -264,6 +266,7 @@
                         <tr>
                             <th>#</th>
                             <th>@lang('admin.provides.document_type')</th>
+                            <th>Expire Date</th>
                             <th>@lang('admin.status')</th>
                             <th>@lang('admin.action')</th>
                         </tr>

@@ -5,13 +5,13 @@
 @section('content')
 
 
-    <div class="container-fluid">
-        <div class="card">
-            <div class="card-header card-header-primary">
+<div class="container-fluid">
+    <div class="card">
+        <div class="card-header card-header-primary">
             <h5 class="card-title">@lang('admin.document.add_Document')</h5>
-              <a href="{{ URL::previous() }}" class="btn btn-default pull-right"><i class="fa fa-angle-left"></i> @lang('admin.back')</a>
-            </div>
-            <div class="card-body">
+            <a href="{{ URL::previous() }}" class="btn btn-default pull-right"><i class="fa fa-angle-left"></i> @lang('admin.back')</a>
+        </div>
+        <div class="card-body">
             <form class="form-horizontal" action="{{route('admin.document.store')}}" method="POST" enctype="multipart/form-data" role="form">
                 {{csrf_field()}}
                 <div class="form-group">
@@ -30,7 +30,13 @@
                         </select>
                     </div>
                 </div>
-
+                <div class="form-group">
+                     <label for="zipcode" class="bmd-label-floating"></label>
+                      <div class="col-xs-10">
+                        <input type="checkbox" id="is_expiredate" name="is_expiredate" value="1" >
+                        <label for="is_expiredate"> @lang('admin.document.document_isexpiredate')</label>
+                    </div>
+                </div>
                 <div class="form-group">
                     <label for="zipcode" class="bmd-label-floating"></label>
                     <div class="col-xs-10">

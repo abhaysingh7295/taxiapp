@@ -191,6 +191,7 @@ return array (
     'add_Document' => 'Add Document',
     'document_name' => 'Document Name',
     'document_type' => 'Document Type',
+    'document_isexpiredate' => 'Is Expire Date',
     'driver_review' => 'Driver Review',
     'vehicle_review' => 'Vehicle Review',
     'update_document' => 'Update Document',
@@ -354,14 +355,17 @@ return array (
     'debit_card' => 'Debit Cards',
     'transfer' => 'Transfer',
     'logout' => 'Logout',
-    'reason' => 'Booking Cancel Reasons',
-    'list_reasons' => 'List Reasons',
-    'add_new_reason' => 'Add New Reason',
+    'reason' => 'Booking Cancel Reason',
+    'bookingissuestype' => 'Booking Cancel Reason',
+    'list_reasons' => 'Booking cancel reason',
+    'add_new_reason' => 'Add New Booking cancel reason',
     'peakhour' => 'Peak Hours',
     'dispute' => 'Disputes',
     'dispute_panel' => 'Dispute Panel',
-    'dispute_type' => 'Fare Issues Types',
-    'dispute_request' => 'Fare Issues',
+    'dispute_type' => 'Complain Issues Types',
+    'dispute_request' => 'Complain Issues',
+    'driver_fare_issues_type' => 'Driver Fare Issues Types',
+    'driver_fare_issues_request' => 'Driver Fare Issues',
     'userdispute' => 'User Disputes',
     'lostitem' => 'Complain Lost Items',
     'notify' => 'Notifications',
@@ -420,10 +424,10 @@ return array (
   ),
   'reason' => 
   array (
-    'title' => 'Booking Cancel',    
-    'add_reason' => 'Add Reason',
-    'update_reason' => 'Update Reason',    
-    'reason' => 'Reason',
+    'title' => 'Booking cancel reason',    
+    'add_reason' => 'Add Booking cancel reason',
+    'update_reason' => 'Update Booking cancel reason',    
+    'reason' => 'Booking cancel reason',
     'type' => 'Type',
     'status' => 'Status'   
   ),
@@ -460,12 +464,12 @@ return array (
   ),
   'dispute' => 
   array (
-    'title' => 'Fare Issues Type',    
-    'title1' => 'Fare Issues',    
-    'add_dispute' => 'Add Fare Issues',
-    'update_dispute' => 'Update Fare Issues Type',    
-    'update_dispute1' => 'Update Fare Issues',    
-    'dispute_type' => 'Fare Issues',    
+    'title' => 'Issues Type',    
+    'title1' => 'Complain Issues',    
+    'add_dispute' => 'Add Complain Issues',
+    'update_dispute' => 'Update Complain Issues Type',    
+    'update_dispute1' => 'Update Complain Issues',    
+    'dispute_type' => 'Complain Issues',    
     'dispute_id' => 'Id',
     'dispute_request_id' => 'Request Id',
     'dispute_request' => 'Request By',
@@ -476,6 +480,44 @@ return array (
     'dispute_comments' => 'Comments',
     'dispute_status' => 'Status',     
     'new_dispute' => 'New Fare Issues created!',     
+  ),
+    'driverfareissue' => 
+  array (
+    'title' => 'Driver Fare Issues Type',    
+    'title1' => 'Driver Fare Issues',    
+    'add_dispute' => 'Add Driver Fare Issues',
+    'update_dispute' => 'Update Driver Fare Issues Type',    
+    'update_dispute1' => 'Update Driver Fare Issues',    
+    'dispute_type' => 'Driver Fare Issues',    
+    'dispute_id' => 'Id',
+    'dispute_request_id' => 'Request Id',
+    'dispute_request' => 'Request By',
+    'dispute_user' => 'User',
+    'dispute_provider' => 'Driver',
+    'dispute_name' => 'Name',       
+    'dispute_refund' => 'Refund Amount',
+    'dispute_comments' => 'Comments',
+    'dispute_status' => 'Status',     
+    'new_dispute' => 'New Driver Fare Issues created!',     
+  ),
+     'bookingissue' => 
+  array (
+    'title' => 'Booking Issues Type',    
+    'title1' => 'Booking Issues',    
+    'add_dispute' => 'Add Booking Issues',
+    'update_dispute' => 'Update Booking Issues Type',    
+    'update_dispute1' => 'Update Booking Issues',    
+    'dispute_type' => 'Booking Issues',    
+    'dispute_id' => 'Id',
+    'dispute_request_id' => 'Request Id',
+    'dispute_request' => 'Request By',
+    'dispute_user' => 'User',
+    'dispute_provider' => 'Driver',
+    'dispute_name' => 'Name',       
+    'dispute_refund' => 'Refund Amount',
+    'dispute_comments' => 'Comments',
+    'dispute_status' => 'Status',     
+    'new_dispute' => 'New Booking Issues created!',     
   ),
   'users' => 
   array (
@@ -739,6 +781,7 @@ return array (
     'update_user' => 'Update Admin',
     'user_delete' => 'Sub Admin Deleted Successfully',
     'role_not_found' => 'Role Not Found',
+    'expire_date' => 'Expire Date',
 
   ),
   'user_msgs' => 
@@ -787,6 +830,22 @@ return array (
     'update' => 'Dispute Updated Successfully',
     'delete' => 'Dispute Deleted Successfully',
   ),
+    'driverfare_msgs' => 
+  array (
+    'saved' => 'Driver Fare issues type Saved Successfully',
+    'not_found' => 'Driver Fare issues type Not Found',
+    'exists' => 'Driver Fare issues type Already Exists',
+    'update' => 'Driver Fare issues type Updated Successfully',
+    'delete' => 'Driver Fare issues type Deleted Successfully',
+  ),
+     'Bookingissuestype_msgs' => 
+  array (
+    'saved' => 'Booking issues type Saved Successfully',
+    'not_found' => 'Booking issues type Not Found',
+    'exists' => 'Booking issues type Already Exists',
+    'update' => 'Booking issues type Updated Successfully',
+    'delete' => 'Booking issues type Deleted Successfully',
+  ),
   'notification_msgs' => 
   array (
     'saved' => 'Notification Saved Successfully',
@@ -805,11 +864,11 @@ return array (
   ),
   'reason_msgs' => 
   array (
-    'reason_saved' => 'Reason Saved Successfully',
-    'reason_not_found' => 'Reason Not Found',
-    'reason_exists' => 'Reason Already Exists',
-    'reason_update' => 'Reason Updated Successfully',
-    'reason_delete' => 'Reason Deleted Successfully',
+    'reason_saved' => 'Booking Issue Type Saved Successfully',
+    'reason_not_found' => 'Booking Issue Type  Not Found',
+    'reason_exists' => 'Booking Issue Type  Already Exists',
+    'reason_update' => 'Booking Issue Type  Updated Successfully',
+    'reason_delete' => 'Booking Issue Type  Deleted Successfully',
   ),
   'service_type_msgs' => 
   array (

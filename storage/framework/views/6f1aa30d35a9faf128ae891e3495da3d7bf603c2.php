@@ -34,8 +34,9 @@
                             <th>Model</th>
                             <th>Color</th>
                             <th>Registration Number</th>
-                            <th>Registration Expire</th>
+<!--                            <th>Registration Expire</th>-->
                             <th>PHC Licence Number</th>
+<!--                            <th>PHC Licence Number Expire</th>-->
                              <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('vehiclechecklist')): ?>
                             <th><?php echo app('translator')->getFromJson('admin.provides.vehiclechecklist'); ?></th>
                             <?php endif; ?>
@@ -54,8 +55,9 @@
                             <td><?php echo e($values->model); ?></td>
                             <td><?php echo e($values->color); ?></td>
                             <td><?php echo e($values->registrationNumber); ?></td>
-                            <td><?php echo e($values->registration_expire); ?></td>
+<!--                            <td><?php echo e($values->registration_expire); ?></td>-->
                             <td><?php echo e($values->PHCLicenceNumber); ?></td>
+<!--                            <td><?php echo e($values->PHCLicenceNumberExpire); ?></td>-->
                             <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('vehiclechecklist')): ?>
                              <td>
                                  <a class="btn btn-success"
@@ -65,7 +67,7 @@
                             <td>
 
                                 <a class="btn btn-success btn-block"
-                                   href="<?php echo e(route('admin.vehicles.vehicledocuments', $values->id )); ?>">Attention</a>
+                                   href="<?php echo e(route('admin.vehicles.vehicledocuments', $values->id )); ?>">Attention </a>
                             </td>
 
                             <td>
@@ -92,8 +94,9 @@
                             <th>Model</th>
                             <th>Color</th>
                             <th>Registration Number</th>
-                             <th>Registration Expire</th>
+<!--                             <th>Registration Expire</th>-->
                             <th>PHC Licence Number</th>
+<!--                            <th>PHC Licence Number Expire</th>-->
                                 <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('vehiclechecklist')): ?>
                             <th><?php echo app('translator')->getFromJson('admin.provides.vehiclechecklist'); ?></th>
                             <?php endif; ?>

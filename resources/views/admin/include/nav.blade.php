@@ -222,7 +222,28 @@
                 </li>
             </ul>
            @endcan
+          
+            <ul class="nav navbar-nav">
+                <li class="nav-item dropdown  {{ Request::segment(2) === 'driverfareissuetypes' ? 'active' : null }} {{ Request::segment(2) === 'disputedriver' ? 'active' : null }}">
 
+                    <a class="nav-link" href="#" data-toggle="dropdown">
+                        <i class="fa fa-book"></i>
+                        <p>Driver Fare Issues</p>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu animated">
+                      
+                        <a class="dropdown-item {{ Request::segment(2) === 'driverfareissuetypes' ? 'active' : null }}"
+                           href="{{ route('admin.driverfareissuetypes.index') }}">@lang('admin.include.driver_fare_issues_type')</a>
+                        <a class="dropdown-item {{ Request::segment(2) === 'disputedriver' ? 'active' : null }}"
+                           href="{{ route('admin.driverdisputes') }}">@lang('admin.include.driver_fare_issues_request')</a>
+                        
+                           
+
+                    </div>
+
+                </li>
+            </ul>
+        
 
             @can('dispatcher-panel')
             <li class="nav-item {{ Request::segment(2) === 'dispatcher' ? 'active' : null }}">
@@ -386,6 +407,12 @@
                     <p>@lang('admin.include.reason')</p>
                 </a>
             </li>
+<!--            <li class="nav-item {{ Request::segment(2) === 'bookingissuetypes' ? 'active' : null }}">
+                <a href="{{ route('admin.bookingissuetypes.index') }}" class="nav-link">
+                    <i class="fa fa-user"></i>
+                    <p>@lang('admin.include.bookingissuestype')</p>
+                </a>
+            </li>-->
             @endcan
             @endcan
             @endrole
@@ -424,6 +451,14 @@
                 <a href="{{ route('admin.profile') }}" class="nav-link">
                     <i class="fa fa-user"></i>
                     <p>@lang('admin.include.account_settings')</p>
+                </a>
+            </li>
+            @endcan
+            @can('site-settings')
+            <li class="nav-item {{ Request::segment(2) === 'site' ? 'active' : null }}">
+                <a href="{{ route('admin.settings') }}" class="nav-link">
+                    <i class="fa fa-tools"></i>
+                    <p>@lang('admin.include.site_settings')</p>
                 </a>
             </li>
             @endcan

@@ -222,7 +222,28 @@
                 </li>
             </ul>
            <?php endif; ?>
+          
+            <ul class="nav navbar-nav">
+                <li class="nav-item dropdown  <?php echo e(Request::segment(2) === 'driverfareissuetypes' ? 'active' : null); ?> <?php echo e(Request::segment(2) === 'disputedriver' ? 'active' : null); ?>">
 
+                    <a class="nav-link" href="#" data-toggle="dropdown">
+                        <i class="fa fa-book"></i>
+                        <p>Driver Fare Issues</p>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu animated">
+                      
+                        <a class="dropdown-item <?php echo e(Request::segment(2) === 'driverfareissuetypes' ? 'active' : null); ?>"
+                           href="<?php echo e(route('admin.driverfareissuetypes.index')); ?>"><?php echo app('translator')->getFromJson('admin.include.driver_fare_issues_type'); ?></a>
+                        <a class="dropdown-item <?php echo e(Request::segment(2) === 'disputedriver' ? 'active' : null); ?>"
+                           href="<?php echo e(route('admin.driverdisputes')); ?>"><?php echo app('translator')->getFromJson('admin.include.driver_fare_issues_request'); ?></a>
+                        
+                           
+
+                    </div>
+
+                </li>
+            </ul>
+        
 
             <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('dispatcher-panel')): ?>
             <li class="nav-item <?php echo e(Request::segment(2) === 'dispatcher' ? 'active' : null); ?>">
@@ -386,6 +407,12 @@
                     <p><?php echo app('translator')->getFromJson('admin.include.reason'); ?></p>
                 </a>
             </li>
+<!--            <li class="nav-item <?php echo e(Request::segment(2) === 'bookingissuetypes' ? 'active' : null); ?>">
+                <a href="<?php echo e(route('admin.bookingissuetypes.index')); ?>" class="nav-link">
+                    <i class="fa fa-user"></i>
+                    <p><?php echo app('translator')->getFromJson('admin.include.bookingissuestype'); ?></p>
+                </a>
+            </li>-->
             <?php endif; ?>
             <?php endif; ?>
             <?php endif; ?>
@@ -424,6 +451,14 @@
                 <a href="<?php echo e(route('admin.profile')); ?>" class="nav-link">
                     <i class="fa fa-user"></i>
                     <p><?php echo app('translator')->getFromJson('admin.include.account_settings'); ?></p>
+                </a>
+            </li>
+            <?php endif; ?>
+            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('site-settings')): ?>
+            <li class="nav-item <?php echo e(Request::segment(2) === 'site' ? 'active' : null); ?>">
+                <a href="<?php echo e(route('admin.settings')); ?>" class="nav-link">
+                    <i class="fa fa-tools"></i>
+                    <p><?php echo app('translator')->getFromJson('admin.include.site_settings'); ?></p>
                 </a>
             </li>
             <?php endif; ?>

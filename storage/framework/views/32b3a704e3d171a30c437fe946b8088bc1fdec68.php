@@ -1,4 +1,4 @@
-<?php $__env->startSection('title', 'Fare Issues'); ?>
+<?php $__env->startSection('title', 'Complain Issues'); ?>
 
 <?php $__env->startSection('content'); ?>
 
@@ -44,15 +44,15 @@
                             <td><?php echo e(currency($dispute->refund_amount)); ?></td>
                             <td>
                                 <?php if($dispute->status=='open'): ?>
-                                    <span class="tag tag-success">Aberta</span>
+                                    <span class="tag tag-success">Open</span>
                                 <?php else: ?>
-                                    <span class="tag tag-danger">Finalizada</span>
+                                    <span class="tag tag-danger">Finished</span>
                                 <?php endif; ?>
                             </td>
                             <td>
                                 <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('dispute-edit')): ?>
                                     <?php if($dispute->status=='open'): ?>
-                                        <a href="<?php echo e(route('admin.userdisputeedit', $dispute->id)); ?>" href="#" class="btn btn-info"><i class="fa fa-pencil"></i> Analizar</a>
+                                        <a href="<?php echo e(route('admin.userdisputeedit', $dispute->id)); ?>" href="#" class="btn btn-info"><i class="fa fa-pencil"></i> To analyze</a>
                                     <?php endif; ?>   
                                 <?php endif; ?> 
                             </td>

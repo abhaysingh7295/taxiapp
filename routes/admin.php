@@ -45,6 +45,7 @@ Route::resource('cars', 'Resource\CarsResource');
 Route::resource('reservations', 'Resource\RreservationsResource');
 Route::resource('luggage', 'Resource\CombinantionLuggageResource');
 Route::resource('vehicles', 'Resource\VehicleReource');
+
 Route::get('vehicles/{id}/vehiclechecklist','Resource\VehicleReource@vehiclechecklist')->name('vehicles.vehiclechecklist');
 Route::patch('vehicles/{id}/vehiclechecklist','Resource\VehicleReource@updatevehiclechecklist')->name('vehicles.vehiclechecklist');
 Route::get('vehicles/{id}/vehicledocuments','Resource\VehicleReource@vehicledocuments')->name('vehicles.vehicledocuments');
@@ -148,6 +149,19 @@ Route::get('disputeusercreate', 'Resource\DisputeResource@userdisputecreate')->n
 Route::get('disputeusers/create', 'Resource\DisputeResource@userdisputecreate')->name('userdisputecreate');
 Route::get('disputeuseredit/{id}', 'Resource\DisputeResource@userdisputeedit')->name('userdisputeedit');
 Route::get('disputeusers/edit/{id}', 'Resource\DisputeResource@userdisputeedit')->name('userdisputeedit');
+
+
+Route::resource('bookingissuetypes', 'Resource\Bookingissuestypes');
+Route::resource('driverfareissuetypes', 'Resource\Driverfareissuetypes');
+Route::get('disputedriver', 'Resource\Driverfareissuetypes@driverdisputes')->name('driverdisputes');
+Route::get('disputelists', 'Resource\Driverfareissuetypes@dispute_list');
+Route::get('disputedrivercreate', 'Resource\Driverfareissuetypes@driverdisputecreate')->name('driverdisputecreate');
+Route::get('disputedrivers/create', 'Resource\Driverfareissuetypes@driverdisputecreate')->name('driverdisputecreate');
+Route::get('disputedriveredit/{id}', 'Resource\Driverfareissuetypes@driverdisputeedit')->name('driverdisputeedit');
+Route::get('disputedrivers/edit/{id}', 'Resource\Driverfareissuetypes@driverdisputeedit')->name('driverdisputeedit');
+Route::post('disputedriverstore', 'Resource\Driverfareissuetypes@create_dispute')->name('driverdisputestore');
+Route::post('disputedriverupdate{id}', 'Resource\Driverfareissuetypes@update_dispute')->name('driverdisputeupdate');
+
 
 
 

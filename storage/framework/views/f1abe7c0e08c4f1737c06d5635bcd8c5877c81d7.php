@@ -41,7 +41,7 @@
                         <div class="card-icon">
                             <i class="fa fa-user"></i>
                         </div>
-                        <p class="card-category"><?php echo app('translator')->getFromJson('admin.dashboard.drivers_online_but_onboarding'); ?></p>
+                        <p class="card-category"><?php echo app('translator')->getFromJson('admin.dashboard.drivers_online_No_onboarding'); ?></p>
                         <h3 class="card-title"><?php echo e($provider_onboarding); ?></h3>
                     </div>
                     </div>

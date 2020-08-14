@@ -25,6 +25,7 @@
                             <th><?php echo app('translator')->getFromJson('admin.id'); ?></th>
                             <th><?php echo app('translator')->getFromJson('admin.document.document_name'); ?></th>
                             <th><?php echo app('translator')->getFromJson('admin.type'); ?></th>
+                            <th><?php echo app('translator')->getFromJson('admin.document.document_isexpiredate'); ?></th>
                             <th><?php echo app('translator')->getFromJson('admin.action'); ?></th>
                         </tr>
                     </thead>
@@ -34,6 +35,7 @@
                             <td><?php echo e($index + 1); ?></td>
                             <td><?php echo e($document->name); ?></td>
                             <td><?php echo e($document->type == "VEHICLE" ? "VEHICLE" : "DRIVER"); ?></td>
+                            <td><?php echo e($document->is_expiredate == "1" ? "Yes" : "No"); ?></td>
                             <td>
                                 <form action="<?php echo e(route('admin.document.destroy', $document->id)); ?>" method="POST">
                                     <?php echo e(csrf_field()); ?>
@@ -57,6 +59,7 @@
                             <th><?php echo app('translator')->getFromJson('admin.id'); ?></th>
                             <th><?php echo app('translator')->getFromJson('admin.document.document_name'); ?></th>
                             <th><?php echo app('translator')->getFromJson('admin.type'); ?></th>
+                              <th><?php echo app('translator')->getFromJson('admin.document.document_isexpiredate'); ?></th>
                             <th><?php echo app('translator')->getFromJson('admin.action'); ?></th>
                         </tr>
                     </tfoot>

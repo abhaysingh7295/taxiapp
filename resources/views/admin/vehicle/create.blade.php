@@ -44,24 +44,24 @@
                             <input class="form-control" type="text" value="{{ old('registrationNumber') }}" name="registrationNumber" required id="registrationNumber">
                         </div>
                     </div>
-                    <div class="form-group">
+<!--                    <div class="form-group">
                         <label for="registration_expire" class="bmd-label-floating">Registration Expire</label>
                         <div class="col-xs-10">
                             <input class="form-control" type="date" value="{{ old('registration_expire') }}" name="registration_expire" required id="registration_expire">
                         </div>
-                    </div>
+                    </div>-->
                     <div class="form-group">
                         <label for="PHCLicenceNumber" class="bmd-label-floating">PHC Licence Number</label>
                         <div class="col-xs-10">
                             <input class="form-control" type="text" value="{{ old('PHCLicenceNumber') }}" name="PHCLicenceNumber" required id="PHCLicenceNumber">
                         </div>
                     </div>
-                    <div class="form-group">
+<!--                    <div class="form-group">
                         <label for="PHCLicenceNumberExpire" class="bmd-label-floating">PHC Licence Number Expire</label>
                         <div class="col-xs-10">
                             <input class="form-control" type="date" value="{{ old('PHCLicenceNumberExpire') }}" name="PHCLicenceNumberExpire" required id="PHCLicenceNumberExpire">
                         </div>
-                    </div>
+                    </div>-->
                     <div class="form-group">
                         <label for="seatType" class="bmd-label-floating">Type</label>
                         <div class="col-xs-10">

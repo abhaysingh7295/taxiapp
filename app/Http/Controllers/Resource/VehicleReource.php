@@ -67,9 +67,9 @@ class VehicleReource extends Controller {
             'model' => 'required|max:255',
             'color' => 'required|max:255',
             'registrationNumber' => 'required',
-            'registration_expire' => 'required',
+            //'registration_expire' => 'required',
             'PHCLicenceNumber' => 'required',
-            'PHCLicenceNumberExpire' => 'required',
+            //'PHCLicenceNumberExpire' => 'required',
             'seatType' => 'required',
         ]);
         try {
@@ -110,9 +110,9 @@ class VehicleReource extends Controller {
             'model' => 'required',
             'color' => 'required',
             'registrationNumber' => 'required',
-            'registration_expire' => 'required',
+            //'registration_expire' => 'required',
             'PHCLicenceNumber' => 'required',
-            'PHCLicenceNumberExpire' => 'required',
+            //'PHCLicenceNumberExpire' => 'required',
             'seatType' => 'required|max:255'
         ]);
         try {
@@ -163,6 +163,7 @@ class VehicleReource extends Controller {
     }
 
     public function updatevehicledocuments(Request $request, $id, $vehicleid) {
+ 
         $vehicle = Vehicle::findOrFail($vehicleid);
         $this->validate($request, [
             'document' => 'mimes:jpg,jpeg,png',
@@ -181,10 +182,11 @@ class VehicleReource extends Controller {
             $path = $request->file('document')->storeAs(
                     "vehicle/documents/" . $Document->vehicle_id, $filename . '.' . $ext
             );
-
+  
             $Document->update([
                 'url' => $path,
                 'status' => 'ASSESSING',
+                'expires_at'=>$request->expires_at
             ]);
         } catch (ModelNotFoundException $e) {
             $document = Document::find($id);
@@ -199,6 +201,7 @@ class VehicleReource extends Controller {
                 'vehicle_id' => $vehicle->id,
                 'document_id' => $id,
                 'status' => 'ASSESSING',
+                'expires_at'=>$request->expires_at
             ]);
         }
         return redirect()->route('admin.vehicles.vehicledocuments', $vehicle->id)->with('flash_success', 'Document updated successfully');

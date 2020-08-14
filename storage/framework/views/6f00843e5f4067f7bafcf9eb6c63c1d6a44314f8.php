@@ -228,6 +228,7 @@
                         <tr>
                             <th>#</th>
                             <th><?php echo app('translator')->getFromJson('admin.provides.document_type'); ?></th>
+                            <th>Expire Date</th>
                             <th><?php echo app('translator')->getFromJson('admin.status'); ?></th>
                             <th><?php echo app('translator')->getFromJson('admin.action'); ?></th>
                         </tr>
@@ -237,6 +238,7 @@
                         <tr>
                             <td><?php echo e($Index + 1); ?></td>
                             <td><?php if($Document->document): ?><?php echo e($Document->document->name); ?><?php endif; ?></td>
+                            <td><?php if($Document->expires_at): ?><?php echo e($Document->expires_at); ?><?php endif; ?></td>
                             <td><?php if($Document->status == "ACTIVE"): ?><?php echo e("APPROVED"); ?><?php else: ?> <?php echo e(" PENDING ASSESSMENT"); ?>
 
                                 <?php endif; ?></td>
@@ -270,6 +272,7 @@
                         <tr>
                             <th>#</th>
                             <th><?php echo app('translator')->getFromJson('admin.provides.document_type'); ?></th>
+                            <th>Expire Date</th>
                             <th><?php echo app('translator')->getFromJson('admin.status'); ?></th>
                             <th><?php echo app('translator')->getFromJson('admin.action'); ?></th>
                         </tr>

@@ -23,7 +23,7 @@
                                     <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
                                         <div class="manage-doc-box-left">
                                             <p class="manage-txt"><?php echo e($Document->name); ?></p>
-
+                                            <p class="license"><?php echo app('translator')->getFromJson('provider.expires'); ?>: <?php echo e($provider->document($Document->id) ? ($provider->document($Document->id)->expires_at ? $provider->document($Document->id)->expires_at: 'N/A'): 'N/A'); ?></p>
                                         </div>
                                     </div>
                                     <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
@@ -47,6 +47,17 @@
 
                                                     <?php echo e(method_field('PATCH')); ?>
 
+                                                    <?php if($Document->is_expiredate == "1"): ?>
+                                            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+                                                <div class="manage-doc-box-left">
+                                                    <p class="manage-txt">Expire Date</p>
+
+                                                    <input class="form-control" type="date" value="<?php echo e(old('expires_at')); ?>" name="expires_at" required id="expires_at">
+                                                </div>
+                                            
+                                               
+                                            </div>
+                                             <?php endif; ?>
                                                     <div class="form-control" data-trigger="fileinput">
                                                         <span class="fileinput-filename"></span>
                                                     </div>

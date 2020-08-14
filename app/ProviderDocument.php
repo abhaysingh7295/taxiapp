@@ -16,6 +16,7 @@ class ProviderDocument extends Model
         'document_id',
         'url',
         'unique_id',
+        'expires_at',
         'status',
     ];
 

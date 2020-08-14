@@ -128,6 +128,7 @@ class DocumentResource extends Controller
             Document::where('id',$id)->update([
                     'name' => $request->name,
                     'type' => $request->type,
+                    'is_expiredate' => $request->is_expiredate,
                 ]);
             return redirect()->route('admin.document.index')->with('flash_success', trans('admin.document_msgs.document_update'));    
         } 

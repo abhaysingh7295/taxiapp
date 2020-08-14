@@ -35,9 +35,9 @@
                             <th>Model</th>
                             <th>Color</th>
                             <th>Registration Number</th>
-                            <th>Registration Expire</th>
+<!--                            <th>Registration Expire</th>-->
                             <th>PHC Licence Number</th>
-                            <th>PHC Licence Number Expire</th>
+<!--                            <th>PHC Licence Number Expire</th>-->
                              @can('vehiclechecklist')
                             <th>@lang('admin.provides.vehiclechecklist')</th>
                             @endcan
@@ -56,9 +56,9 @@
                             <td>{{ $values->model }}</td>
                             <td>{{ $values->color }}</td>
                             <td>{{ $values->registrationNumber }}</td>
-                            <td>{{ $values->registration_expire }}</td>
+<!--                            <td>{{ $values->registration_expire }}</td>-->
                             <td>{{ $values->PHCLicenceNumber }}</td>
-                            <td>{{ $values->PHCLicenceNumberExpire }}</td>
+<!--                            <td>{{ $values->PHCLicenceNumberExpire }}</td>-->
                             @can('vehiclechecklist')
                              <td>
                                  <a class="btn btn-success"
@@ -68,7 +68,7 @@
                             <td>
 
                                 <a class="btn btn-success btn-block"
-                                   href="{{route('admin.vehicles.vehicledocuments', $values->id )}}">Attention</a>
+                                   href="{{route('admin.vehicles.vehicledocuments', $values->id )}}">Attention </a>
                             </td>
 
                             <td>
@@ -94,9 +94,9 @@
                             <th>Model</th>
                             <th>Color</th>
                             <th>Registration Number</th>
-                             <th>Registration Expire</th>
+<!--                             <th>Registration Expire</th>-->
                             <th>PHC Licence Number</th>
-                            <th>PHC Licence Number Expire</th>
+<!--                            <th>PHC Licence Number Expire</th>-->
                                 @can('vehiclechecklist')
                             <th>@lang('admin.provides.vehiclechecklist')</th>
                             @endcan

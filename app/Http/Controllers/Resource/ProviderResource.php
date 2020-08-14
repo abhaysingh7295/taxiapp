@@ -672,6 +672,7 @@ class ProviderResource extends Controller {
             $Document->update([
                 'url' => $path,
                 'status' => 'ASSESSING',
+                'expires_at'=>$request->expires_at
             ]);
         } catch (ModelNotFoundException $e) {
             $document = Document::find($id);
@@ -686,6 +687,7 @@ class ProviderResource extends Controller {
                 'provider_id' => $provider->id,
                 'document_id' => $id,
                 'status' => 'ASSESSING',
+                'expires_at'=>$request->expires_at
             ]);
         }
         return redirect()->route('admin.provider.uploaddocuments', $provider->id)->with('flash_success', 'Document uploaded successfully');

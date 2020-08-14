@@ -24,7 +24,7 @@
                                     <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
                                         <div class="manage-doc-box-left">
                                             <p class="manage-txt">{{ $Document->name }}</p>
-
+<!--                                            <p class="license">@lang('provider.expires'): {{ $provider->document($Document->id) ? ($provider->document($Document->id)->expires_at ? $provider->document($Document->id)->expires_at: 'N/A'): 'N/A' }}</p>-->
                                         </div>
                                     </div>
                                     <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
@@ -44,6 +44,17 @@
                                                 <form action="{{ route('admin.provider.updatedocuments', [$Document->id,$provider->id]) }}" method="POST" enctype="multipart/form-data">
                                                     {{ csrf_field() }}
                                                     {{ method_field('PATCH') }}
+                                                    @if($Document->is_expiredate == "1")
+                                            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+                                                <div class="manage-doc-box-left">
+                                                    <p class="manage-txt">Expire Date</p>
+
+                                                    <input class="form-control" type="date" value="{{ old('expires_at') }}" name="expires_at" required id="expires_at">
+                                                </div>
+                                            
+                                               
+                                            </div>
+                                             @endif
                                                     <div class="form-control" data-trigger="fileinput">
                                                         <span class="fileinput-filename"></span>
                                                     </div>

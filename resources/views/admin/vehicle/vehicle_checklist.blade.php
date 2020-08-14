@@ -44,13 +44,13 @@
                                         </div>
                                     </div>
 
-                                    <div class="col-sm-12">
+<!--                                    <div class="col-sm-12">
                                         <div class="checkbox checkbox-inline">
 
                                             <input type="checkbox" id="is_notes" name="is_notes" value="1" {{($vehicle->is_notes==1)?'checked="checked"':""}}>
                                             <label for="is_notes">Is Notes</label>
                                         </div>
-                                    </div>
+                                    </div>-->
                                      <div class="col-sm-12">
                                         <div class="checkbox checkbox-inline">
 
