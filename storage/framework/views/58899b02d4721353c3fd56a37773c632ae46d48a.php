@@ -1,4 +1,4 @@
-<?php $__env->startSection('title', 'Fare Issues Adjustment'); ?>
+<?php $__env->startSection('title', ' Driver Fare Issues'); ?>
 
 <?php $__env->startSection('content'); ?>
 
@@ -11,13 +11,11 @@
                 ** Demo Mode : <?php echo app('translator')->getFromJson('admin.demomode'); ?>
             </div>
             <?php endif; ?>
-            <h5 class="card-title"><?php echo app('translator')->getFromJson('admin.driverfareissue.title1'); ?></h5>
-            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('lost-item-create')): ?>
-            <a href="<?php echo e(route('admin.driverdisputecreate')); ?>" style="margin-left: 1em;" class="btn btn-primary pull-right"><i class="fa fa-plus"></i> <?php echo app('translator')->getFromJson('admin.driverfareissue.add_dispute'); ?></a>
-            <?php endif; ?>
+            <h5 class="card-title"><?php echo app('translator')->getFromJson('admin.driverfareissuelist.title1'); ?></h5>
+           
         </div>
         <div class="card-body">
-            <form action="<?php echo e(route('admin.driverdisputes')); ?>" method="get">
+            <form action="<?php echo e(route('admin.fareissueslist')); ?>" method="get">
                 <div class="row">
                     <div class="col-xs-4">
                         <input name="name" type="text" class="form-control" aria-describedby="basic-addon2">
@@ -51,7 +49,7 @@
                             <th><?php echo app('translator')->getFromJson('admin.dispute.dispute_comments'); ?> </th>                           
                             <th><?php echo app('translator')->getFromJson('admin.dispute.dispute_refund'); ?> </th>                           
                             <th><?php echo app('translator')->getFromJson('admin.dispute.dispute_status'); ?> </th>                           
-                            <th><?php echo app('translator')->getFromJson('admin.action'); ?></th>
+                        
                         </tr>
                     </thead>
                     <tbody>
@@ -71,13 +69,7 @@
                                 <span class="tag tag-danger">Finished</span>
                                 <?php endif; ?>
                             </td>
-                            <td>
-                                <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('dispute-edit')): ?>
-                                <?php if($dispute->status=='open'): ?>
-                                <a href="<?php echo e(route('admin.driverdisputeedit', $dispute->id)); ?>" href="#" class="btn btn-info"><i class="fa fa-pencil"></i> To analyze</a>
-                                <?php endif; ?>   
-                                <?php endif; ?> 
-                            </td>
+                         
                         </tr>
                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                     </tbody>
@@ -92,7 +84,7 @@
                             <th><?php echo app('translator')->getFromJson('admin.dispute.dispute_comments'); ?> </th>                           
                             <th><?php echo app('translator')->getFromJson('admin.dispute.dispute_refund'); ?> </th>                           
                             <th><?php echo app('translator')->getFromJson('admin.dispute.dispute_status'); ?> </th>                           
-                            <th><?php echo app('translator')->getFromJson('admin.action'); ?></th>
+                       
                         </tr>
                     </tfoot>
                 </table>

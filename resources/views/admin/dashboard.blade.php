@@ -236,7 +236,7 @@
                     
                     </div>
                 </div>
-<!--                <div class="col">
+    {{-- <div class="col">
                     <div class="card card-stats">
                     <div class="card-header card-header-success card-header-icon">
                         <div class="card-icon">
@@ -247,13 +247,13 @@
                     </div>
                     
                     </div>
-                </div>-->
+                </div>--}}
                 @endcan
             </div>
 
         <div class="row row-md mb-2">
             @can('wallet-summary')
-<!--                <div class="col-md-4">
+{{-- <div class="col-md-4">
                 <div class="card">
                 <div class="card-header card-header-primary">
                 <h4 class="card-title pull-left">@lang('admin.dashboard.wallet_summary')</h4>
@@ -330,7 +330,7 @@
                         </table>
                     </div>
                 </div>
-                </div>-->
+                </div> --}}
             @endcan
             @can('recent-rides')
                 <div class="col-md-8">
@@ -361,7 +361,7 @@
                                                                 class="underline">@lang('admin.dashboard.View_Ride_Details')</span></a>
                                                 </td>
                                                 <td>
-                                                    <span class="text-muted">{{$ride->created_at->diffForHumans()}}</span>
+                                                   {{-- <span class="text-muted">{{$ride->created_at->diffForHumans()}}</span> --}}
                                                 </td>
                                                 <td>
                                                     @if($ride->status == "COMPLETED")

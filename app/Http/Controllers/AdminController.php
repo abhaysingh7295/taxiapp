@@ -1519,7 +1519,8 @@ class AdminController extends Controller {
             $Provider = Provider::findOrFail($id);
 
             // Define Dir Folder
-            $public_dir = public_path();
+            //$public_dir = public_path();
+            $public_dir = "http://bhanushainfosoft.live/taxiapp";
 
             // Zip File Name
             $zipFileName = $Provider->first_name . '.zip';
@@ -1527,10 +1528,10 @@ class AdminController extends Controller {
             // Create ZipArchive Obj
             $zip = new ZipArchive;
 
-            if ($zip->open($public_dir . '/storage/' . $zipFileName, ZipArchive::CREATE) === TRUE) {
+            if ($zip->open($public_dir . '/storage/app/public/' . $zipFileName, ZipArchive::CREATE) === TRUE) {
                 // Add File in ZipArchive
                 foreach ($documents as $file) {
-                    $zip->addFile($public_dir . '/storage/' . $file->url);
+                    $zip->addFile($public_dir . '/storage/app/public/' . $file->url);
                 }
 
                 // Close ZipArchive
@@ -1541,7 +1542,7 @@ class AdminController extends Controller {
                 'Content-Type' => 'application/octet-stream',
             );
 
-            $filetopath = $public_dir . '/storage/' . $zipFileName;
+            $filetopath = $public_dir . '/storage/app/public/' . $zipFileName;
 
             // Create Download Response
             if (file_exists($filetopath)) {

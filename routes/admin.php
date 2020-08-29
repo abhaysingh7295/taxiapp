@@ -154,6 +154,7 @@ Route::get('disputeusers/edit/{id}', 'Resource\DisputeResource@userdisputeedit')
 Route::resource('bookingissuetypes', 'Resource\Bookingissuestypes');
 Route::resource('driverfareissuetypes', 'Resource\Driverfareissuetypes');
 Route::get('disputedriver', 'Resource\Driverfareissuetypes@driverdisputes')->name('driverdisputes');
+Route::get('fareissueslist', 'Resource\Driverfareissuetypes@driverdisputesfare')->name('fareissueslist');
 Route::get('disputelists', 'Resource\Driverfareissuetypes@dispute_list');
 Route::get('disputedrivercreate', 'Resource\Driverfareissuetypes@driverdisputecreate')->name('driverdisputecreate');
 Route::get('disputedrivers/create', 'Resource\Driverfareissuetypes@driverdisputecreate')->name('driverdisputecreate');

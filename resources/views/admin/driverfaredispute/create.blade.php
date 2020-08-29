@@ -65,9 +65,22 @@
 						</div>
 					</div>
 				</div>
-
+                                <div class="form-group">
+					<label for="lost_item_name" class="bmd-label-floating">@lang('admin.driverfareissue.dispute_reason')</label>
+					<div class="col-xs-5">
+						<select class="form-control" name="dispute_reason" id="dispute_reason" required="">
+							<option value="">Select</option>
+                                                        <option value="1">Issues while on The job</option>
+                                                        <option value="2">Before Reaching The Pick-Up Point</option>
+                                                        <option value="3">Reached The Pick-Up Point</option>
+                                                        <option value="4">Waiting For The Rider</option>
+                                                        <option value="5">Issues After Completing The job</option>
+						</select>
+						
+					</div>
+				</div>
 				<div class="form-group">
-					<label for="lost_item_name" class="bmd-label-floating">@lang('admin.dispute.dispute_name')</label>
+					<label for="lost_item_name" class="bmd-label-floating">@lang('admin.driverfareissue.dispute_name')</label>
 					<div class="col-xs-5">
 						<select class="form-control" name="dispute_name" id="dispute_name" required="">
 							<option value="">Select</option>
@@ -75,6 +88,7 @@
 						<textarea style="display: none;margin-top:5px;" class="form-control" name="dispute_other" required id="dispute_other" placehold="@lang('admin.dispute.dispute_name')">{{ old('dispute_other') }}</textarea>
 					</div>
 				</div>
+                
 
 				<div class="form-group">
 					<label for="" class="bmd-label-floating"></label>

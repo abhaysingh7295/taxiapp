@@ -1,6 +1,6 @@
 @extends('admin.layout.base')
 
-@section('title', 'Fare Issues Adjustment')
+@section('title', ' Driver Fare Issues')
 
 @section('content')
 
@@ -13,13 +13,11 @@
                 ** Demo Mode : @lang('admin.demomode')
             </div>
             @endif
-            <h5 class="card-title">@lang('admin.driverfareissue.title1')</h5>
-            @can('lost-item-create')
-            <a href="{{ route('admin.driverdisputecreate') }}" style="margin-left: 1em;" class="btn btn-primary pull-right"><i class="fa fa-plus"></i> @lang('admin.driverfareissue.add_dispute')</a>
-            @endcan
+            <h5 class="card-title">@lang('admin.driverfareissuelist.title1')</h5>
+           
         </div>
         <div class="card-body">
-            <form action="{{route('admin.driverdisputes')}}" method="get">
+            <form action="{{route('admin.fareissueslist')}}" method="get">
                 <div class="row">
                     <div class="col-xs-4">
                         <input name="name" type="text" class="form-control" aria-describedby="basic-addon2">
@@ -53,7 +51,7 @@
                             <th>@lang('admin.dispute.dispute_comments') </th>                           
                             <th>@lang('admin.dispute.dispute_refund') </th>                           
                             <th>@lang('admin.dispute.dispute_status') </th>                           
-                            <th>@lang('admin.action')</th>
+                        
                         </tr>
                     </thead>
                     <tbody>
@@ -73,13 +71,7 @@
                                 <span class="tag tag-danger">Finished</span>
                                 @endif
                             </td>
-                            <td>
-                                @can('dispute-edit')
-                                @if($dispute->status=='open')
-                                <a href="{{ route('admin.driverdisputeedit', $dispute->id) }}" href="#" class="btn btn-info"><i class="fa fa-pencil"></i> To analyze</a>
-                                @endif   
-                                @endcan 
-                            </td>
+                         
                         </tr>
                         @endforeach
                     </tbody>
@@ -94,7 +86,7 @@
                             <th>@lang('admin.dispute.dispute_comments') </th>                           
                             <th>@lang('admin.dispute.dispute_refund') </th>                           
                             <th>@lang('admin.dispute.dispute_status') </th>                           
-                            <th>@lang('admin.action')</th>
+                       
                         </tr>
                     </tfoot>
                 </table>

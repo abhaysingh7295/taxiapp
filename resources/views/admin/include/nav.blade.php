@@ -224,18 +224,20 @@
            @endcan
           
             <ul class="nav navbar-nav">
-                <li class="nav-item dropdown  {{ Request::segment(2) === 'driverfareissuetypes' ? 'active' : null }} {{ Request::segment(2) === 'disputedriver' ? 'active' : null }}">
+                <li class="nav-item dropdown  {{ Request::segment(2) === 'driverfareissuetypes' ? 'active' : null }} {{ Request::segment(2) === 'disputedriver' ? 'active' : null }} {{ Request::segment(2) === 'fareissueslist' ? 'active' : null }}">
 
                     <a class="nav-link" href="#" data-toggle="dropdown">
                         <i class="fa fa-book"></i>
-                        <p>Driver Fare Issues</p>
+                        <p>@lang('admin.include.driver_fare_issues_request')</p>
                     </a>
                     <div class="dropdown-menu dropdown-menu animated">
                       
                         <a class="dropdown-item {{ Request::segment(2) === 'driverfareissuetypes' ? 'active' : null }}"
                            href="{{ route('admin.driverfareissuetypes.index') }}">@lang('admin.include.driver_fare_issues_type')</a>
                         <a class="dropdown-item {{ Request::segment(2) === 'disputedriver' ? 'active' : null }}"
-                           href="{{ route('admin.driverdisputes') }}">@lang('admin.include.driver_fare_issues_request')</a>
+                           href="{{ route('admin.driverdisputes') }}">@lang('admin.include.driver_fare_issues_request1')</a>
+                        <a class="dropdown-item {{ Request::segment(2) === 'fareissueslist' ? 'active' : null }}"
+                           href="{{ route('admin.fareissueslist') }}">@lang('admin.include.driver_fare_issues_request_list')</a>
                         
                            
 

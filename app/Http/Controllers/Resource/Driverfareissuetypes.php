@@ -159,7 +159,13 @@ class Driverfareissuetypes extends Controller
        
         return view('admin.driverfaredispute.index', compact('disputes', 'pagination'));
     }
-
+    public function driverdisputesfare()
+    {            
+        $disputes = DriverRequestDispute::with('request')->with('user')->with('provider')->orderBy('created_at' , 'desc')->paginate($this->perpage);
+        $pagination=(new Helper)->formatPagination($disputes);
+       
+        return view('admin.driverfaredispute.fareissueslist', compact('disputes', 'pagination'));
+    }
     public function driverdisputecreate()
     {
         return view('admin.driverfaredispute.create');

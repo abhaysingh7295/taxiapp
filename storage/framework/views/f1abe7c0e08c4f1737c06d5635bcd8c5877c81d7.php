@@ -180,101 +180,13 @@
                     
                     </div>
                 </div>
-<!--                <div class="col">
-                    <div class="card card-stats">
-                    <div class="card-header card-header-success card-header-icon">
-                        <div class="card-icon">
-                        <i class="material-icons">money</i>
-                        </div>
-                        <p class="card-category"><?php echo app('translator')->getFromJson('admin.dashboard.Revenue'); ?></p>
-                        <h3 class="card-title"><?php echo e(currency($revenue)); ?></h3>
-                    </div>
-                    
-                    </div>
-                </div>-->
+    
                 <?php endif; ?>
             </div>
 
         <div class="row row-md mb-2">
             <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('wallet-summary')): ?>
-<!--                <div class="col-md-4">
-                <div class="card">
-                <div class="card-header card-header-primary">
-                <h4 class="card-title pull-left"><?php echo app('translator')->getFromJson('admin.dashboard.wallet_summary'); ?></h4>
-                </div>
-                <div class="card-body">
-                        <table class="table">
-                            <tbody>
-                            <?php ($total=$wallet['admin']); ?>
-                            <tr>
-                                <th scope="row"><?php echo app('translator')->getFromJson('admin.dashboard.wallet_summary_admin_credit'); ?></th>
-                                <td class="text-success"><?php echo e(currency($wallet['admin'])); ?></td>
-                            </tr>
-                            <tr>
-                                <th scope="row"><?php echo app('translator')->getFromJson('admin.dashboard.wallet_summary_provider_credit'); ?></th>
-                                <?php if($wallet['provider_credit']): ?>
-                                    <?php ($total=$total-$wallet['provider_credit'][0]['total_credit']); ?>
-                                    <td class="text-success"><?php echo e(currency($wallet['provider_credit'][0]['total_credit'])); ?></td>
-                                <?php else: ?>
-                                    <td class="text-success"><?php echo e(currency()); ?></td>
-                                <?php endif; ?>
-                            </tr>
 
-                            <tr>
-                                <th scope="row"><?php echo app('translator')->getFromJson('admin.dashboard.wallet_summary_provider_debit'); ?></th>
-                                <?php if($wallet['provider_debit']): ?>
-
-                                    <td class="text-danger"><?php echo e(currency($wallet['provider_debit'][0]['total_debit'])); ?></td>
-                                <?php else: ?>
-                                    <td class="text-danger"><?php echo e(currency()); ?></td>
-                                <?php endif; ?>
-                            </tr>
-                            <tr>
-                                <th scope="row"><?php echo app('translator')->getFromJson('admin.dashboard.wallet_summary_commission'); ?></th>
-                                <td class="text-success"><?php echo e(currency($wallet['admin_commission'])); ?></td>
-                            </tr>
-                            <tr>
-                                <th scope="row"><?php echo app('translator')->getFromJson('admin.dashboard.wallet_summary_peak_commission'); ?></th>
-                                <td class="text-success"><?php echo e(currency($wallet['peak_commission'])); ?></td>
-                            </tr>
-                            <tr>
-                                <th scope="row"><?php echo app('translator')->getFromJson('admin.dashboard.wallet_summary_waitining_commission'); ?></th>
-                                <td class="text-success"><?php echo e(currency($wallet['waiting_commission'])); ?></td>
-                            </tr>
-                            <tr>
-                                <th scope="row"><?php echo app('translator')->getFromJson('admin.dashboard.wallet_summary_discount'); ?></th>
-                                <td class="text-danger"><?php echo e(currency($wallet['admin_discount'])); ?></td>
-                            </tr>
-                            <tr>
-                                <?php ($total=$total-($wallet['admin_tax'])); ?>
-                                <th scope="row"><?php echo app('translator')->getFromJson('admin.dashboard.wallet_summary_tax_amount'); ?></th>
-                                <td class="text-success"><?php echo e(currency($wallet['admin_tax'])); ?></td>
-                            </tr>
-
-                            <tr>
-                                <th scope="row"><?php echo app('translator')->getFromJson('admin.dashboard.wallet_summary_tips'); ?></th>
-                                <td class="text-danger"><?php echo e(currency($wallet['tips'])); ?></td>
-                            </tr>
-
-                            <tr>
-                                <th scope="row"><?php echo app('translator')->getFromJson('admin.dashboard.wallet_summary_referrals'); ?></th>
-                                <td class="text-danger"><?php echo e(currency($wallet['admin_referral'])); ?></td>
-                            </tr>
-
-                            <tr>
-                                <th scope="row"><?php echo app('translator')->getFromJson('admin.dashboard.wallet_summary_disputes'); ?></th>
-                                <td class="text-danger"><?php echo e(currency($wallet['admin_dispute'])); ?></td>
-                            </tr>
-
-                                                         <tr>
-                            <th scope="row text-right"><?php echo app('translator')->getFromJson('admin.dashboard.wallet_summary_total'); ?></th>
-                            <td><?php echo e(currency($total)); ?></td>
-                        </tr> 
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-                </div>-->
             <?php endif; ?>
             <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('recent-rides')): ?>
                 <div class="col-md-8">
@@ -305,7 +217,7 @@
                                                                 class="underline"><?php echo app('translator')->getFromJson('admin.dashboard.View_Ride_Details'); ?></span></a>
                                                 </td>
                                                 <td>
-                                                    <span class="text-muted"><?php echo e($ride->created_at->diffForHumans()); ?></span>
+                                                   
                                                 </td>
                                                 <td>
                                                     <?php if($ride->status == "COMPLETED"): ?>

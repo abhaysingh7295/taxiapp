@@ -224,18 +224,20 @@
            <?php endif; ?>
           
             <ul class="nav navbar-nav">
-                <li class="nav-item dropdown  <?php echo e(Request::segment(2) === 'driverfareissuetypes' ? 'active' : null); ?> <?php echo e(Request::segment(2) === 'disputedriver' ? 'active' : null); ?>">
+                <li class="nav-item dropdown  <?php echo e(Request::segment(2) === 'driverfareissuetypes' ? 'active' : null); ?> <?php echo e(Request::segment(2) === 'disputedriver' ? 'active' : null); ?> <?php echo e(Request::segment(2) === 'fareissueslist' ? 'active' : null); ?>">
 
                     <a class="nav-link" href="#" data-toggle="dropdown">
                         <i class="fa fa-book"></i>
-                        <p>Driver Fare Issues</p>
+                        <p><?php echo app('translator')->getFromJson('admin.include.driver_fare_issues_request'); ?></p>
                     </a>
                     <div class="dropdown-menu dropdown-menu animated">
                       
                         <a class="dropdown-item <?php echo e(Request::segment(2) === 'driverfareissuetypes' ? 'active' : null); ?>"
                            href="<?php echo e(route('admin.driverfareissuetypes.index')); ?>"><?php echo app('translator')->getFromJson('admin.include.driver_fare_issues_type'); ?></a>
                         <a class="dropdown-item <?php echo e(Request::segment(2) === 'disputedriver' ? 'active' : null); ?>"
-                           href="<?php echo e(route('admin.driverdisputes')); ?>"><?php echo app('translator')->getFromJson('admin.include.driver_fare_issues_request'); ?></a>
+                           href="<?php echo e(route('admin.driverdisputes')); ?>"><?php echo app('translator')->getFromJson('admin.include.driver_fare_issues_request1'); ?></a>
+                        <a class="dropdown-item <?php echo e(Request::segment(2) === 'fareissueslist' ? 'active' : null); ?>"
+                           href="<?php echo e(route('admin.fareissueslist')); ?>"><?php echo app('translator')->getFromJson('admin.include.driver_fare_issues_request_list'); ?></a>
                         
                            
 
