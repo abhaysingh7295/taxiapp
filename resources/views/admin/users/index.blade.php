@@ -21,13 +21,13 @@
 
                     @can('user-create')
                     <div class="col-xs-3">
-                        <a href="{{ route('admin.user.create') }}" style="margin-left: 1em;" class="btn btn-primary pull-right"><i class="fa fa-plus"></i>Add New</a>
+                        <a href="{{ route('admin.user.create') }}" style="margin-left: 1em; margin-top: -44px;" class="btn btn-primary pull-right"><i class="fa fa-plus"></i>Add New</a>
 
                     </div>
                     @endcan
                 </div>
             </form>
-            <div class="table-responsive">
+            <div class="table-responsive-md">
                 <table class="table">
                     <thead>
                         <tr>
@@ -79,7 +79,7 @@
                                     @endcan
 
                                     @can('user-delete')
-                                    <button class="btn btn-danger" onclick="return confirm('Are you sure?')"><i class="fa fa-trash"></i> @lang('admin.delete')</button>
+                                    <button class="btn btn-danger" onclick="return confirm('Are you sure?')"> @lang('admin.delete')</button>
                                       @if($user->status == 'banned')
                                     <a class="btn btn-danger"
                                        href="{{ route('admin.user.approve', $user->id ) }}">@lang('Disable')</a>
@@ -97,18 +97,17 @@
                         @endforeach
                     </tbody>
                     <tfoot>
-                        <tr>
+                       <!-- <tr>
                             <th>@lang('admin.id')</th>
                             <th>@lang('admin.first_name')</th>
                             <th>@lang('admin.last_name')</th>
                             <th>@lang('admin.gender')</th>
                             <th>@lang('admin.email')</th>
                             <th>@lang('admin.mobile')</th>
-
-<!--                        <th>@lang('admin.users.Rating')</th>
- <th>@lang('admin.users.Wallet_Amount')</th>-->
+                          <th>@lang('admin.users.Rating')</th>
+ <th>@lang('admin.users.Wallet_Amount')</th>
                             <th>@lang('admin.action')</th>
-                        </tr>
+                        </tr>-->
                     </tfoot>
                 </table>
                 @include('common.pagination')

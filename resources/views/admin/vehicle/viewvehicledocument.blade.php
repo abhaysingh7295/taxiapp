@@ -12,8 +12,8 @@
             <h5 class="card-category">@lang('admin.document.document_name'): {{ $Document->document->name }}</h5> <a href="{{route('admin.vehicles.vehicledocuments', $Document->vehicle->id )}}" style="margin-left: 1em;margin-top: -30px" class="btn btn-primary pull-right"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</a>
         </div>
         <div class="card-body">
-            <embed src="{{ $Document->url!='' ? asset('storage/'.$Document->url): asset('asset/img/semfoto.jpg') }}" width="100%" height="100%" />
-<!--     <embed src="{{ $Document->url!='' ? 'http://bhanushainfosoft.live/taxiapp/storage/app/public/'.$Document->url: asset('asset/img/semfoto.jpg') }}" width="100%" height="100%" />-->
+<!--            <embed src="{{ $Document->url!='' ? asset('storage/'.$Document->url): asset('asset/img/semfoto.jpg') }}" width="100%" height="100%" />-->
+     <embed src="{{ $Document->url!='' ? 'http://bhanushainfosoft.live/taxiapp/storage/app/public/'.$Document->url: asset('asset/img/semfoto.jpg') }}" width="100%" height="100%" />
 
             <div class="row">
                 <div class="col-xs-6">

@@ -27,6 +27,7 @@ return array (
 		'provider_not_found' => 'Passenger cannot find.',
 		'not_approved' => 'Your account has not been approved for driving. Please contact us!',
 		'incorrect_email' => 'The email address or password you entered is incorrect.',
+                'incorrect_mobile' => 'The mobile number or password you entered is incorrect.',
 		'referral_amount' => 'Reference Value',
 		'referral_count' => 'Reference Quantity',
 		'invite_friends' => "<p style =' color: ## FDFEFE; '> Enter" .config (' constants.referral_count ',' 0 '). "friends and win <span style =' color: # f06292 '> ". config (' constants.currency ',' ')." ". config (' constants.referral_amount ',' 0 ')." </span> as indicated </p>",		

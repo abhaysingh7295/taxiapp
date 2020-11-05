@@ -65,15 +65,15 @@
                                                     </span>
                                                     <span class="input-group-addon btn btn-default btn-file">
                                                         <span class="fileinput-new upload-link">
-                                                            <i class="fa fa-upload upload-icon"></i> @lang('provider.profile.upload')
+                                                            <i class="fa fa-upload upload-icon "></i> @lang('provider.profile.upload')
                                                         </span>
-                                                        <span class="fileinput-exists">
-                                                            <i class="fa fa-edit"></i>
+                                                        <span class="fileinput-exist upload">
+                                                            <i class="fa fa-edit "></i>
                                                         </span>
                                                         <input type="file" name="document" accept="application/pdf, image/*">
                                                     </span>
-                                                    <a href="#" class="input-group-addon btn btn-default fileinput-exists" data-dismiss="fileinput">
-                                                        <i class="fa fa-times"></i>
+                                                    <a href="#" class="input-group-addon btn btn-default fileinput-exists delete" data-dismiss="fileinput">
+                                                        <i class="fa fa-times delete"></i>
                                                     </a>
                                                 </form>
                                             </div>

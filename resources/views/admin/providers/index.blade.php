@@ -11,7 +11,7 @@
                 @lang('admin.provides.providers')
             </h5>
             @can('provider-create')
-            <a href="{{ route('admin.provider.create') }}" class="btn pull-right"><i class="fa fa-plus"></i>@lang('admin.provides.add_new_provider')</a>
+            <a href="{{ route('admin.provider.create') }}" class="btn pull-right" style="margin-top: -22px;"><i class="fa fa-plus"></i>@lang('admin.provides.add_new_provider')</a>
             @endcan
         </div>
         <div class="card-body">
@@ -39,7 +39,7 @@
                     </div>
 
                     <div class="col-xs-3">
-                        <button class="btn btn-primary" type="submit">Search</button>
+                        <button class="btn btn-primary space" type="submit">Search</button>
                     </div>
                 </div>
             </form>
@@ -157,7 +157,7 @@
                                                 @lang('admin.provides.redflag')</a>
                                             @else
                                             <a href="{{ route('admin.provider.redflagoff', $provider->id) }}"
-                                               class="btn btn-default"> <i style="color:red;" class="fa fa-flag"></i> 
+                                               class="btn btn-default"> <i style="color:red;" class="fa fa-flag "></i> 
                                                 @lang('admin.provides.redflagoff')</a>
                                             @endif
                                         </li>
@@ -214,9 +214,8 @@
                                                 {{ csrf_field() }}
                                                 <input type="hidden" name="_method" value="DELETE">
                                                 @if( Setting::get('demo_mode', 0) == 0)
-                                                <button class="btn btn-default look-a-like"
-                                                        onclick="return confirm('Are you sure?')"><i
-                                                        class="fa fa-trash"></i>@lang('admin.delete')</button>
+                                                <button class="btn btn-default button_center look-a-like"
+                                                        onclick="return confirm('Are you sure?')">@lang('admin.delete')</button>
                                                 @endif
                                             </form>
                                         </li>
@@ -229,24 +228,24 @@
                         @endforeach
                     </tbody>
                     <tfoot>
-                        <tr>
+                       <!--  <tr>
                             <th>@lang('admin.id')</th>
                             <th>@lang('admin.provides.full_name')</th>
                             <th>@lang('admin.email')</th>
                             <th>@lang('admin.mobile')</th>
-<!--                            <th>@lang('admin.users.Wallet_Amount')</th>-->
-                            <th>@lang('admin.provides.total_requests')</th>
+                           <th>@lang('admin.users.Wallet_Amount')</th>-->
+                          <!--   <th>@lang('admin.provides.total_requests')</th>
                             <th>@lang('admin.provides.accepted_requests')</th>
                             <th>@lang('admin.provides.created_at')</th>
-<!--                            @can('driverchecklist')
+                            @can('driverchecklist')
                             <th>@lang('admin.provides.driverchecklist')</th>
-                            @endcan-->
+                            @endcan
                             @can('provider-documents')
                             <th>@lang('admin.provides.service_type')</th>
                             @endcan
                             <th>@lang('admin.provides.online')</th>
                             <th>@lang('admin.action')</th>
-                        </tr>
+                        </tr> --> 
                     </tfoot>
                 </table>
                 @include('common.pagination')

@@ -16,7 +16,7 @@
             @endif
             <h5 class="card-title">@lang('admin.lostitem.title')</h5>
             @can('lost-item-create')
-            <a href="{{ route('admin.lostitem.create') }}" style="margin-left: 1em;" class="btn btn-primary pull-right"><i class="fa fa-plus"></i> @lang('admin.lostitem.add')</a>
+            <a href="{{ route('admin.lostitem.create') }}" style="margin-left: 1em; margin-top: -22px" class="btn btn-primary pull-right"><i class="fa fa-plus"></i> @lang('admin.lostitem.add')</a>
             @endcan
         </div>
         <div class="card-body">

@@ -4,8 +4,8 @@
 @section('content')
 <div class="container-fluid">
     <div class="card">
-        <div class="card-header card-header-primary">
-            <h4 class="card-title ">Car Reservations</h4>
+        <div class="card-header card-header-primary height">
+            <h4 class="card-title reservations_center">Car Reservations</h4>
         </div>
         <div class="card-body">
             <form action="{{ route('admin.reservations.index') }}" method="get">
@@ -27,7 +27,7 @@
                     @endcan
                 </div>
             </form>
-            <div class="table-responsive">
+            <div class="table-responsive-sm">
                 <table class="table">
                     <thead>
                         <tr>
@@ -59,7 +59,7 @@
                         @endforeach
                     </tbody>
                     <tfoot>
-                        <tr>
+                     <!--    <tr>
                             <th>Id</th>
                               <th>Name</th>
                             <th>Car</th>
@@ -68,7 +68,7 @@
                             <th>Message</th>
                             <th>Posting Date</th>
 
-                        </tr>
+                        </tr> -->
                     </tfoot>
                 </table>
                 @include('common.pagination')

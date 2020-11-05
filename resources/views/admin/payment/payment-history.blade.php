@@ -34,7 +34,7 @@
                             <td>{{$payment->provider?$payment->provider->first_name:''}} {{$payment->provider?$payment->provider->last_name:''}}</td> -->
                             <td>{{currency($payment->payment->total)}}</td>
                             <td>{{currency($payment->payment->provider_pay)}}</td>
-                            <td>{{$payment->payment_mode == "CASH" ? "DINHEIRO" : "CARTÃO"}}</td>
+                            <td>{{$payment->payment_mode == "CASH" ? "CASH" : "CARD"}}</td>
                             <td>
                                 @if($payment->paid)
                                     Paid
@@ -45,7 +45,7 @@
                             <td>
                             <div class="btn-group" role="group">
                                 <button type="button" class="btn btn-primary waves-effect dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                    Ação
+                                    Action
                                 </button>
                                 <div class="dropdown-menu">
                                     <a href="{{ route('admin.requests.show', $payment->id) }}" class="dropdown-item">

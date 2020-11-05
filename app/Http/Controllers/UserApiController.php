@@ -65,13 +65,13 @@ class UserApiController extends Controller
         // 		'email' => 'required|email|unique:users',
         // 	]);
         if ($request->email == '') {
-            return response()->json(['message' => 'Por favor, digite um email'], 422);
+            return response()->json(['message' => 'Please enter an email'], 422);
         }
 
         $email_case = User::where('email', $request->email)->first();
         //User Already Exists
         if ($email_case) {
-            return response()->json(['message' => 'Email já cadastrado, por favor digite outro email'], 422);
+            return response()->json(['message' => 'Email already registered, please type another email'], 422);
         }
 
         try {
@@ -312,27 +312,29 @@ class UserApiController extends Controller
      */
     public function change_password(Request $request)
     {
-
+          //echo "<pre>"; print_r($request->all()); die;
         $this->validate($request, [
             'password' => 'required|confirmed|min:6',
             'old_password' => 'required',
         ]);
 
         $User = Auth::user();
-
         if (Hash::check($request->old_password, $User->password)) {
             $User->password = bcrypt($request->password);
             $User->save();
 
-            if ($request->ajax()) {
+            //if ($request->ajax()) {
+            if ($request->all()) {
                 return response()->json(['message' => trans('api.user.password_updated')]);
             } else {
                 return back()->with('flash_success', trans('api.user.password_updated'));
             }
         } else {
-            if ($request->ajax()) {
+           // if ($request->ajax()) {
+            if ($request->all()) {
                 return response()->json(['error' => trans('api.user.incorrect_old_password')], 422);
             } else {
+      
                 return back()->with('flash_error', trans('api.user.incorrect_old_password'));
             }
         }
@@ -509,7 +511,7 @@ class UserApiController extends Controller
      */
     public function update_profile(Request $request)
     {
-
+        //echo "<pre>"; print_r($request->all()); die;
         $this->validate($request, [
             'first_name' => 'required|max:255',
             'last_name' => 'max:255',
@@ -581,8 +583,8 @@ class UserApiController extends Controller
             $user->referral_total_count = (new ReferralResource)->get_referral('user', Auth::user()->id)[0]->total_count;
             $user->referral_total_amount = (new ReferralResource)->get_referral('user', Auth::user()->id)[0]->total_amount;
             $user->referral_total_text = "<p style='font-size:16px; color: #000; $align'>" . trans('api.user.referral_amount') . ": " . (new ReferralResource)->get_referral('user', Auth::user()->id)[0]->total_amount . "<br>" . trans('api.user.referral_count') . ": " . (new ReferralResource)->get_referral('user', Auth::user()->id)[0]->total_count . "</p>";
-
-            if ($request->ajax()) {
+            // if ($request->ajax()) {
+            if ($request->all()) {
                 return response()->json($user);
             } else {
                 return back()->with('flash_success', trans('api.user.profile_updated'));
@@ -872,13 +874,13 @@ class UserApiController extends Controller
 
             if ($request->ajax()) {
                 return response()->json([
-                    'message' => ($UserRequest->status == 'SCHEDULED') ? 'Agendamento de pedido criado!' : 'Novo pedido criado!',
+                    'message' => ($UserRequest->status == 'SCHEDULED') ? 'Order schedule created!' : 'New order created!',
                     'request_id' => $UserRequest->id,
                     'current_provider' => $UserRequest->current_provider_id,
                 ]);
             } else {
                 if ($UserRequest->status == 'SCHEDULED') {
-                    $request->session()->flash('flash_success', 'Sua carona está agendada!');
+                    $request->session()->flash('flash_success', 'Your ride is scheduled!');
                 }
                 return redirect('dashboard');
             }
@@ -933,7 +935,7 @@ class UserApiController extends Controller
                 $UserRequest->cancelled_by = 'USER';
                 $UserRequest->save();
 
-                RequestFilter::where('request_id', $UserRequest->id)->delete();
+                //RequestFilter::where('request_id', $UserRequest->id)->delete();
 
                 if ($UserRequest->status != 'SCHEDULED') {
 
@@ -1090,8 +1092,9 @@ class UserApiController extends Controller
                         $ExpiredTime = $Timeout - (time() - strtotime($UserRequestsFilter[$i]->created_at));
                         if ($UserRequestsFilter[$i]->status == 'SEARCHING' && $ExpiredTime < 0) {
                             UserRequests::where('id', $UserRequestsFilter[$i]->id)->update(['status' => 'CANCELLED']);
-                            // No longer need request specific rows from RequestMeta
-                            RequestFilter::where('request_id', $UserRequestsFilter[$i]->id)->delete();
+
+                           // No longer need request specific rows from RequestMeta
+                           RequestFilter::where('request_id', $UserRequestsFilter[$i]->id)->delete();
                         } else if ($UserRequestsFilter[$i]->status == 'SEARCHING' && $ExpiredTime > 0) {
                             break;
                         }

@@ -13,6 +13,7 @@ use Carbon\Carbon;
 use App\Notifications\WebPush;
 use App\Http\Controllers\ProviderResources\TripController;
 
+
 class DisputeResource extends Controller
 {
     
@@ -38,7 +39,7 @@ class DisputeResource extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {   
+    {
         $dispute = Dispute::orderBy('created_at' , 'desc')->get();
         return view('admin.dispute.index', compact('dispute'));
     }
@@ -216,9 +217,8 @@ class DisputeResource extends Controller
             $Dispute->dispute_name = $request->dispute_name;
             if(!empty($request->dispute_other))
                 $Dispute->dispute_name = $request->dispute_other;
-            $Dispute->comments = $request->comments;                    
+            $Dispute->comments = $request->comments; 
             $Dispute->save();
-
             UserRequests::where('id', $request->request_id)->update(['is_dispute' => 1]);
 
             $admin = \App\Admin::find(\Auth::user()->id);
@@ -234,6 +234,8 @@ class DisputeResource extends Controller
 
             if($request->ajax()){
                 return response()->json(['message' => trans('admin.dispute_msgs.saved')]);
+            }elseif($request->wantsJson()){
+                 return response()->json(['message' => trans('admin.dispute_msgs.saved')]);
             }else{
                 return back()->with('flash_success', trans('admin.dispute_msgs.saved'));
             }

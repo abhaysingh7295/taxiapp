@@ -1,6 +1,6 @@
 @extends('admin.layout.base')
 
-@section('title', 'Notificações ')
+@section('title', 'Notifications ')
 
 @section('content')
 
@@ -15,7 +15,7 @@
                 @endif
                 <h5 class="mb-1">@lang('admin.notification.title')</h5>
                 @can('notification-create')
-                <a href="{{ route('admin.notification.create') }}" style="margin-left: 1em;" class="btn btn-primary pull-right"><i class="fa fa-plus"></i> @lang('admin.notification.add')</a>
+                <a href="{{ route('admin.notification.create') }}" style="margin-left: 0em;" class="btn btn-primary pull-right"><i class="fa fa-plus"></i> @lang('admin.notification.add')</a>
                 @endcan
 
                 <table class="table table-striped table-bordered dataTable" id="table-2">
@@ -53,9 +53,9 @@
 
                             <td>
                                 @if($notify->status=='active')
-                                    <span class="tag tag-success">Ativo</span>
+                                    <span class="tag tag-success">Active</span>
                                 @else
-                                    <span class="tag tag-danger">Inativo</span>
+                                    <span class="tag tag-danger">Inactive</span>
                                 @endif
                             </td>
                            
@@ -68,7 +68,7 @@
                                     <a href="{{ route('admin.notification.edit', $notify->id) }}" class="btn btn-info"><i class="fa fa-pencil"></i> Edit</a>
                                     @endcan
                                     @can('notification-delete')
-                                    <button class="btn btn-danger" onclick="return confirm('Are you sure?')"><i class="fa fa-trash"></i> Delete</button>
+                                    <button class="btn btn-danger" onclick="return confirm('Are you sure?')"> Delete</button>
                                     @endcan
                                     @endif
                                 </form>

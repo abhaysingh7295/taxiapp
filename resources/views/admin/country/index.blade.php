@@ -4,7 +4,7 @@
 <div class="container-fluid">
     <div class="card">
         <div class="card-header card-header-primary">
-            <h4 class="card-title ">Country</h4>
+            <h4 class="card-title country_center">Country</h4>
         </div>
         <div class="card-body">
             <form action="{{ route('admin.country.index') }}" method="get">
@@ -19,13 +19,13 @@
 
                     @can('user-create')
                     <div class="col-xs-3">
-                        <a href="{{ route('admin.country.create') }}" style="margin-left: 1em;" class="btn btn-primary pull-right"><i class="fa fa-plus"></i>Add New</a>
+                        <a href="{{ route('admin.country.create') }}" style="margin-left: 1em; margin-top: -45px;" class="btn btn-primary pull-right"><i class="fa fa-plus"></i>Add New</a>
 
                     </div>
                     @endcan
                 </div>
             </form>
-            <div class="table-responsive">
+            <div class="table-responsive-sm">
                 <table class="table">
                     <thead>
                         <tr>
@@ -50,7 +50,7 @@
                                     
                                     <a href="{{ route('admin.country.edit', $country->id) }}" class="btn btn-info"><i class="fa fa-pencil"></i> @lang('admin.edit')</a>
                                     
-                                    <button class="btn btn-danger" onclick="return confirm('Are you sure?')"><i class="fa fa-trash"></i> @lang('admin.delete')</button>
+                                    <button class="btn btn-danger" onclick="return confirm('Are you sure?')"> @lang('admin.delete')</button>
                                    
                                     
                                 

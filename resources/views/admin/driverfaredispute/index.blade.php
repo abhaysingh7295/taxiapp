@@ -15,7 +15,7 @@
             @endif
             <h5 class="card-title">@lang('admin.driverfareissue.title1')</h5>
             @can('lost-item-create')
-            <a href="{{ route('admin.driverdisputecreate') }}" style="margin-left: 1em;" class="btn btn-primary pull-right"><i class="fa fa-plus"></i> @lang('admin.driverfareissue.add_dispute')</a>
+            <a href="{{ route('admin.driverdisputecreate') }}" style="margin-left: 1em; margin-top: -22px;" class="btn btn-primary pull-right"><i class="fa fa-plus"></i> @lang('admin.driverfareissue.add_dispute')</a>
             @endcan
         </div>
         <div class="card-body">
@@ -39,7 +39,7 @@
                     </div>
                 </div>
             </form>
-            <div class="table-responsive">
+            <div class="table-responsive-sm">
 
                 <table class="table">
                     <thead>

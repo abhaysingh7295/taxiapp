@@ -19,7 +19,7 @@
                         @endif               
                     </h5>
                     @can('role-create')
-                    <a href="{{ route('admin.sub-admins.create') }}" style="margin-left: 1em;" class="btn pull-right"><i class="fa fa-plus"></i> Add Administrator</a>
+                    <a href="{{ route('admin.sub-admins.create') }}" style="margin-left: 1em; margin-top: -22px;" class="btn pull-right"><i class="fa fa-plus"></i> Add Administrator</a>
                     @endcan
             </div>
             <div class="card-body">
@@ -50,7 +50,7 @@
                                 <a href="{{ route('admin.sub-admins.edit', $user->id) }}" class="btn btn-info"><i class="fa fa-pencil"></i> @lang('admin.edit')</a>
                                 @endcan
                                 @can('sub-admin-delete')
-                                <button class="btn btn-danger" onclick="return confirm('Are you sure?')"><i class="fa fa-trash"></i> @lang('admin.delete')</button>
+                                <button class="btn btn-danger" onclick="return confirm('Are you sure?')"> @lang('admin.delete')</button>
                                 @endcan
                                 @endif
                             </form>
@@ -59,13 +59,13 @@
                     @endforeach
                 </tbody>
                 <tfoot>
-                    <tr>
+                   <!--  <tr>
                         <th>@lang('admin.id')</th>
                         <th>@lang('admin.name')</th>
                         <th>@lang('admin.mobile')</th>
                         <th>@lang('admin.email')</th>
                         <th>@lang('admin.action')</th>
-                    </tr>
+                    </tr> -->
                 </tfoot>
             </table>
         </div>

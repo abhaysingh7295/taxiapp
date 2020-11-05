@@ -20,13 +20,13 @@
 
                     @can('user-create')
                     <div class="col-xs-3">
-                        <a href="{{ route('admin.vehicles.create') }}" style="margin-left: 1em;" class="btn btn-primary pull-right"><i class="fa fa-plus"></i>Add New</a>
+                        <a href="{{ route('admin.vehicles.create') }}" style="margin-left: 1em; margin-top: -45px;" class="btn btn-primary pull-right"><i class="fa fa-plus"></i>Add New</a>
 
                     </div>
                     @endcan
                 </div>
             </form>
-            <div class="table-responsive">
+            <div class="table-responsive-sm">
                 <table class="table">
                     <thead>
                         <tr>
@@ -68,7 +68,7 @@
                             <td>
 
                                 <a class="btn btn-success btn-block"
-                                   href="{{route('admin.vehicles.vehicledocuments', $values->id )}}">Attention </a>
+                                   href="{{route('admin.vehicles.vehicledocuments', $values->id )}}">Attention</a>
                             </td>
 
                             <td>
@@ -76,9 +76,9 @@
                                     {{ csrf_field() }}
                                     <input type="hidden" name="_method" value="DELETE">
 
-                                    <a href="{{ route('admin.vehicles.edit', $values->id) }}" class="btn btn-info"><i class="fa fa-pencil"></i> @lang('admin.edit')</a>
+                                    <a href="{{ route('admin.vehicles.edit', $values->id) }}" class="btn btn-info "><i class="fa fa-pencil"></i> @lang('admin.edit')</a>
 
-                                    <button class="btn btn-danger" onclick="return confirm('Are you sure?')"><i class="fa fa-trash"></i> @lang('admin.delete')</button>
+                                    <button class="btn btn-danger" onclick="return confirm('Are you sure?')"> @lang('admin.delete')</button>
 
 
 
@@ -88,21 +88,21 @@
                         @endforeach
                     </tbody>
                     <tfoot>
-                        <tr>
+                       <!--  <tr>
                             <th>Id</th>
                             <th>Make</th>
                             <th>Model</th>
                             <th>Color</th>
                             <th>Registration Number</th>
-<!--                             <th>Registration Expire</th>-->
+	                        <th>Registration Expire</th>
                             <th>PHC Licence Number</th>
-<!--                            <th>PHC Licence Number Expire</th>-->
+                            <th>PHC Licence Number Expire</th>
                                 @can('vehiclechecklist')
                             <th>@lang('admin.provides.vehiclechecklist')</th>
                             @endcan
                                <th>Attention</th>
                             <th>@lang('admin.action')</th>
-                        </tr>
+                        </tr> -->
                     </tfoot>
                 </table>
                 @include('common.pagination')

@@ -19,7 +19,7 @@
                         @endif               
                     </h5>
                     @can('role-create')
-                    <a href="{{ route('admin.role.create') }}" style="margin-left: 1em;" class="btn pull-right"><i class="fa fa-plus"></i> @lang('admin.roles.add_role')</a>
+                    <a href="{{ route('admin.role.create') }}" style="margin-left: 1em; margin-top: -22px;" class="btn pull-right"><i class="fa fa-plus"></i> @lang('admin.roles.add_role')</a>
                     @endcan
             </div>
             <div class="card-body">

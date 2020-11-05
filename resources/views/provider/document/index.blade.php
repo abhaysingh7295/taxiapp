@@ -41,10 +41,10 @@
                                 <div class="manage-doc-box-center text-center">
                                     <p class="manage-badge {{ $Provider->document($Document->id) ? ($Provider->document($Document->id)->status == 'ASSESSING' ? 'yellow-badge' : 'green-badge') : 'red-badge'}}">
                                         @if($Provider->document($Document->id))
-                                            @if($Provider->document($Document->id)->status == "ASSESSING"){{"ASSESSING" }}
-                                            @elseif($Provider->document($Document->id)->status == "ACTIVE") {{"APPROVED" }}
-                                            @elseif($Provider->document($Document->id)->status == "MISSING") {{ "NOT SENT" }} @endif
-                                        @else {{ "NOT SENT" }} @endif
+                                            @if($Provider->document($Document->id)->status == "ASSESSING"){{ "AVALIANDO" }}
+                                            @elseif($Provider->document($Document->id)->status == "ACTIVE") {{ "APROVADO" }}
+                                            @elseif($Provider->document($Document->id)->status == "MISSING") {{ "NÃO ENVIADO" }} @endif
+                                        @else {{ "NÃO ENVIADO" }} @endif
                                     </p>
                                 </div>
                             </div>
@@ -103,10 +103,10 @@
                                 <div class="manage-doc-box-center text-center">
                                     <p class="manage-badge {{ $Provider->document($Document->id) ? ($Provider->document($Document->id)->status == 'ASSESSING' ? 'yellow-badge' : 'green-badge') : 'red-badge'}}">
                                         @if($Provider->document($Document->id))
-                                            @if($Provider->document($Document->id)->status == "ASSESSING"){{ "ASSESSING" }}
+                                            @if($Provider->document($Document->id)->status == "ASSESSING"){{ "AVALIANDO" }}
                                             @elseif($Provider->document($Document->id)->status == "ACTIVE") {{ "APROVADO" }}
-                                            @elseif($Provider->document($Document->id)->status == "MISSING") {{ "NOT SENT" }} @endif
-                                        @else {{ "NOT SENT" }} @endif
+                                            @elseif($Provider->document($Document->id)->status == "MISSING") {{ "NÃO ENVIADO" }} @endif
+                                        @else {{ "NÃO ENVIADO" }} @endif
                                     </p>
                                 </div>
                             </div>

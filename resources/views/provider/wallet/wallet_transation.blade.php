@@ -121,7 +121,11 @@
                                     <tr>
                                         <td>{{$page}}</td>
                                         <td><a href="javascript:void(0);" class="new-pro-link trdclass" data-toggle="trdetails" title="Transaction Details" data-content="" data-alias="#wallet_{{$wallet->transaction_alias}}">{{$wallet->transaction_alias}}</a></td>
-                                        <td>{{$wallet->transactions[0]->created_at->diffForHumans()}}</td>
+                                        <td> @if(isset($wallet->transactions[0]->created_at))
+                                            {{$wallet->transactions[0]->created_at->diffForHumans()}}
+                                        @else
+                                        @endif
+                                        </td>
                                        <!--  <td>{{$wallet->transaction_desc}}</td> -->
                                        <!--  <td>@if($wallet->type == 'C') @lang('provider.credit') @else @lang('provider.debit') @endif</td> -->
                                         <td>{{currency($wallet->amount)}}

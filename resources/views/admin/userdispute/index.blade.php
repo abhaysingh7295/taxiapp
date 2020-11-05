@@ -15,11 +15,11 @@
             @endif
             <h5 class="card-title">@lang('admin.dispute.title1')</h5>
             @can('lost-item-create')
-           <a href="{{ route('admin.userdisputecreate') }}" style="margin-left: 1em;" class="btn btn-primary pull-right"><i class="fa fa-plus"></i> @lang('admin.dispute.add_dispute')</a>
+           <a href="{{ route('admin.userdisputecreate') }}" style="margin-left: 1em; margin-top: -22px;" class="btn btn-primary pull-right"><i class="fa fa-plus"></i> @lang('admin.dispute.add_dispute')</a>
            @endcan
               </div>
               <div class="card-body">
-               <div class="table-responsive">
+               <div class="table-responsive-md">
                 <table class="table">
                     <thead>
                         <tr>

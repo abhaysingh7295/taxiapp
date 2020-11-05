@@ -141,23 +141,25 @@ class TokenController extends Controller
 				'device_id' => 'required',
 				'device_type' => 'required|in:android,ios',
 				'device_token' => 'required',
-				'email' => 'required|email',
-				'password' => 'required|min:6',
+				'mobile' => 'required|min:10',
+				//'password' => 'required|min:6',
 			]);
 
 		Config::set('auth.providers.users.model', 'App\Provider');
 
-		$credentials = $request->only('email', 'password');
+		//$credentials = $request->only('mobile');
+                $provider=Provider::where('mobile','=',$request->mobile)->first();
 
-		try {
-			if (! $token = JWTAuth::attempt($credentials)) {
-				return response()->json(['error' => trans('api.provider.incorrect_email')], 404);
+                if($provider){
+		try {   if (!$token=JWTAuth::fromUser($provider)) {
+			//if (! $token = JWTAuth::attempt($credentials)) {
+				return response()->json(['error' => trans('api.provider.incorrect_mobile')], 404);
 			}
 		} catch (JWTException $e) {
 			return response()->json(['error' => trans('api.something_went_wrong')], 500);
 		}
 
-		$User = Provider::with('service.service_type', 'device')->find(Auth::user()->id);
+		$User = Provider::with('service.service_type', 'device')->find($provider->id);
 
 		if($User->device){
 			if($User->device->jwt_token!=''){
@@ -198,6 +200,9 @@ class TokenController extends Controller
 		->where('provider_id', $User->id)->first();
 
 		return response()->json($User);
+                }else{
+                    return response()->json(['error' => 'The mobile number you entered is incorrect.'], 404);
+                }
 	}
 
 	/**
@@ -285,12 +290,12 @@ class TokenController extends Controller
 
 			$Provider->password = bcrypt($request->password);
 			$Provider->save();
-			if($request->ajax()) {
+			if($request->all()) {
 				return response()->json(['message' => trans('api.provider.password_updated')]);
 			}
 
 		}catch (Exception $e) {
-			if($request->ajax()) {
+			if($request->all()) {
 				return response()->json(['error' => trans('api.something_went_wrong')], 500);
 			}
 		}
@@ -587,13 +592,13 @@ class TokenController extends Controller
 		// 		'email' => 'required|email|max:255|unique:providers',
 		// 	]);
 			if($request->email == '') {
-				return response()->json(['message' =>'Por favor, digite seu endereço de email'], 422);
+				return response()->json(['message' =>'Please enter your email address'], 422);
 			}
 
 		    $email_case = Provider::where('email', $request->email)->first();
 			//Provider Already Exists
 			if($email_case) {
-				return response()->json(['message' =>'Email já cadastrado. Digite um novo email'], 422);
+				return response()->json(['message' =>'E-mail already registered. Enter a new email'], 422);
 			}
 
 		try{

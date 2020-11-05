@@ -35,6 +35,12 @@
                         </div>
                     </div>
                     <div class="form-group">
+                        <label for="area" class="bmd-label-floating">Area</label>
+                        <div class="col-xs-10">
+                            <input class="form-control" type="number" value="{{ $cities->area }}" name="area" required id="area">
+                        </div>
+                    </div>
+                    <div class="form-group">
                         <label for="zipcode" class="bmd-label-floating"></label>
                         <div class="col-xs-10">
                             <button type="submit" class="btn btn-primary">Update</button>

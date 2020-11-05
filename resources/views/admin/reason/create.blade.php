@@ -8,7 +8,7 @@
         <div class="card">
             <div class="card-header card-header-primary">
               <h5 class="card-title">@lang('admin.reason.add_reason')</h5>
-              <a href="{{ URL::previous() }}" class="btn btn-default pull-right"><i class="fa fa-angle-left"></i> @lang('admin.back')</a>
+              <a href="{{ URL::previous() }}" class="btn btn-default pull-right" style="margin-top: -22px;"> <i class="fa fa-angle-left"></i> @lang('admin.back')</a>
             </div>
             <div class="card-body">
 

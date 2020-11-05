@@ -64,17 +64,16 @@ class SendPushNotification extends Controller {
      */
     public function UserCancellRide($request) {
 
-        if($request->provider_id){
-           $provider = Provider::where('id', $request->provider_id)->with('profile')->first();
+        if ($request->provider_id) {
+            $provider = Provider::where('id', $request->provider_id)->with('profile')->first();
 
-        if ($provider->profile) {
-            $language = $provider->profile->language;
-            App::setLocale($language);
+            if ($provider->profile) {
+                $language = $provider->profile->language;
+                App::setLocale($language);
+            }
+
+            return $this->sendPushToProvider($request->provider_id, trans('api.push.user_cancelled'));
         }
-
-        return $this->sendPushToProvider($request->provider_id, trans('api.push.user_cancelled'));
-        }
-
     }
 
     public function ProviderWaiting($user_id, $status) {
@@ -142,7 +141,7 @@ class SendPushNotification extends Controller {
         $language = $user->language;
         App::setLocale($language);
 
-        return $this->sendPushToUser($request->user_id, trans('api.push.dropped') . config('constants.currency') . $request->payment->total . ( $request->payment_mode == "CASH" ? " em DINHEIRO" : " via CARTÃO" ));
+        return $this->sendPushToUser($request->user_id, trans('api.push.dropped') . config('constants.currency') . $request->payment->total . ( $request->payment_mode == "CASH" ? " in cash" : " via CARD" ));
     }
 
     /**
@@ -185,7 +184,6 @@ class SendPushNotification extends Controller {
         App::setLocale($language);
 
         return $this->sendPushToUser($user_id, trans('api.push.provider_not_available'));
-
     }
 
     /**
@@ -295,9 +293,10 @@ class SendPushNotification extends Controller {
                                     ->send($message);
                 } elseif ($user->device_type == 'android') {
 
-                    return \PushNotification::app('Android')
-                                    ->to($user->device_token)
-                                    ->send($push_message);
+//                    return \PushNotification::app('Android')
+//                                    ->to($user->device_token)
+//                                    ->send($push_message);
+                     $this->PushNotificationSetUp($user->device_token,$push_message);
                 }
             }
         } catch (Exception $e) {
@@ -322,9 +321,10 @@ class SendPushNotification extends Controller {
                                     ->send($push_message);
                 } elseif ($user->device_type == 'android') {
 
-                    return \PushNotification::app('Android')
-                                    ->to($user->device_token)
-                                    ->send($push_message);
+//                    return \PushNotification::app('Android')
+//                                    ->to($user->device_token)
+//                                    ->send($push_message);
+                    $this->PushNotificationSetUp($user->device_token,$push_message);
                 }
             }
         } catch (Exception $e) {
@@ -362,9 +362,11 @@ class SendPushNotification extends Controller {
                                     ->send($message);
                 } elseif ($provider->type == 'android') {
 
-                    return \PushNotification::app('Android')
-                                    ->to($provider->token)
-                                    ->send($push_message);
+//                    return \PushNotification::app('Android')
+//                                    ->to($provider->token)
+//                                    ->send($push_message);
+                  
+                  $this->PushNotificationSetUp($provider->token,$push_message);
                 }
             }
         } catch (Exception $e) {
@@ -391,14 +393,46 @@ class SendPushNotification extends Controller {
                                     ->send($push_message);
                 } elseif ($provider->type == 'android') {
 
-                    return \PushNotification::app('Android')
-                                    ->to($provider->token)
-                                    ->send($push_message);
+//                    return \PushNotification::app('Android')
+//                                    ->to($provider->token)
+//                                    ->send($push_message);
+                    $this->PushNotificationSetUp($provider->token,$push_message);
                 }
             }
         } catch (Exception $e) {
             return $e;
         }
+    }
+    public function PushNotificationSetUp($token,$push_message){
+
+                    $notification = [
+                        'title' => 'TFT',
+                        'body' => $push_message,
+                        'icon' => 'myIcon',
+                        'sound' => 'mySound'
+                    ];
+                    $extraNotificationData = ["message" => $notification, "moredata" => 'dd'];
+
+                    $fcmNotification = [
+                        //'registration_ids' => $tokenList, //multple token array
+                        'to' => $token, //single token
+                        'notification' => $notification,
+                        'data' => $extraNotificationData
+                    ];
+
+                    $headers = [
+                        'Authorization: key='.config('constants.android_push_key',0),
+                        'Content-Type: application/json'
+                    ];
+                    $ch = curl_init();
+                    curl_setopt($ch, CURLOPT_URL, config('constants.fcmurl',0));
+                    curl_setopt($ch, CURLOPT_POST, true);
+                    curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+                    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+                    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+                    curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($fcmNotification));
+                    $result = curl_exec($ch);
+                    curl_close($ch);
     }
 
 }

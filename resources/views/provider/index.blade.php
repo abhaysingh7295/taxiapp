@@ -15,7 +15,7 @@
                 <div className="col-md-12">  
                     <form method="POST" action="provider/profile/available">
                         <div class="offline">
-                                <img src="/asset/img/offline.gif"/>
+                                <img src="/taxiapp/public/asset/img/offline.gif"/>
                             </div>                  
                         <a href="{{ route('provider.documents.index') }}" class="full-primary-btn">@lang('provider.document_upload')</a>
                     </form>
@@ -38,7 +38,7 @@
                 <div className="col-md-12">  
                     <form method="POST" action="provider/profile/available">
                         <div class="offline">
-                                <img src="/asset/img/offline.gif"/>
+                                <img src="/taxiapp/public/asset/img/offline.gif"/>
                             </div>                  
                         <a href="{{ route('provider.cards') }}" class="full-primary-btn">@lang('provider.card.add_debit_card')</a>
                     </form>
@@ -61,7 +61,7 @@
                 <div className="col-md-12">  
                     <form method="POST" action="provider/profile/available">
                         <div class="offline">
-                                <img src="/asset/img/offline.gif"/>
+                                <img src="/taxiapp/public/asset/img/offline.gif"/>
                             </div>
                     </form>
                 </div>

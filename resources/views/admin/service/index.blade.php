@@ -13,7 +13,7 @@
                 @endif
                 <h5 class="card-title">Fare Calculation</h5>
                 @can('service-types-create')
-                    <a href="{{ route('admin.service.create') }}" style="margin-left: 1em;"
+                    <a href="{{ route('admin.service.create') }}" style="margin-left: 1em; margin-top: -22px;"
                        class="btn btn-primary pull-right"><i class="fa fa-plus"></i> Add Fare Calculation</a>
                 @endcan
             </div>
@@ -82,7 +82,7 @@
                                             @endcan
                                             @can('service-types-delete')
                                                 <button class="btn btn-danger btn-block" onclick="return confirm('Are you sure?')">
-                                                    <i class="fa fa-trash"></i> Delete
+                                                     Delete
                                                 </button>
                                             @endcan
                                         @endif
@@ -93,10 +93,10 @@
                     @endforeach
                     </tbody>
                     <tfoot>
-                    <tr>
+                  <!--   <tr>
                         <th> ID </th>
                         <th> Name </th>
-                        <!-- <th> Provider Name </th> -->
+                        <th> Provider Name </th> 
                         <th> Capacity </th>
                         <th> Minimum Rate </th>
                         <th> Base Price </th>
@@ -108,7 +108,7 @@
                         <th> Image </th>
                         <th> Marker Map </th>
                         <th> Action </th>
-                    </tr>
+                    </tr> -->
                     </tfoot>
                 </table>
             </div>

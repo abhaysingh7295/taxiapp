@@ -10,7 +10,10 @@
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-
+Route::group(['middleware' => 'cors'], function() {
+    Route::get('/settings' , 'ProviderAuth\TokenController@settings');
+     Route::get('/target' , 'ProviderResources\ProfileController@target');
+});
 Route::get('/settings' , 'ProviderAuth\TokenController@settings');
 // Authentication
 Route::post('/register' ,   'ProviderAuth\TokenController@register');
@@ -66,7 +69,7 @@ Route::group(['middleware' => ['provider.api']], function () {
     Route::resource('providercard', 'Resource\ProviderCardResource');
 
     Route::post('/chat' , 'ProviderResources\ProfileController@chatPush');
-
+    
     Route::get('/target' , 'ProviderResources\ProfileController@target');
     Route::resource('trip','ProviderResources\TripController');
     Route::post('cancel',  'ProviderResources\TripController@cancel');
@@ -83,6 +86,7 @@ Route::group(['middleware' => ['provider.api']], function () {
 
         Route::post('{id}',          'ProviderResources\TripController@accept');
         Route::post('{id}/rate',     'ProviderResources\TripController@rate');
+        Route::post('{id}/update',     'ProviderResources\TripController@update');
         Route::post('{id}/message' , 'ProviderResources\TripController@message');
         Route::post('{id}/calculate','ProviderResources\TripController@calculate_distance');
 
@@ -102,7 +106,7 @@ Route::group(['middleware' => ['provider.api']], function () {
 
 
     Route::post('/test/push' ,  'ProviderResources\TripController@test');
-
+    Route::get('/complete_detail', 'ProviderResources\TripController@complete_detail');
     Route::get('/reasons', 'ProviderResources\ProfileController@reasons');
 
     Route::get('/notifications/{type}', 'Resource\NotificationResource@getnotify');
@@ -112,7 +116,7 @@ Route::group(['middleware' => ['provider.api']], function () {
     Route::post('/dispute', 'Resource\DisputeResource@create_dispute');
 
     Route::post('/drop-item', 'Resource\LostItemResource@store');
-
+    Route::post('/dispute_list', 'ProviderResources\TripController@dispute_list');
 
 
 });

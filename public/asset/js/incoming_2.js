@@ -42,7 +42,7 @@ class MainComponent extends React.Component {
         }
 
         $.ajax({
-            url: '/provider/incoming',
+            url: '/taxiapp/public/provider/incoming',
             dataType: "JSON",
             headers: {'X-CSRF-TOKEN': window.Laravel.csrfToken },
             data: {
@@ -59,7 +59,7 @@ class MainComponent extends React.Component {
                     this.setState({request: data.requests[0].request});
                 }else{
                     if($('#incoming').is(':visible')) {
-                        window.location.replace("/provider");
+                        window.location.replace("/taxiapp/public/provider");
                     }
                     this.setState({account_status: data.account_status, service_status: data.service_status});
                 }
@@ -101,14 +101,14 @@ class ModalComponent extends React.Component {
         event.preventDefault();
         console.log('Accept');
         $.ajax({
-            url: '/provider/request/'+this.props.request.id,
+            url: '/taxiapp/public/provider/request/'+this.props.request.id,
             dataType: 'json',
             headers: {'X-CSRF-TOKEN': window.Laravel.csrfToken },
             type: 'POST',
             success: function(data) {
                 console.log('Accept', data);
                 if(data.error == undefined) {
-                    window.location.replace("/provider");
+                    window.location.replace("/taxiapp/public/provider");
                 }
                 this._close();
             }.bind(this),
@@ -123,14 +123,14 @@ class ModalComponent extends React.Component {
         event.preventDefault();
         console.log('Reject');
         $.ajax({
-            url: '/provider/request/'+this.props.request.id,
+            url: '/taxiapp/public/provider/request/'+this.props.request.id,
             dataType: 'json',
             type: 'DELETE',
             headers: {'X-CSRF-TOKEN': window.Laravel.csrfToken },
             success: function(data) {
                 console.log('Reject', data);
                 if(data.error == undefined) {
-                    window.location.replace("/provider");
+                    window.location.replace("/taxiapp/public/provider");
                 }
                 this._close();
             }.bind(this),
@@ -153,7 +153,7 @@ class ModalComponent extends React.Component {
 
     render() {
         return (
-            <div className="modal fade abhay" id="incoming" role="dialog">
+            <div className="modal fade" id="incoming" role="dialog">
                 <div className="modal-dialog" role="document">
                     <div className="modal-content">
                         <div className="modal-header">
@@ -185,7 +185,7 @@ ModalComponent.defaultProps = {
         user: {
             first_name: "John",
             last_name: "Doe",
-            picture: "/asset/logo.png",
+            picture: "/taxiapp/public/asset/logo.png",
         }
     }
 };
@@ -217,7 +217,7 @@ class TripEmptyOffline extends React.Component {
                     <form method="POST" action="taxiapp/public/provider/profile/available">
                         <input type="hidden" value="active" name="service_status"/>
                         <div className="offline">
-                            <img src="/asset/img/offline.gif"/>
+                            <img src="/taxiapp/public/asset/img/offline.gif"/>
                         </div>
                         <button type="submit" className="full-primary-btn fare-btn">GO ONLINE</button>
                     </form>
@@ -370,7 +370,7 @@ class TripRatingButton extends React.Component {
         event.preventDefault();
         console.log('Rating', this.state.comment, this.state.rating);
         $.ajax({
-            url: '/provider/request/'+this.props.request+'/rate',
+            url: '/taxiapp/public/provider/request/'+this.props.request+'/rate',
             dataType: 'json',
             data: {
                 comment: this.state.comment,
@@ -379,7 +379,7 @@ class TripRatingButton extends React.Component {
             headers: {'X-CSRF-TOKEN': window.Laravel.csrfToken },
             type: 'POST',
             success: function(data) {
-                window.location.replace("/provider");
+                window.location.replace("/taxiapp/public/provider");
                 console.log('Accept', data);
             }.bind(this),
             error: function(xhr, status, err) {
@@ -412,7 +412,7 @@ class TripDetails extends React.Component {
     }
 
     render() {
-        let picture = "/asset/logo.png";
+        let picture = "/taxiapp/public/asset/logo.png";
         // console.log("this.props.request.user.picture", this.props.request.user.picture);
         if(this.props.request.user.picture != null) {
             picture = this.props.request.user.picture;
@@ -533,7 +533,7 @@ class TripComponent extends React.Component {
     _submit(event) {
         event.preventDefault();
         $.ajax({
-            url: '/provider/request/'+this.props.request.id,
+            url: '/taxiapp/public/provider/request/'+this.props.request.id,
             dataType: 'json',
             data: this.form,
             headers: {'X-CSRF-TOKEN': window.Laravel.csrfToken, 'X-Requested-With' : 'XMLHttpRequest' },
@@ -551,16 +551,16 @@ class TripComponent extends React.Component {
         // event.preventDefault();
         console.log("Reason", reason);
         $.ajax({
-            url: '/provider/cancel',
+            url: '/taxiapp/public/provider/cancel',
             dataType: 'json',
             data: {cancel_reason:reason, id: this.props.request.id},
             headers: {'X-CSRF-TOKEN': window.Laravel.csrfToken },
             type: 'POST',
             success: function(data) {
-                window.location.replace("/provider");
+                window.location.replace("/taxiapp/public/provider");
             }.bind(this),
             error: function(xhr) {
-                window.location.replace("/provider");
+                window.location.replace("/taxiapp/public/provider");
             }.bind(this)
         });
     }

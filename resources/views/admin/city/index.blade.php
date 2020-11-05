@@ -5,7 +5,7 @@
 <div class="container-fluid">
     <div class="card">
         <div class="card-header card-header-primary">
-            <h4 class="card-title ">Cities</h4>
+            <h4 class="card-title city_center">Cities</h4>
         </div>
         <div class="card-body">
             <form action="{{ route('admin.city.index') }}" method="get">
@@ -21,18 +21,19 @@
 
                     @can('user-create')
                     <div class="col-xs-3">
-                        <a href="{{ route('admin.city.create') }}" style="margin-left: 1em;" class="btn btn-primary pull-right"><i class="fa fa-plus"></i>Add New</a>
+                        <a href="{{ route('admin.city.create') }}" style="margin-left: 1em; margin-top: -45px;" class="btn btn-primary pull-right"><i class="fa fa-plus"></i>Add New</a>
 
                     </div>
                     @endcan
                 </div>
             </form>
-            <div class="table-responsive">
+            <div class="table-responsive-sm">
                 <table class="table">
                     <thead>
                         <tr>
                             <th>Id</th>
                             <th>City Name</th>
+                            <th>City Area</th>
                             <th>Country Name</th>
 
                             <th>@lang('admin.action')</th>
@@ -45,6 +46,7 @@
                         <tr>
                             <td>{{ $page }}</td>
                             <td>{{ $citiess->name }}</td>
+                            <td>{{ $citiess->area }}</td>
                             <td>{{ get_country_name($citiess->country_id) }}</td>
 
                             <td>
@@ -67,6 +69,7 @@
                         <tr>
                             <th>Id</th>
                              <th>City Name</th>
+                             <th>City Area</th>
                             <th>Country Name</th>
                             <th>@lang('admin.action')</th>
                         </tr>

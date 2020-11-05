@@ -9,7 +9,7 @@
             <div class="card-header card-header-primary">
                 <h5 class="card-title" style="margin-bottom: 2em;">@lang('admin.dispute.update_dispute')</h5>
               
-              <a href="{{ URL::previous() }}" class="card-category btn btn-default pull-right"><i class="fa fa-angle-left"></i> @lang('admin.back')</a>
+              <a href="{{ URL::previous() }}" class="card-category btn btn-default pull-right" style="margin-top:-48px;"><i class="fa fa-angle-left"></i> @lang('admin.back')</a>
             
             </div>
             <div class="card-body">

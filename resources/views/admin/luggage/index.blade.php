@@ -20,13 +20,13 @@
 
                     @can('user-create')
                     <div class="col-xs-3">
-                        <a href="{{ route('admin.luggage.create') }}" style="margin-left: 1em;" class="btn btn-primary pull-right"><i class="fa fa-plus"></i>Add New</a>
+                        <a href="{{ route('admin.luggage.create') }}" style="margin-left: 1em; margin-top: -44px;" class="btn btn-primary pull-right"><i class="fa fa-plus"></i>Add New</a>
 
                     </div>
                     @endcan
                 </div>
             </form>
-            <div class="table-responsive">
+            <div class="table-responsive-md">
                 <table class="table">
                     <thead>
                         <tr>
@@ -55,7 +55,7 @@
 
                                     <a href="{{ route('admin.luggage.edit', $values->id) }}" class="btn btn-info"><i class="fa fa-pencil"></i> @lang('admin.edit')</a>
 
-                                    <button class="btn btn-danger" onclick="return confirm('Are you sure?')"><i class="fa fa-trash"></i> @lang('admin.delete')</button>
+                                    <button class="btn btn-danger" onclick="return confirm('Are you sure?')"> @lang('admin.delete')</button>
 
 
 
@@ -65,14 +65,14 @@
                         @endforeach
                     </tbody>
                     <tfoot>
-                        <tr>
+                        <!-- <tr>
                             <th>Id</th>
                             <th>Seaters</th>
                             <th>Number of Passengers</th>
                             <th>Large Luggages</th>
                             <th>Small Luggages</th>
                             <th>@lang('admin.action')</th>
-                        </tr>
+                        </tr> -->
                     </tfoot>
                 </table>
                 @include('common.pagination')

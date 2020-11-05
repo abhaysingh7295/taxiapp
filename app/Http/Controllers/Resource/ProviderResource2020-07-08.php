@@ -25,7 +25,6 @@ use App\WalletRequests;
 use Yajra\DataTables\DataTables;
 use Illuminate\Support\Facades\Validator;
 use App\ProviderService;
-use App\ProviderDocument;
 
 class ProviderResource extends Controller {
 
@@ -99,7 +98,6 @@ class ProviderResource extends Controller {
                     $AllProviders->where('first_name', 'like', '%' . $request->get('name') . '%')
                             ->orWhere('last_name', 'like', '%' . $request->get('name') . '%')
                             ->orWhere('mobile', '=', $request->get('name'))
-                            ->orWhere('licenseno', 'like', '%' . $request->get('name') . '%')
                             ->orWhere('email', 'like', '%' . $request->get('name') . '%');
                 }
 
@@ -164,8 +162,8 @@ class ProviderResource extends Controller {
      */
     public function create() {
         try {
-            $countries = DB::table("countries")->pluck("name", "id");
-            return view('admin.providers.create', compact('states', 'stateId', 'countries'));
+            $countries = DB::table("countries")->pluck("name","id");
+            return view('admin.providers.create', compact('states', 'stateId','countries'));
         } catch (ModelNotFoundException $e) {
             return $e;
         }
@@ -208,7 +206,7 @@ class ProviderResource extends Controller {
             $provider['password'] = bcrypt($request->password);
             $provider['address'] = $request->address;
             $provider['licenseno'] = $request->licenseNo;
-
+           
             if ($request->hasFile('avatar')) {
                 $provider['avatar'] = $request->avatar->store('provider/profile');
             }
@@ -221,7 +219,7 @@ class ProviderResource extends Controller {
 
 
             $provider['qrcode_url'] = Helper::upload_qrCode($request->mobile, $file);
-            $provider['country'] = $request->country;
+             $provider['country'] = $request->country;
             $provider['city'] = $request->city;
             $provider = Provider::create($provider);
             $provider_service = ProviderService::create([
@@ -250,10 +248,10 @@ class ProviderResource extends Controller {
      */
     public function show($id) {
         try {
-
+          
             $provider = Provider::findOrFail($id);
             $ProviderService = ProviderService::find($id);
-            return view('admin.providers.provider-details', compact('provider', 'ProviderService'));
+            return view('admin.providers.provider-details', compact('provider','ProviderService'));
         } catch (ModelNotFoundException $e) {
             return $e;
         }
@@ -267,11 +265,11 @@ class ProviderResource extends Controller {
      */
     public function edit($id) {
         try {
-            $countries = DB::table("countries")->pluck("name", "id");
+               $countries = DB::table("countries")->pluck("name","id");
             $provider = Provider::findOrFail($id);
-            $provider_service = ProviderService::where('provider_id', $id)->first();
-
-            return view('admin.providers.edit', compact('provider', 'provider_service', 'countries'));
+             $provider_service = ProviderService::where('provider_id', $id)->first();
+           
+            return view('admin.providers.edit', compact('provider','provider_service','countries'));
         } catch (ModelNotFoundException $e) {
             return $e;
         }
@@ -329,21 +327,12 @@ class ProviderResource extends Controller {
                 }
             }
             $provider->save();
-            $providerservice = DB::table('provider_services')->where('provider_id', $id)->exists();
-            if ($providerservice) {
-                $provider_service = ProviderService::where('provider_id', $id)->update([
-                    'service_type_id' => $request->service_type,
-                    'service_number' => $request->service_number,
-                    'service_model' => $request->service_model,
-                ]);
-            } else {
-                $provider_service = ProviderService::create([
-                            'provider_id' => $id,
-                            'service_type_id' => $request->service_type,
-                            'service_number' => $request->service_number,
-                            'service_model' => $request->service_model,
-                ]);
-            }
+             ProviderService::where('provider_id', $id)->update([
+                        'service_type_id' => $request->service_type,
+                        'service_number' => $request->service_number,
+                        'service_model' => $request->service_model,
+            ]);
+            
             return back()->with('flash_success', trans('admin.provider_msgs.provider_update'));
         } catch (ModelNotFoundException $e) {
             return back()->with('flash_error', trans('admin.provider_msgs.provider_not_found'));
@@ -383,8 +372,7 @@ class ProviderResource extends Controller {
     public function approve(Request $request, $id) {
         try {
             $Provider = Provider::findOrFail($id);
-            $documents = Document::where('type', 'DRIVER')->get();
-            $total_documents = $documents->count();
+            $total_documents = Document::count();
             if ($Provider->active_documents() == $total_documents && $Provider->service) {
                 if ($Provider->status == 'onboarding') {
                     // Sending push to the provider
@@ -421,30 +409,6 @@ class ProviderResource extends Controller {
 
         Provider::where('id', $id)->update(['status' => 'banned']);
         return back()->with('flash_success', trans('admin.provider_msgs.provider_disapprove'));
-    }
-
-    public function redflagon($id) {
-
-        Provider::where('id', $id)->update(['is_red_flag' => '1']);
-        return back()->with('flash_success', 'Status Change Successfully');
-    }
-
-    public function redflagoff($id) {
-
-        Provider::where('id', $id)->update(['is_red_flag' => '0']);
-        return back()->with('flash_success', 'Status Change Successfully');
-    }
-
-    public function orangeflagon($id) {
-
-        Provider::where('id', $id)->update(['is_orenge_flag' => '1']);
-        return back()->with('flash_success', 'Status Change Successfully');
-    }
-
-    public function orangeflagoff($id) {
-
-        Provider::where('id', $id)->update(['is_orenge_flag' => '0']);
-        return back()->with('flash_success', 'Status Change Successfully');
     }
 
     /**
@@ -636,19 +600,6 @@ class ProviderResource extends Controller {
         return view('admin.providers.password', compact('provider'));
     }
 
-    public function driver_checklist($id) {
-
-        $provider = Provider::findOrFail($id);
-        return view('admin.providers.driver_checklist', compact('provider'));
-    }
-
-    public function update_driverchecklist(Request $request, $id) {
-        $provider = Provider::findOrFail($id);
-        $provider->update(['is_check_documnet' => $request['is_check_documnet'], 'is_agree_add_company_logo_on_car' => $request['is_agree_add_company_logo_on_car'], 'is_full_time_work' => $request['is_full_time_work'], 'is_part_time_work' => $request['is_part_time_work'], 'is_ready_for_schedule_job' => $request['is_ready_for_schedule_job']]);
-
-        return redirect()->route('admin.provider.index')->with('flash_success', 'Driver checklist updated successfully');
-    }
-
     public function update_password(Request $request, $id) {
         $this->validate($request, [
             'password' => 'required|min:6|confirmed'
@@ -659,57 +610,6 @@ class ProviderResource extends Controller {
         $provider->update(['password' => bcrypt($request->get('password'))]);
 
         return redirect()->route('admin.provider.index')->with('flash_success', 'Password updated successfully');
-    }
-
-    public function uploaddocuments($id) {
-        $provider = Provider::findOrFail($id);
-        $DriverDocuments = Document::driver()->get();
-        //echo "<pre>"; print_r($DriverDocuments); die;
-        return view('admin.providers.document.upload', compact('provider', 'DriverDocuments'));
-    }
-
-    public function updatedocuments(Request $request, $id, $providerid) {
-        $provider = Provider::findOrFail($providerid);
-        $this->validate($request, [
-            'document' => 'mimes:jpg,jpeg,png',
-        ]);
-        try {
-            $Document = ProviderDocument::where('provider_id', $provider->id)
-                    ->where('document_id', $id)->with('provider')->with
-                            ('document')
-                    ->firstOrFail();
-            Storage::delete($Document->url);
-
-            $filename = str_replace(" ", "", $Document->document->name);
-
-            $ext = $request->file('document')->guessExtension();
-
-            $path = $request->file('document')->storeAs(
-                    "provider/documents/" . $Document->provider_id, $filename . '.' . $ext
-            );
-
-            $Document->update([
-                'url' => $path,
-                'status' => 'ASSESSING',
-                'expires_at' => $request->expires_at
-            ]);
-        } catch (ModelNotFoundException $e) {
-            $document = Document::find($id);
-
-            $filename = str_replace(" ", "", $document->name);
-            $ext = $request->file('document')->guessExtension();
-            $path = $request->file('document')->storeAs(
-                    "provider/documents/" . $provider->id, $filename . '.' . $ext
-            );
-            ProviderDocument::create([
-                'url' => $path,
-                'provider_id' => $provider->id,
-                'document_id' => $id,
-                'status' => 'ASSESSING',
-                'expires_at' => $request->expires_at
-            ]);
-        }
-        return redirect()->route('admin.provider.uploaddocuments', $provider->id)->with('flash_success', 'Document uploaded successfully');
     }
 
 }

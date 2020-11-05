@@ -15,6 +15,7 @@ class Kernel extends HttpKernel
      */
     protected $middleware = [
         \Illuminate\Foundation\Http\Middleware\CheckForMaintenanceMode::class,
+         \App\Http\Middleware\Cors::class,
     ];
 
     /**
@@ -35,7 +36,7 @@ class Kernel extends HttpKernel
         ],
 
         'api' => [
-            //'throttle:60,1',
+            \App\Http\Middleware\Cors::class,
             'bindings',
         ],
     ];
@@ -72,6 +73,7 @@ class Kernel extends HttpKernel
         'jwt.refresh' => 'Tymon\JWTAuth\Middleware\RefreshToken',
         'role' => \Spatie\Permission\Middlewares\RoleMiddleware::class,
         'permission' => \Spatie\Permission\Middlewares\PermissionMiddleware::class,
-        'demo' => \App\Http\Middleware\DemoModeMiddleware::class
+        'demo' => \App\Http\Middleware\DemoModeMiddleware::class,
+        'cors' => \App\Http\Middleware\Cors::class,
     ];
 }

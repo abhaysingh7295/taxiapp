@@ -811,7 +811,7 @@ class AdminController extends Controller {
     public function push_store(Request $request) {
         try {
             ProviderService::find($request->id)->delete();
-            return back()->with('message', 'Serviço excluído com sucesso!');
+            return back()->with('message', 'Service successfully deleted!');
         } catch (Exception $e) {
             return back()->with('flash_error', 'Something Went Wrong with Dashboard!');
         }
@@ -1373,7 +1373,7 @@ class AdminController extends Controller {
             $response = (new PaymentController)->send_money($request, $id);
         } else {
             (new TripController)->settlements($id);
-            $response['success'] = 'Quantia enviada com sucesso!';
+            $response['success'] = 'Amount successfully sent!';
         }
 
         if (!empty($response['error']))

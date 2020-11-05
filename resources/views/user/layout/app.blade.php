@@ -116,9 +116,9 @@
                             </div>
                             <div class="col-xs-12 col-sm-12  col-md-6 sup-txt"><h2>For Support?     Call Us</h2>
                                 <div class="call-num">
-                                    <h3 class=""><a href="mailto:{{ config('constants.contact_email', 'Support@dragon.com')  }}">
+                                    <h3 class=""><a href="mailto:{{ config('constants.contact_email', 'Support@ftf.com')  }}">
                                     <span class="phone-icon"><i class="fa fa-3x fa-envelope"></i></span>
-                                    {{ config('constants.contact_email', 'test@dragon.com')}}</a> </h3>
+                                    {{ config('constants.contact_email', 'test@ftf.com')}}</a> </h3>
                                 </div>
                             </div>
                             <div class="hidden-xs hidden-sm col-md-2 support">
@@ -127,7 +127,7 @@
                             </div>
                               <div class="col-md-12">
                                 <div class="call-num">
-                <h3 class=""><a href="tel:{{ Setting::get('contact_number', '')  }}"><span class="phone-icon"><i class="fa fa-3x fa-phone"></i></span> {{ Setting::get('contact_number', '+9197911 01817
+                <h3 class=""><a href="tel:{{ Setting::get('contact_number', '')  }}"><span class="phone-icon"><i class="fa fa-3x fa-phone"></i></span> {{ Setting::get('contact_number', '+91000000000
                 ')  }}</a> </h3>
                                 </div>
                             
@@ -171,7 +171,7 @@
                                                     @if(config('constants.store_link_ios_provider') != "")
                                                     <div class="col-md-6">
                                                         <a target="_blank" href="{{config('constants.store_link_ios_provider','#')}}">
-                                                            <img src="{{asset('asset/img/provider-appstore.png')}}">
+<!--                                                            <img src="{{asset('asset/img/provider-appstore.png')}}">-->
                                                         </a>
                                                     </div>
                                                     @endif
@@ -193,7 +193,7 @@
 
                             <div class="container footer-social content-block pad-60">
                                 <div class="row center">
-                                    <h2>Siga-nos nas redes sociais</h2>
+                                    <h2>Follow us on social media</h2>
                                     <div class="col-md-6 col-md-offset-3">
                                         <div class="socil-media">
                                             <ul>
@@ -277,10 +277,10 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title">Bem-vindo!</h4>
+                        <h4 class="modal-title">Welcome!</h4>
                     </div>
                     <div class="modal-body">
-                        <p>{{ config('constants.site_title','Thinkin Cab') }} está disponível na sua cidade</p>
+                        <p>{{ config('constants.site_title','FTF') }} is available in your city</p>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -347,7 +347,7 @@
         </script>
 
         <script type="text/javascript" src="{{ asset('asset/js/map.js') }}"></script>
-        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC7ysJAljkupBFv313yr-zktMOTu4KPtGs&libraries=places&callback=initMap" async defer></script>
+        <script src="https://maps.googleapis.com/maps/api/js?key={{config('constants.map_key')}}&libraries=places&callback=initMap" async defer></script>
 
         <script type="text/javascript">
             var current_latitude = 40.730610;

@@ -54,6 +54,7 @@ class CitiesResource extends Controller {
         $this->validate($request, [
             'name' => 'required|max:255',
             'country' => 'required|max:255',
+            'area' => 'required|max:255',
         ]);
         try {
             $cities = $request->all();
@@ -103,10 +104,12 @@ class CitiesResource extends Controller {
         $this->validate($request, [
             'name' => 'required|max:255',
             'country' => 'required|max:255',
+            'area' => 'required|max:255',
         ]);
         try {
             $cities = Citie::findOrFail($id);
             $cities->name = $request->name;
+             $cities->area = $request->area;
             $cities->country_id = $request->country;
             $cities->save();
             return back()->with('flash_success', 'City Updated Successfully');

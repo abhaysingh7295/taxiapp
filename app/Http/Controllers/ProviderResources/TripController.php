@@ -48,6 +48,7 @@ use GuzzleHttp\Client;
 use App\PaymentLog;
 use App\Card;
 use App\Services\PaymentGateway;
+use App\Dispute;
 
 class TripController extends Controller
 {
@@ -63,11 +64,11 @@ class TripController extends Controller
             if ($request->ajax()) {
                 $Provider = Auth::user();
             } else {
-                $Provider = Auth::guard('provider')->user();
+                //$Provider = Auth::guard('provider')->user();
+                $Provider = Auth::user();
             }
-
+           
             $provider = $Provider->id;
-
             $AfterAssignProvider = RequestFilter::with(['request.user', 'request.payment', 'request'])
                 ->where('provider_id', $provider)
                 ->whereHas('request', function ($query) use ($provider) {
@@ -92,7 +93,7 @@ class TripController extends Controller
                 });
 
             $IncomingRequests = $BeforeAssignProvider->union($AfterAssignProvider)->get();
-
+            //echo "<pre>"; print_r($AfterAssignProvider); die;
             if (!empty($request->latitude)) {
                 $Provider->update([
                     'latitude' => $request->latitude,
@@ -104,7 +105,7 @@ class TripController extends Controller
             }
 
             if (config('constants.manual_request', 0) == 0) {
-
+//180
                 $Timeout = config('constants.provider_select_timeout', 180);
                 if (!empty($IncomingRequests)) {
                     for ($i = 0; $i < sizeof($IncomingRequests); $i++) {
@@ -333,6 +334,7 @@ class TripController extends Controller
      */
     public function calculate_distance($request, $id)
     {
+       
         $this->validate($request, [
             'latitude' => 'required|numeric',
             'longitude' => 'required|numeric'
@@ -342,7 +344,8 @@ class TripController extends Controller
             if ($request->ajax()) {
                 $Provider = Auth::user();
             } else {
-                $Provider = Auth::guard('provider')->user();
+                $Provider = Auth::user();
+                //$Provider = Auth::guard('provider')->user();
             }
 
             $UserRequest = UserRequests::where('status', 'PICKEDUP')
@@ -647,13 +650,13 @@ class TripController extends Controller
                         'request_id' => $UserRequest->id
                     ]);
                 }else{
-                    return response()->json(['error' => 'Viagem aceita por outro motorista!']);
+                    return response()->json(['error' => 'Trip accepted by another driver!']);
                 }
             }
                         
             //TODO ALLAN - Correção bug das viagens aceitas no aplicativo motorista
             if($UserRequest->current_provider_id != Auth::user()->id && config('constants.broadcast_request', 0) == 0){
-                return response()->json(['error' => 'Tempo esgotado!']);
+                return response()->json(['error' => 'Time is over!']);
             }
 
             if ($UserRequest->status != "SEARCHING") {
@@ -834,7 +837,7 @@ class TripController extends Controller
         ]);
 
         try {
-
+            
             //$this->callTransaction($id);
 
             $UserRequest = UserRequests::with('user')->findOrFail($id);
@@ -860,7 +863,7 @@ class TripController extends Controller
                 (new SendPushNotification)->Complete($UserRequest);
             } else if ($request->status == 'COMPLETED') {
                 
-                
+                RequestFilter::where('request_id', $id)->delete();
                 if($request->payment_mode == "CARD"){
                     if ($UserRequest->status == 'COMPLETED') {
                         //for off cross clicking on change payment issue on mobile
@@ -1017,7 +1020,8 @@ class TripController extends Controller
                 if ($request->ajax()) {
                     $Provider = Auth::user();
                 } else {
-                    $Provider = Auth::guard('provider')->user();
+                    //$Provider = Auth::guard('provider')->user();
+                    $Provider = Auth::user();
                 }
                 $locationarr = ["s_latitude" => $UserRequest->s_latitude, "s_longitude" => $UserRequest->s_longitude, "d_latitude" => $Provider->latitude, "d_longitude" => $Provider->longitude];
                 $UserRequest->distance = $this->getLocationDistance($locationarr);
@@ -1558,8 +1562,8 @@ class TripController extends Controller
     public function summary(Request $request)
     {
         try {
-            if ($request->ajax()) {
-
+            //if ($request->ajax()) {
+                
                 $rides = UserRequests::where('provider_id', Auth::user()->id)->count();
 
                 /* $revenue_total = UserRequestPayment::whereHas('request', function($query) use ($request) {
@@ -1602,12 +1606,57 @@ class TripController extends Controller
                     'cancel_rides' => $cancel_rides,
                     'completed_rides' => $completed_rides
                 ]);
-            }
+            //}
         } catch (Exception $e) {
             return response()->json(['error' => trans('api.something_went_wrong')]);
         }
     }
+    public function complete_detail(Request $request)
+    {   
+        try{
+        
+                //$Provider = Auth::guard('provider')->user();
+                $Providers = Auth::user();
+            
+        $provider = Provider::where('id',$Providers->id)
+                    ->with('service','accepted','cancelled')
+                    ->get();
 
+        $weekly = UserRequests::where('provider_id',$Providers->id)
+                    ->with('payment')
+                    ->where('created_at', '>=', Carbon::now()->subWeekdays(7))
+                    ->get();
+
+        $weekly_sum = UserRequestPayment::whereHas('request', function($query) {
+                        $query->where('provider_id',$Provider->id);
+                        $query->where('created_at', '>=', Carbon::now()->subWeekdays(7));
+                    })
+                        ->sum('provider_pay');
+
+        $today = UserRequests::where('provider_id',$Providers->id)
+                    ->where('created_at', '>=', Carbon::today())
+                    ->count();
+
+        $fully = UserRequests::where('provider_id',$Providers->id)
+                    ->with('payment','service_type')->orderBy('id','desc')
+                    ->get();
+
+        $fully_sum = UserRequestPayment::whereHas('request', function($query) {
+                        $query->where('provider_id', $Providers->id);
+                        })
+                        ->sum('provider_pay');
+                  return response()->json([
+                    'provider' => $provider,
+                    'weekly' => $weekly,
+                    'fully' => $fully,
+                    'today' => $today,
+                    'weekly_sum' => $weekly_sum,
+                    'fully_sum' => $fully_sum
+                ]);
+        } catch (Exception $e) {
+            return response()->json(['error' => trans('api.something_went_wrong')]);
+        }
+    }
     /**
      * help Details.
      *
@@ -2499,5 +2548,16 @@ class TripController extends Controller
 
         return response()->json(['location_points' => $location_points]);
     }
+    public function dispute_list(Request $request)
+    {
+        $this->validate($request, [
+            'dispute_type' => 'required'         
+        ]);
+
+        $dispute = Dispute::select('dispute_name')->where('dispute_type' , $request->dispute_type)->where('status' , 'active')->get();
+
+        return response()->json(['dispute' => $dispute]);
+    }
+    
 
 }

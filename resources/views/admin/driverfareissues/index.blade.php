@@ -14,11 +14,11 @@
                 @endif
                 
      
-                <a href="{{ route('admin.driverfareissuetypes.create') }}" style="margin-left: 1em;" class="btn btn-primary pull-right"><i class="fa fa-plus"></i> @lang('admin.driverfareissue.add_dispute')</a>
+                <a href="{{ route('admin.driverfareissuetypes.create') }}" style="margin-left: 1em; margin-top: -23px;" class="btn btn-primary pull-right"><i class="fa fa-plus"></i> @lang('admin.driverfareissue.add_dispute')</a>
           
                 </div>
                 <div class="card-body">
-                  <div class="table-responsive">
+                  <div class="table-responsive-sm">
                 
                 <table class="table">
                     <thead>
@@ -52,7 +52,7 @@
                                     <a href="{{ route('admin.driverfareissuetypes.edit', $dist->id) }}" class="btn btn-info"><i class="fa fa-pencil"></i> @lang('admin.edit')</a>
                                     @endcan
                                     @can('dispute-delete')
-                                    <button class="btn btn-danger" onclick="return confirm('Are you sure?')"><i class="fa fa-trash"></i> @lang('admin.delete')</button>
+                                    <button class="btn btn-danger" onclick="return confirm('Are you sure?')">@lang('admin.delete')</button>
                                     @endcan
                                     @endif
                                 </form>
@@ -61,13 +61,13 @@
                     @endforeach
                     </tbody>
                     <tfoot>
-                        <tr>
+                        <!-- <tr>
                             <th>@lang('admin.id')</th>
                             <th>@lang('admin.driverfareissue.dispute_type') </th>
                             <th>@lang('admin.driverfareissue.dispute_name') </th>                              
                             <th>@lang('admin.status')</th>                            
                             <th>@lang('admin.action')</th>
-                        </tr>
+                        </tr> -->
                     </tfoot>
                 </table>
             </div>

@@ -298,16 +298,6 @@ class ServiceResource extends Controller
                 $service['airportpickdropoff'] = $request->airportpickdropoff;
             else
                 $service['airportpickdropoff'] = 0;
-            
-            if(!empty($request->normaltripsamountdiscount))
-                $service['normaltripsamountdiscount'] = $request->normaltripsamountdiscount;
-            else
-                $service['normaltripsamountdiscount'] = 0;
-            
-            if(!empty($request->normaltripsextracharges))
-                $service['normaltripsextracharges'] = $request->normaltripsextracharges;
-            else
-                $service['normaltripsextracharges'] = 0;
 
             ServiceType::where('id', $id)->update($service);
 

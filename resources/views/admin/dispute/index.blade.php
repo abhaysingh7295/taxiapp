@@ -14,7 +14,7 @@
                 @endif
                 
                 @can('dispute-create')
-                <a href="{{ route('admin.dispute.create') }}" style="margin-left: 1em;" class="btn btn-primary pull-right"><i class="fa fa-plus"></i> @lang('admin.dispute.add_dispute')</a>
+                <a href="{{ route('admin.dispute.create') }}" style="margin-left: 1em; margin-top: -22px;" class="btn btn-primary pull-right"><i class="fa fa-plus"></i> @lang('admin.dispute.add_dispute')</a>
                 @endcan
                 </div>
                 <div class="card-body">
@@ -52,7 +52,7 @@
                                     <a href="{{ route('admin.dispute.edit', $dist->id) }}" class="btn btn-info"><i class="fa fa-pencil"></i> @lang('admin.edit')</a>
                                     @endcan
                                     @can('dispute-delete')
-                                    <button class="btn btn-danger" onclick="return confirm('Are you sure?')"><i class="fa fa-trash"></i> @lang('admin.delete')</button>
+                                    <button class="btn btn-danger" onclick="return confirm('Are you sure?')">@lang('admin.delete')</button>
                                     @endcan
                                     @endif
                                 </form>
@@ -61,13 +61,13 @@
                     @endforeach
                     </tbody>
                     <tfoot>
-                        <tr>
+                       <!--  <tr>
                             <th>@lang('admin.id')</th>
                             <th>@lang('admin.dispute.dispute_type') </th>
                             <th>@lang('admin.dispute.dispute_name') </th>                              
                             <th>@lang('admin.status')</th>                            
                             <th>@lang('admin.action')</th>
-                        </tr>
+                        </tr> -->
                     </tfoot>
                 </table>
             </div>

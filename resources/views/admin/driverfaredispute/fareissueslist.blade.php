@@ -7,9 +7,9 @@
 <div class="container-fluid">
 
     <div class="card">
-        <div class="card-header card-header-primary">
+        <div class="card-header card-header-primary ">
             @if(Setting::get('demo_mode', 0) == 1)
-            <div class="col-md-12" style="height:50px;color:red;">
+            <div class="col-md-12 " style="height:50px;color:red;">
                 ** Demo Mode : @lang('admin.demomode')
             </div>
             @endif
@@ -37,7 +37,7 @@
                     </div>
                 </div>
             </form>
-            <div class="table-responsive">
+            <div class="table-responsive-sm">
 
                 <table class="table">
                     <thead>

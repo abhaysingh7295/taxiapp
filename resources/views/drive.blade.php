@@ -42,16 +42,16 @@
         
         <div class = "col-md-4 content-block small">
                          <div class = "box-shadow">
-                            <div class = "icon"> <img src = "{{asset ('asset / img / driving-license.png')}}"> </div>
+                            <div class = "icon"> <img src = "{{asset ('asset/img/driving-license.png')}}"> </div>
                         <h2> You own your time </h2>
                         <div class = "title-divider"> </div>
-                        <p> You can drive with {{config ('constants.site_title', 'Thinkin Cab')}} anytime, day or night, 365 days a year. Travel does not interfere with your routine, you make your schedules, go offline at any time. </p>
+                        <p> You can drive with {{config ('constants.site_title', 'FTF')}} anytime, day or night, 365 days a year. Travel does not interfere with your routine, you make your schedules, go offline at any time. </p>
                     </div>
                 </div>
             
                     <div class = "col-md-4 content-block small">
                          <div class = "box-shadow">
-                            <div class = "icon"> <img src = "{{asset ('asset / img / destination.png')}}"> </div>
+                            <div class = "icon"> <img src = "{{asset ('asset/img/destination.png')}}"> </div>
                         <h2> Do more each shift </h2>
                         <div class = "title-divider"> </div>
                         <p> Travel fares start at a base value and increase over time and distance. And when demand is higher than normal, drivers earn more. </p>
@@ -60,7 +60,7 @@
 
     <div class = "col-md-4 content-block small">
                       <div class = "box-shadow">
-                         <div class = "icon"> <img src = "{{asset ('asset / img / taxi-app.png')}}"> </div>
+                         <div class = "icon"> <img src = "{{asset ('asset/img/taxi-app.png')}}"> </div>
                      <h2> Download the app and enjoy </h2>
                      <div class = "title-divider"> </div>
                      <p> You'll get step-by-step instructions, tools to help you earn more, and 24/7 support, all available right in the app. </p>
@@ -73,7 +73,7 @@
 <div class="row gray-section no-margin full-section">
     <div class="container">                
         <div class="col-md-6 content-block">
-            <div class = "icon"> <img src = "{{asset ('asset / img / taxi-car.png')}}"> </div>
+            <div class = "icon"> <img src = "{{asset ('asset/img/taxi-car.png')}}"> </div>
              <h3> About the app </h3>
              <h2> Designed for drivers </h2>
              <div class = "title-divider"> </div>
@@ -92,7 +92,7 @@
         <div class="col-md-4 content-block small">
             <div class="box-shadow">
                 <div class="icon"><img src="{{asset('asset/img/budget.png')}}"></div>
-            <h2>Recompensas</h2>
+            <h2>Rewards</h2>
             <div class="title-divider"></div>
             <p>You are in the driver's seat. So reward yourself with discounts on fuel, vehicle maintenance, cell phone bills and more. Reduce your daily expenses and bring more money home.</p>
         </div></div>
@@ -100,7 +100,7 @@
         <div class="col-md-4 content-block small">
             <div class="box-shadow">
                 <div class="icon"><img src="{{asset('asset/img/driving-license.png')}}"></div>
-            <h2>Requisitos</h2>
+            <h2>Requirements</h2>
             <div class="title-divider"></div>
             <p>Know that you are ready to drive. Whether you are driving your own vehicle or a commercially licensed vehicle, you must meet the minimum requirements and conduct an online safety screening.</p>
         </div></div>
@@ -108,7 +108,7 @@
         <div class="col-md-4 content-block small">
             <div class="box-shadow">
                 <div class="icon"><img src="{{asset('asset/img/seat-belt.png')}}"></div>
-            <h2>Segurança</h2>
+            <h2>Safety</h2>
             <div class="title-divider"></div>
             <p>When you drive with {{config ('constants.site_title', 'Thinkin Cab')}}, you get 24/7 support. All runners are verified with their personal information and phone number. That way you will know who is traveling and so will we. </p>
         </div></div>

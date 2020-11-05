@@ -16,7 +16,7 @@
                 @endif
                 <h5 class="card-title">@lang('admin.reason.title')</h5>
                 @can('cancel-reasons-create')
-                <a href="{{ route('admin.reason.create') }}" style="margin-left: 1em;" class="btn btn-primary pull-right"><i class="fa fa-plus"></i> @lang('admin.reason.add_reason')</a>
+                <a href="{{ route('admin.reason.create') }}" style="margin-left: 1em; margin-top: -45px;" class="btn btn-primary pull-right"><i class="fa fa-plus"></i> @lang('admin.reason.add_reason')</a>
                 @endcan
             </div>
             <div class="card-body">
@@ -53,7 +53,7 @@
                                     <a href="{{ route('admin.reason.edit', $reason->id) }}" class="btn btn-info"><i class="fa fa-pencil"></i> Edit</a>
                                     @endcan
                                     @can('cancel-reasons-delete')
-                                    <button class="btn btn-danger" onclick="return confirm('Are you sure?')"><i class="fa fa-trash"></i> Delete</button>
+                                    <button class="btn btn-danger" onclick="return confirm('Are you sure?')"> Delete</button>
                                     @endcan
                                     @endif
                                 </form>
@@ -62,13 +62,13 @@
                     @endforeach
                     </tbody>
                     <tfoot>
-                        <tr>
+                       <!--  <tr>
                             <th>@lang('admin.id')</th>
                             <th>@lang('admin.reason.type') </th>
                             <th>@lang('admin.reason.reason') </th>
                             <th>@lang('admin.reason.status') </th>
                             <th>@lang('admin.action')</th>
-                        </tr>
+                        </tr> -->
                     </tfoot>
                 </table>
             </div>

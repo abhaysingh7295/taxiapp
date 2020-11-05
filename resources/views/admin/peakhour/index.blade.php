@@ -16,7 +16,7 @@
                 @endif
                 <h5 class="card-title">@lang('admin.peakhour.title')</h5>
                 @can('promocodes-create')
-                <a href="{{ route('admin.peakhour.create') }}" style="margin-left: 1em;" class="btn btn-primary pull-right"><i class="fa fa-plus"></i> @lang('admin.peakhour.add_time')</a>
+                <a href="{{ route('admin.peakhour.create') }}" style="margin-left: 1em; margin-top: -22px;" class="btn btn-primary pull-right"><i class="fa fa-plus"></i> @lang('admin.peakhour.add_time')</a>
                 @endcan
             </div>
             <div class="card-body">
@@ -47,7 +47,7 @@
                                     <a href="{{ route('admin.peakhour.edit', $peak->id) }}" class="btn btn-info"><i class="fa fa-pencil"></i> Edit</a>
                                     @endcan
                                     @can('peak-hour-delete')
-                                    <button class="btn btn-danger" onclick="return confirm('Are you sure?')"><i class="fa fa-trash"></i> Delete</button>
+                                    <button class="btn btn-danger" onclick="return confirm('Are you sure?')"> Delete</button>
                                     @endcan
                                     @endif
                                 </form>

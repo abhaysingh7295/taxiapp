@@ -16,7 +16,7 @@
              @endif
                 <h5 class="card-title">@lang('admin.document.document')</h5>
                 @can('documents-create')
-                <a href="{{ route('admin.document.create') }}" style="margin-left: 1em;" class="btn btn-primary pull-right"><i class="fa fa-plus"></i> @lang('admin.document.add_Document')</a>
+                <a href="{{ route('admin.document.create') }}" style="margin-left: 1em; margin-top: -22px;" class="btn btn-primary pull-right"><i class="fa fa-plus"></i> @lang('admin.document.add_Document')</a>
                 @endcan
             </div>
             <div class="card-body">
@@ -47,7 +47,7 @@
                                     <a href="{{ route('admin.document.edit', $document->id) }}" class="btn btn-info"><i class="fa fa-pencil"></i> @lang('admin.edit')</a>
                                     @endcan
                                     @can('documents-delete')
-                                    <button class="btn btn-danger" onclick="return confirm('Are you sure?')"><i class="fa fa-trash"></i> @lang('admin.delete')</button>
+                                    <button class="btn btn-danger" onclick="return confirm('Are you sure?')"> @lang('admin.delete')</button>
                                     @endcan
                                     @endif
                                 </form>
@@ -56,13 +56,13 @@
                     @endforeach
                     </tbody>
                     <tfoot>
-                        <tr>
+                       <!--  <tr>
                             <th>@lang('admin.id')</th>
                             <th>@lang('admin.document.document_name')</th>
                             <th>@lang('admin.type')</th>
                               <th>@lang('admin.document.document_isexpiredate')</th>
                             <th>@lang('admin.action')</th>
-                        </tr>
+                        </tr> -->
                     </tfoot>
                 </table>
             </div>

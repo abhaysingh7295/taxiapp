@@ -25,7 +25,7 @@
                                     <div class="col-sm-12">
                                         <div class="checkbox checkbox-inline">
                                             <input type="checkbox" id="is_agree_add_company_logo_on_car	" name="is_agree_add_company_logo_on_car" value="1" {{($provider->is_agree_add_company_logo_on_car==1)?'checked="checked"':""}}>
-                                            <label for="is_agree_add_company_logo_on_car"> Is Agree Add Company Web Logo On Car	 </label>
+                                            <label for="is_agree_add_company_logo_on_car"> Is Agree Add Company Web logo on car	 </label>
                                         </div></div>
                                     <div class="col-sm-12">
                                         <div class="checkbox checkbox-inline">

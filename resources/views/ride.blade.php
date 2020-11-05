@@ -5,7 +5,7 @@
         <div class="banner-overlay"></div>
         <div class="container pad-60">
             <div class="col-md-8">
-                <h2 class="banner-head"><span class="strong">A melhor maneira de chegar</span><br>Onde quer que você vá</h2>
+                <h2 class="banner-head"><span class="strong">The best way to get to </span><br>wherever you go.</h2>
             </div>
             <div class="col-md-4">
                 <div class="banner-form">
@@ -15,8 +15,8 @@
                         </div>
                         <div class="right">
                             <a href="{{url('login')}}">
-                                <h3>Vá de {{config('constants.site_title','Moob')}}</h3>
-                                <h5>CADASTRE-SE <i class="fa fa-chevron-right"></i></h5>
+                                <h3>Go from {{config('constants.site_title','Moob')}}</h3>
+                                <h5>REGISTER <i class="fa fa-chevron-right"></i></h5>
                             </a>
                         </div>
                     </div>
@@ -26,8 +26,8 @@
                         </div>
                         <div class="right">
                             <a href="{{url('provider/login')}}">
-                                <h3>Quer ser Motorista?</h3>
-                                <h5>CADASTRE-SE <i class="fa fa-chevron-right"></i></h5>
+                                <h3>Want to be a driver?</h3>
+                                <h5>REGISTER <i class="fa fa-chevron-right"></i></h5>
                             </a>
                         </div>
                     </div>
@@ -45,27 +45,27 @@
             <div class="col-md-4 content-block small">
                 <div class="box-shadow">
                 <div class="icon"><img src="{{asset('asset/img/taxi-app.png')}}"></div>
-                <h2>Solicite uma viagem</h2>
+                <h2>Request a trip</h2>
                 <div class="title-divider"></div>
-                <p>{{ config('constants.site_title', 'Moob')  }} é a maneira mais inteligente de se locomover. Um toque e um carro ou moto vai até você. Seu motorista sabe exatamente para onde ir. E você pode pagar com dinheiro ou cartão.</p>
+                <p>{{ config('constants.site_title', 'Moob')  }} it's the smartest way to get around. One touch and a car or motorcycle comes to you. Your driver knows exactly where to go. And you can pay with cash or card.</p>
             </div>
         </div>
 
             <div class="col-md-4 content-block small">
                  <div class="box-shadow">
                  <div class="icon"><img src="{{asset('asset/img/destination.png')}}"></div>
-                <h2>Escolha como pagar</h2>
+                <h2>Choose how to pay</h2>
                 <div class="title-divider"></div>
-                <p>Quando chegar ao seu destino, pague com dinheiro ou solicite sua viagem com cartão ou saldo da carteira. Com o {{ config('constants.site_title', 'Moob') }}, a escolha é sua.</p>
+                <p>When you arrive at your destination, pay with cash or request your trip with a card or wallet balance. Like {{ config('constants.site_title', 'Moob') }}, it's your choice.</p>
             </div>
         </div>
 
             <div class="col-md-4 content-block small">
                  <div class="box-shadow">
                  <div class="icon"><img src="{{asset('asset/img/budget.png')}}"></div>
-                <h2>Você avalia, nós escutamos</h2>
+                <h2>You rate, we listen</h2>
                 <div class="title-divider"></div>
-                <p>Avalie seu motorista e forneça comentários anônimos sobre sua viagem. Sua entrada nos ajuda a tornar cada passeio uma experiência de 5 estrelas.</p>
+                <p>Rate your driver and provide anonymous comments about your trip. Your input helps us make each tour a 5-star experience.</p>
             </div>
         </div>
 
@@ -76,7 +76,7 @@
     <div class="row gray-section pad-60">
         <div class="container content-block"> 
          <div class="icon"><img src="{{ asset('asset/img/destination.png') }}"></div>               
-            <h2>Há uma carona para cada preço<br>E qualquer ocasião</h2>
+            <h2>There is a ride for every price <br> And any occasion</h2>
             <div class="car-tab">
                 <ul class="nav nav-tabs">
                     @foreach($services as $index => $service)
@@ -124,18 +124,18 @@
             
             <div class="col-md-6 content-block">
                  <div class="icon"><img src="{{ asset('asset/img/budget.png') }}"></div>    
-                <h4>Preço</h4>
-                <h2>Estimativa de tarifa</h2>
+                <h4>Price</h4>
+                <h2>Fare estimate</h2>
                 <div class="title-divider"></div>
                 <form method="post" id="idForm" onsubmit="return">
 
                     {{ csrf_field() }}
                 <div class="input-group fare-form">
-                    <input type="text" class="form-control"  placehold="Local de partida" id="origin-input" name="s_address">                               
+                    <input type="text" class="form-control"  placehold="Place of departure" id="origin-input" name="s_address">                               
                 </div>
 
                 <div class="input-group fare-form no-border-right">
-                    <input type="text" class="form-control"  placehold="Local de chegada" id="destination-input" name="d_address">
+                    <input type="text" class="form-control"  placehold="Place of arrival" id="destination-input" name="d_address">
                    
                 </div>
                 
@@ -155,7 +155,7 @@
                     <input type="hidden" name="current_longitude" id="long">
                     <input type="hidden" name="current_latitude" id="lat">
                     
-                 <button type="submit" id="btnSubmit" class="full-primary-btn fare-btn">SIMULAR</button>
+                 <button type="submit" id="btnSubmit" class="full-primary-btn fare-btn">SIMULATE</button>
 
                 <div id="div1" class="full-primary-btn fare-btn"  style="text-align: center; display: none"></div>
                         
@@ -190,10 +190,10 @@
     <div class="container">
         <div class="col-md-6 content-block">
               <div class="icon"><img src="{{ asset('asset/img/seat-belt.png') }}"></div>
-            <h2>Segurança em primeiro lugar</h2>
+            <h2>Safety first</h2>
             <div class="title-divider"></div>
-            <p>Seja andando no banco de trás ou dirigindo na frente, todo o sistema do {{ config('constants.site_title', 'Moob') }} foi desenvovido para dar a melhor experiencia de viagem com total qualidade e segurança.</p>
-            <a class="content-more more-btn" href="{{url('login')}}">VÁ COM SEGURANÇA, CADASTRE-SE <i class="fa fa-chevron-right"></i></a>
+            <p>Whether riding in the back seat or driving in the front, the entire {{ config('constants.site_title', 'Moob') }} was developed to give the best travel experience with total quality and safety.</p>
+            <a class="content-more more-btn" href="{{url('login')}}">GO SAFELY, REGISTER <i class="fa fa-chevron-right"></i></a>
         </div>
         <!-- <div class="col-md-6 img-box text-center"> 
             <img src="{{ asset('asset/img/seat-belt.jpg') }}">
@@ -262,8 +262,8 @@ $(document).ready(function () {
        { 
            $("#div1").show();
            $("#div2").show();
-           $("#div1").html("Preço estimado - R$"+data.estimated_fare+",00");
-           $("#div2").html("Distância - "+data.distance+" Km(s)");
+           $("#div1").html("Estimated price - {{config('constants.currency', '$')}}"+data.estimated_fare+",00");
+           $("#div2").html("Distance - "+data.distance+" {{config('constants.distance', 'Kms')}}");
        }
      });
 
